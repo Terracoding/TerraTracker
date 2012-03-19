@@ -4,6 +4,8 @@ gem 'rails', '3.1.3'
 gem 'mysql2'
 gem 'haml'
 gem 'haml-rails'
+gem 'devise'
+gem 'twitter-bootstrap-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'

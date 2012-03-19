@@ -1,0 +1,26 @@
+!!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :charset => "utf-8" }
+    %title= "TimeTracker"
+    = stylesheet_link_tag     "application"
+    = javascript_include_tag  "application"
+    = csrf_meta_tags
+  %body{ "data-spy" => "scroll", "data-target" => ".subnav", "data-offset" => "50" }
+    %div.navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a{ :class => "btn btn-navbar", "data-toggle" => "collapse", "data-target" => ".nav-collapse" }
+            / %span.icon-bar
+            / %span.icon-bar
+            / %span.icon-bar
+          = link_to "TimeTracker", root_path, :class => "brand"
+          %div.nav-collapse
+            %ul.nav
+              %li= link_to "Home", root_path
+              - if current_user
+                %li= link_to "Logout", destroy_user_session_path, :method => :delete
+              - else
+                %li= link_to "Login", new_user_session_path
+    .container
+      = yield
