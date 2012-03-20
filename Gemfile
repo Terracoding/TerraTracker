@@ -6,6 +6,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'

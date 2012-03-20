@@ -145,6 +145,9 @@ GEM
       shoulda-matchers (~> 1.0.0)
     shoulda-context (1.0.0)
     shoulda-matchers (1.0.0)
+    simple_form (2.0.1)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     simplecov (0.6.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -194,6 +197,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.1.5)
   shoulda
+  simple_form
   simplecov
   turn (= 0.8.2)
   twitter-bootstrap-rails
