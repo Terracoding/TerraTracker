@@ -1,10 +1,27 @@
-%h2 Sign up
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = f.error_notification
-  .inputs
-    = f.input :email, :required => true, :autofocus => true
-    = f.input :password, :required => true
-    = f.input :password_confirmation, :required => true
-  .actions
-    = f.button :submit, "Sign up"
-= render :partial => "devise/shared/links"
+%div{ :class => "container login"}
+  = render :partial => "shared/flash_messages", :locals => {:flash => flash}
+  .row
+    .session-form
+      %h2 Signup
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+        %fieldset
+          .control-group
+            .controls
+              = f.input :firstname, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'First Name'
+          .control-group
+            .controls
+              = f.input :lastname, :required => true, :class => 'input-xlarge', :label => 'Last Name'
+          .control-group
+            .controls
+              = f.input :company, :required => true, :class => 'input-xlarge', :label => 'Company Name'
+          .control-group
+            .controls
+              = f.input :email, :required => true, :class => 'input-xlarge'
+          .control-group
+            .controls
+              = f.input :password, :required => true, :class => 'input-xlarge'
+          .control-group
+            .controls
+              = f.input :password_confirmation, :required => true, :class => 'input-xlarge'
+          = f.button :submit, "Create my account", :class => 'btn btn-primary'
+      = render :partial => "devise/shared/links"
