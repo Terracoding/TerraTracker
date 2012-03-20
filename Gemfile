@@ -23,4 +23,5 @@ group :test do
   gem 'shoulda'
   gem 'simplecov', :require => false
   gem 'webrat'
+  gem 'factory_girl_rails'
 end
