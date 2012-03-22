@@ -9,6 +9,12 @@ module NavigationHelpers
       dashboard_index_path
     when /^the login page$/
       new_user_session_path
+    when /^the company page$/
+      company_index_path
+    when /^the new company page$/
+      new_company_path
+    when /^the timeslips page%/
+      timeslips_path
     else
       begin
         page_name =~ /^the (.*) page$/
