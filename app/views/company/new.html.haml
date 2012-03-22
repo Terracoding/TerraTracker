@@ -1,0 +1,7 @@
+- content_for(:title, 'New Company')
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span10
+    %h1 Create Your Company
+    = render 'form'

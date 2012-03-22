@@ -1,18 +1,13 @@
+- content_for(:title, 'Login')
+
 %div{ :class => "container login"}
   = render :partial => "shared/flash_messages", :locals => {:flash => flash}
   .row
     .session-form
       %h2 Sign in
-      = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-        %fieldset
-          .control-group
-            .controls
-              = f.input :email, :required => false, :autofocus => true, :class => 'input-xlarge', :placeholder => 'Email'
-          .control-group
-            .controls
-              = f.input :password, :required => false, :placeholder => 'Password', :class => 'input-xlarge'
-          .control-group
-            .controls
-              = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-          = f.button :submit, 'Sign in', :class => 'btn btn-primary'
+      = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal' }) do |f|
+        .control-group= f.input :email, :required => false, :autofocus => true, :class => 'input-xlarge', :placeholder => 'Email'
+        .control-group= f.input :password, :required => false, :placeholder => 'Password', :class => 'input-xlarge'
+        = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+        = f.button :submit, 'Sign in', :class => 'btn btn-primary'
       = render :partial => "devise/shared/links"

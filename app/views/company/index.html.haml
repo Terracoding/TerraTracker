@@ -1,5 +1,3 @@
-- content_for(:title, 'Dashboard')
-
 .row
   .span2
     = render :partial => "shared/sidebar"
@@ -8,4 +6,9 @@
       %div.alert{ :class => twitterized_type(:error) }
         %a.close{ "data-dismiss" => "alert" } x
         You have not set up your company.
-    %h1 Dashboard
+    %h1 Company
+    - if @company
+      = @company.name
+    - else
+      %p Click here to create your company.
+      = render 'form'

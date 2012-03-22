@@ -6,8 +6,14 @@ describe ApplicationController do
     def after_sign_in_path_for(resource)
         super resource
     end
+    def after_sign_up_path_for(resource)
+        super resource
+    end
+    def after_sign_out_path_for(resource)
+        super resource
+    end
   end
-
+  
   before (:each) do
     @user = FactoryGirl.create(:user)
   end

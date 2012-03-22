@@ -1,0 +1,3 @@
+= simple_form_for(@company, :html => {:class => 'form-horizontal' }) do |f|
+    = f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Company Name'
+    = f.button :submit, "Create my account", :class => 'btn btn-primary'

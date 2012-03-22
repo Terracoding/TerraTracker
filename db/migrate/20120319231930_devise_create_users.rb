@@ -13,7 +13,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string  :firstname
       t.string  :lastname
-      t.string  :company
 
       t.timestamps
     end

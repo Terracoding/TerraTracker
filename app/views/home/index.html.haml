@@ -1,7 +1,12 @@
+- content_for(:title, 'Home')
+
 %div{ :class => "container"}
 .row
   .home.masthead
     %h1 TimeTracker
     %p Accounting software
-    = link_to "Login »", new_user_session_path, :class => "btn btn-primary btn-large"
+    - if current_user
+      = link_to "Dashboard »", dashboard_index_path, :class => "btn btn-primary btn-large"
+    - else
+      = link_to "Login »", new_user_session_path, :class => "btn btn-primary btn-large"
     = link_to "Register »", new_user_registration_path, :class => "btn btn-primary btn-large"

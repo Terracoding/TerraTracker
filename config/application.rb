@@ -41,7 +41,7 @@ module Timetracker
     
     config.generators do |g|
       g.template_engine :haml
-      g.test_framework :rspec, :fixture => true, :views => false
+      g.test_framework :rspec, :fixture => false, :views => false
     end
 
     # Enable the asset pipeline
