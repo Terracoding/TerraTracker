@@ -13,6 +13,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string  :firstname
       t.string  :lastname
+      t.boolean :owns_company
 
       t.timestamps
     end
