@@ -1,8 +1,8 @@
 class CompanyController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :confirm_company
   
   def index
-    current_company ? @current_company = current_company : redirect_to(new_company_path)
+    # @company_users.
   end
   
   def new
@@ -30,6 +30,12 @@ class CompanyController < ApplicationController
     else
       render :action => "edit"
     end
+  end
+  
+  private
+  
+  def confirm_company
+    current_company ? @current_company = current_company : redirect_to(new_company_path)
   end
   
 end
