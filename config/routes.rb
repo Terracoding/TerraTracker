@@ -1,5 +1,5 @@
 Timetracker::Application.routes.draw do
-  devise_for :users, :controllers => { :sessions => "sessions_controller" }
+  devise_for :users
 
   resources :dashboard
   resources :company_users

@@ -22,7 +22,19 @@
           %dd No registration number
       %p= link_to "Edit Company", edit_company_path(@current_company), :class => "btn btn-primary"
       %h2 Company Users
-      - @current_company.company_users.each do |u|
-        = u.firstname
-        = u.lastname
-      / %p= link_to "Add User", new_company_user_path, :class => "btn btn-primary"
+      %table.table.table-striped
+        %thead
+          %tr
+            %th ID
+            %th Role
+            %th First Name
+            %th Last Name
+            %th Email
+        - @current_company.users.each do |u|
+          %tr
+            %td= u.id
+            %td= u.owns_company ? "Owner" : "User"
+            %td= u.firstname
+            %td= u.lastname
+            %td= u.email
+      %p= link_to "Add User", new_company_user_path, :class => "btn btn-primary"
