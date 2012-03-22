@@ -4,9 +4,10 @@
     %a{ :href => dashboard_index_path }
       %i{ :class => "icon-home" }
       Dashboard
-    %a{ :href => company_index_path }
-      %i{ :class => "icon-user" }
-      Company
+    - if !current_user.sub_account
+      %a{ :href => company_index_path }
+        %i{ :class => "icon-user" }
+        Company
     %a{ :href => timeslips_path }
       %i{ :class => "icon-time" }
       Timeslips

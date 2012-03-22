@@ -17,6 +17,7 @@ class CompanyUsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.company = @current_company
+    @user.sub_account = true
     if @user.save
       redirect_to company_index_path
     else

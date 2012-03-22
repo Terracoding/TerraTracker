@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
   
   describe "validations" do
-    it { should have_one(:company) }
+    it { should belong_to(:company) }
   end
 
 end

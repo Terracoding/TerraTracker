@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20120322014322) do
     t.string   "firstname"
     t.string   "lastname"
     t.boolean  "owns_company"
+    t.boolean  "sub_account"
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
