@@ -7,14 +7,13 @@ gem 'haml-rails'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
+gem 'jquery-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
 
 group :test do
   gem 'turn', '0.8.2', :require => false
@@ -24,4 +23,8 @@ group :test do
   gem 'simplecov', :require => false
   gem 'webrat'
   gem 'factory_girl_rails'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'ZenTest'
+  gem 'database_cleaner'
 end
