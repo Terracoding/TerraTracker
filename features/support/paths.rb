@@ -7,6 +7,8 @@ module NavigationHelpers
       '/'
     when /^the dashboard page$/
       dashboard_index_path
+    when /^the login page$/
+      new_user_session_path
     else
       begin
         page_name =~ /^the (.*) page$/

@@ -21,7 +21,7 @@ class CompanyController < ApplicationController
       current_user.company = @company
       current_user.owns_company = true
       current_user.save
-      redirect_to(company_index_path :notice => "#{@company.name} was successfully created.")
+      redirect_to(company_index_path, :notice => "The company #{@company.name} was successfully created.")
     else
       render :action => "new"
     end
@@ -30,7 +30,7 @@ class CompanyController < ApplicationController
   def update
     @company = Company.find(params[:id])
     if @company.update_attributes(params[:company])
-      redirect_to(company_index_path, :notice => "#{@company.name} was successfully updated.")
+      redirect_to(company_index_path, :notice => "The company #{@company.name} was successfully updated.")
     else
       render :action => "edit"
     end

@@ -24,6 +24,8 @@
                 %li= link_to "Home", root_path
                 %li= link_to "Login", new_user_session_path
     .container
+      #notification
+        =render :partial => "shared/flash_messages", :locals => {:flash => flash}
       = yield
 
       %hr.soften
