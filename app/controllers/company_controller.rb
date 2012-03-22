@@ -1,7 +1,7 @@
 class CompanyController < ApplicationController
 
   def index
-    redirect_to new_company_path if !@company
+    current_company ? @current_company = current_company : redirect_to(new_company_path)
   end
   
   def new
@@ -12,8 +12,8 @@ class CompanyController < ApplicationController
   end
   
   def create
-    # Untested
     @company = Company.new(params[:company])
+    @company.user = current_user
     if @company.save
       redirect_to(company_index_path :notice => "#{@company.name} was successfully created.")
     else
@@ -22,7 +22,6 @@ class CompanyController < ApplicationController
   end
 
   def update
-    # Untested
     @company = Company.find(params[:id])
     if @company.update_attributes(params[:company])
       redirect_to(application_path(@company), :notice => "#{@company.name} was successfully updated.")

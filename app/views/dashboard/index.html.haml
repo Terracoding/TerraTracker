@@ -1,11 +1,11 @@
 - content_for(:title, 'Dashboard')
-
 .row
   .span2
     = render :partial => "shared/sidebar"
   .span10
-    - if !@company
+    - if !@current_company
       %div.alert{ :class => twitterized_type(:error) }
         %a.close{ "data-dismiss" => "alert" } x
         You have not set up your company.
     %h1 Dashboard
+    %p= "#{current_user.firstname}, welcome to your Dashboard."

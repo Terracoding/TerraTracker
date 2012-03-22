@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
   end
   
   def current_company
-    @company = current_user.company
+    current_user.company
   end
 end

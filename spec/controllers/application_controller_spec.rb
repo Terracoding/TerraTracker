@@ -35,5 +35,14 @@ describe ApplicationController do
         controller.after_sign_out_path_for(@user).should == root_path
     end
   end
+  
+  # describe "#current_company" do
+  #   it "loads a company for a user" do
+  #     @company = FactoryGirl.create(:company, :user => @user)
+  #     # @user.company.should == @company
+  #     controller.after_sign_in_path_for(@user)
+  #     controller.current_company.should == @company
+  #   end
+  # end
 
 end
