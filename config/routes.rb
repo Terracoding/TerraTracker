@@ -3,6 +3,7 @@ Timetracker::Application.routes.draw do
 
   resources :dashboard
   resources :company
+  resources :timeslips
 
   root :to => "home#index"
   

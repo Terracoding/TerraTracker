@@ -16,4 +16,8 @@
         %dt Company Name:
         %dd= @current_company.name
         %dt Registration Number:
-        %dd= @current_company.registration_number
+        - if @current_company.registration_number != ""
+          %dd= @current_company.registration_number
+        - else
+          %dd No registration number
+      %p= link_to "Edit Company", edit_company_path(@current_company), :class => "btn btn-primary"

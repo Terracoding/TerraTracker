@@ -9,6 +9,7 @@ class CompanyController < ApplicationController
   end
   
   def edit
+    @company = Company.find(params[:id])
   end
   
   def create
@@ -24,7 +25,7 @@ class CompanyController < ApplicationController
   def update
     @company = Company.find(params[:id])
     if @company.update_attributes(params[:company])
-      redirect_to(application_path(@company), :notice => "#{@company.name} was successfully updated.")
+      redirect_to(company_index_path, :notice => "#{@company.name} was successfully updated.")
     else
       render :action => "edit"
     end
