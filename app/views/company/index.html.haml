@@ -20,7 +20,10 @@
           %dd= @current_company.registration_number
         - else
           %dd No registration number
-      %p= link_to "Edit Company", edit_company_path(@current_company), :class => "btn btn-primary"
+      %p
+        %a.btn.btn-primary{ :href => edit_company_path(@current_company) }
+          %i.icon-pencil.icon-white
+          Edit Company
       %h2 Company Users
       = render :partial => "company/company_users"
      
