@@ -2,6 +2,7 @@ Timetracker::Application.routes.draw do
   devise_for :users
 
   resources :dashboard
+  resources :projects
   resources :company_users, :except => [:index, :edit, :update]
   resources :company
   resources :timeslips

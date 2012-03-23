@@ -16,4 +16,12 @@ class ApplicationController < ActionController::Base
   def current_company
     current_user.company
   end
+  
+  def redirect_company
+    current_company ? @current_company = current_company : redirect_to(new_company_path)
+  end
+  
+  def redirect_sub_account
+    redirect_to(dashboard_index_path) if current_user.sub_account
+  end
 end

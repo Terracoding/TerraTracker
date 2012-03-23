@@ -1,5 +1,5 @@
 class CompanyUsersController < ApplicationController
-  before_filter :authenticate_user!, :confirm_company
+  before_filter :authenticate_user!, :redirect_company
 
   def new
     @company = @current_company
@@ -17,10 +17,4 @@ class CompanyUsersController < ApplicationController
     end
   end
 
-  private
-  
-  def confirm_company
-    current_company ? @current_company = current_company : redirect_to(new_company_path)
-  end
-  
 end

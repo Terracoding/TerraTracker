@@ -1,7 +1,7 @@
 class CompanyController < ApplicationController
-  before_filter :authenticate_user!, :confirm_company
-  before_filter :confirm_company, :only => [:index, :update, :destroy]
-  before_filter :sub_account
+  before_filter :authenticate_user!
+  before_filter :redirect_company, :only => [:index, :update, :destroy]
+  before_filter :redirect_sub_account
   
   def index
     # @company_users.
@@ -34,16 +34,6 @@ class CompanyController < ApplicationController
     else
       render :action => "edit"
     end
-  end
-  
-  private
-  
-  def confirm_company
-    current_company ? @current_company = current_company : redirect_to(new_company_path)
-  end
-  
-  def sub_account
-     redirect_to(dashboard_index_path) if current_user.sub_account
   end
   
 end

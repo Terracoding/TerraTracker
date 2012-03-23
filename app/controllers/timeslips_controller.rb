@@ -1,8 +1,8 @@
 class TimeslipsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :redirect_company
   
   def index
-    current_company ? @current_company = current_company : redirect_to(new_company_path)
+    
   end
   
 end
