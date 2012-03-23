@@ -5,7 +5,7 @@ Given /^I own the company "([^"]*)"$/ do |company|
     And I fill in the following:
       | Company Name            | #{company}          |
       | Registration Number     | 1001                |
-    And I press "Create company"
+    And I press "Create Company"
     Then I should see "Company Overview"
     And I should see "The company #{company} was successfully created."
   }

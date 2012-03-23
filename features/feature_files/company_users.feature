@@ -17,3 +17,9 @@ Feature: Company Users
       | Password              | password              |
     And I press "Create Company User"
     Then I should see "You have successfully added Jane Doe to your company."
+    
+  Scenario: Delete a new company user
+    Given I am on the company page
+    And I have a company user "jane@example.com"
+    When I follow "Delete"
+    Then I should see "The user was successfully removed."

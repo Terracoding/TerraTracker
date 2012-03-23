@@ -4,3 +4,24 @@
     = render :partial => "shared/sidebar"
   .span10
     %h1 Projects
+    %table.table.table-striped
+      %thead
+        %tr
+          %th ID
+          %th Project Name
+          %th 
+      - @projects.each do |p|
+        %tr
+          %td= p.id
+          %td= p.name
+          %td
+            %a.btn{ :href => edit_project_path(p) }
+              %i.icon-pencil
+              Edit
+            %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => project_path(p) }
+              %i.icon-trash.icon-white
+              Delete
+    %p
+      %a.btn.btn-primary{ :href => new_project_path }
+        %i.icon-plus.icon-white
+        Add Project

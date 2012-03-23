@@ -2,7 +2,6 @@ class CompanyUsersController < ApplicationController
   before_filter :authenticate_user!, :redirect_company
 
   def new
-    @company = @current_company
     @user = User.new
   end
 
@@ -14,6 +13,16 @@ class CompanyUsersController < ApplicationController
       redirect_to company_index_path, :notice => "You have successfully added #{@user.firstname} #{@user.lastname} to your company."
     else
       render :action => "new"
+    end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    if !@user.owns_company? && @user.sub_account
+      @user.destroy
+      redirect_to(company_index_path, :notice => "The user was successfully removed.")
+    else
+      redirect_to(company_index_path, :notice => "You cannot delete this user.")
     end
   end
 

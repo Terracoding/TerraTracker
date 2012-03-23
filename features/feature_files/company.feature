@@ -17,7 +17,7 @@ Feature: Company
     And I fill in the following:
       | Company Name            | Test Company        |
       | Registration Number     | 1001                |
-    And I press "Create company"
+    And I press "Create Company"
     Then I should see "Company Overview"
     And I should see "The company Test Company was successfully created."
   

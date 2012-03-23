@@ -4,7 +4,7 @@ class CompanyController < ApplicationController
   before_filter :redirect_sub_account
   
   def index
-    # @company_users.
+    
   end
   
   def new

@@ -13,6 +13,8 @@ module NavigationHelpers
       company_index_path
     when /^the new company page$/
       new_company_path
+    when /^the projects page$/
+      projects_path
     when /^the timeslips page%/
       timeslips_path
     else

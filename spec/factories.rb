@@ -12,4 +12,9 @@ FactoryGirl.define do
     name                "company name"
     registration_number "0001"
   end
+  
+  factory :project do
+    company
+    name      "project name"
+  end
 end
