@@ -13,7 +13,7 @@
       %td= p.project.name
       %td= p.name
       %td= p.billable.to_s
-      %td= p.rate
+      %td= number_with_precision(p.rate, :precision => 2)
       %td
         %a.btn{ :href => task_path(p) }
           %i.icon-search

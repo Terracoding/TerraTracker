@@ -24,6 +24,29 @@ Feature: Tasks
     And I press "Create Task"
     Then I should see "Test Task"
     And I should see "The task Test Task was successfully created."
+
+  Scenario: I should be able to edit a task
+    Given I have a project "Test Project"
+    And I have the task "Test Task"
+    And I am on the tasks page
+    When I follow "Edit"
+    And I fill in the following:
+      | Task Name       | New Task Name       |
+    And I press "Update"
+    Then I should see "New Task Name"
+    And I should see "The task was successfully updated."
+
+  Scenario: I should be able to change a tasks project
+    Given I have a project "Test Project"
+    And I have a project "Foo Project"
+    And I have the task "Test Task"
+    And I am on the tasks page
+    When I follow "Edit"
+    And I select "Foo Project" from "Project"
+    And I press "Update"
+    Then I should see "Test Task"
+    And I should see "The task was successfully updated."
+    And I should see "Foo Project"
     
   Scenario: I should be able to delete a task
     Given I have a project "Test Project"

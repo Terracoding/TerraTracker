@@ -10,9 +10,10 @@ class TasksController < ApplicationController
     @available_projects = current_company.projects
   end
 
-  # def edit
-  #   @task = Task.find(params[:id])
-  # end
+  def edit
+    @task = Task.find(params[:id])
+    @available_projects = current_company.projects
+  end
 
   def create
     @task = Task.new(params[:task])
@@ -24,14 +25,15 @@ class TasksController < ApplicationController
     end
   end
 
-  # def update
-  #   @task = Task.find(params[:id])
-  #   if @task.update_attributes(params[:Task])
-  #     redirect_to(tasks_path, :notice => "The task was successfully updated.")
-  #   else
-  #     render :action => "edit"
-  #   end
-  # end
+  def update
+    @task = Task.find(params[:id])
+    @task.project = Project.find(params[:task][:project_id])
+    if @task.update_attributes(params[:task])
+      redirect_to(tasks_path, :notice => "The task was successfully updated.")
+    else
+      render :action => "edit"
+    end
+  end
 
   def destroy
     @task = Task.find(params[:id])
