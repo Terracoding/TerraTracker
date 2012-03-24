@@ -5,6 +5,10 @@ class ProjectsController < ApplicationController
     @projects = Project.where(:company_id => current_company.id)
   end
   
+  def show
+    @project = Project.find(params[:id])
+  end
+  
   def new
     @project = Project.new
   end

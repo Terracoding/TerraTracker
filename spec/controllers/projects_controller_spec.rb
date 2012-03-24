@@ -71,4 +71,19 @@ describe ProjectsController do
     end
   end
   
+  context :show do
+    before (:each) do
+      @company = Factory.create(:company)
+      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @project = Factory.create(:project, :company => @company)
+      sign_in @user
+    end
+    
+    it "should be able to show the project" do
+      post :show, :id => @project.id
+      response.should render_template("show")
+      sign_out @user
+    end
+  end
+  
 end

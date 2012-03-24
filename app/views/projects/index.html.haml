@@ -15,6 +15,9 @@
           %td= p.id
           %td= p.name
           %td
+            %a.btn{ :href => project_path(p) }
+              %i.icon-search
+              Show
             %a.btn{ :href => edit_project_path(p) }
               %i.icon-pencil
               Edit

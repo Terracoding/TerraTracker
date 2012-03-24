@@ -32,3 +32,9 @@ Feature: Project
     When I follow "Delete"
     Then I should not see "Updated Project"
     And I should see "The project was successfully removed."
+
+  Scenario: I should be able to show my project
+    Given I have a project "test project"
+    And I am on the projects page
+    When I follow "Show"
+    Then I should see "test project"
