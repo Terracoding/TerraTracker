@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_filter :authenticate_user!, :redirect_company, :redirect_sub_account
+  before_filter :authenticate_user!, :redirect_company, :redirect_sub_account, :redirect_projects
   
   def index
     @tasks = Task.joins(:project).where("projects.company_id" => current_company.id)
@@ -16,6 +16,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(params[:task])
+    @task.project = Project.find(params[:task][:project_id])
     if @task.save
       redirect_to(tasks_path, :notice => "The task #{@task.name} was successfully created.")
     else

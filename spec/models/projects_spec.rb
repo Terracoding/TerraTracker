@@ -5,9 +5,9 @@ describe Project do
   describe "validations" do
     it { should belong_to(:company) }
     it { should validate_presence_of(:name) }
-    it { should have_many(:tasks) }
+    it { should have_many(:tasks).dependent(:destroy) }
   end
-  
+
   context :to_s do
     it "should return the project name" do
       company = Factory.create(:company)

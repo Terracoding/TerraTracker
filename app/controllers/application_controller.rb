@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_company
-    current_user.company
+    @current_company = current_user.company
   end
   
   def redirect_company
@@ -23,5 +23,12 @@ class ApplicationController < ActionController::Base
   
   def redirect_sub_account
     redirect_to(dashboard_index_path) if current_user.sub_account
+  end
+  
+  def redirect_projects
+    if current_company.projects.count < 1
+      flash[:error] = 'You need to set up a project before you can create a task.'
+      redirect_to(new_project_path, :error => 'error')
+    end
   end
 end
