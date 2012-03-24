@@ -16,14 +16,11 @@ describe TasksController do
       sign_out @user
     end
     
-    # it "should render new when not saving the new task" do
-    #   task = mock_model(Task, :save => false)
-    #   Task.stub(:build).and_return(task)
-    #   task.stub(:save).and_return(false)
-    #   post :create, :task => {}
-    #   response.should render_template(:new)
-    #   sign_out @user
-    # end
+    it "should render new when not saving the new task" do
+      post :create, :task => { :project_id => @project.id }
+      response.should render_template(:new)
+      sign_out @user
+    end
   end
 
 end
