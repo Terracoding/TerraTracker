@@ -1,0 +1,26 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th ID
+      %th Project Name
+      %th Task Name
+      %th Billable
+      %th Rate
+      %th 
+  - @tasks.each do |p|
+    %tr
+      %td= p.id
+      %td= p.project.name
+      %td= p.name
+      %td= p.billable.to_s
+      %td= p.rate
+      %td
+        %a.btn{ :href => task_path(p) }
+          %i.icon-search
+          Show
+        %a.btn{ :href => edit_task_path(p) }
+          %i.icon-pencil
+          Edit
+        %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => task_path(p) }
+          %i.icon-trash.icon-white
+          Delete
