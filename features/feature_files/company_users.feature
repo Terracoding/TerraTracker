@@ -18,6 +18,12 @@ Feature: Company Users
     And I press "Create Company User"
     Then I should see "You have successfully added Jane Doe to your company."
     
+  Scenario: Showing a company user
+    Given I am on the company page
+    And I have a company user "jane@example.com"
+    When I follow "Show"
+    Then I should see "Company User"
+    
   Scenario: Delete a new company user
     Given I am on the company page
     And I have a company user "jane@example.com"

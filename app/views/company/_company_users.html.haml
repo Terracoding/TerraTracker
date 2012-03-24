@@ -6,6 +6,7 @@
       %th First Name
       %th Last Name
       %th Email
+      %th
       %th 
   - @current_company.users.each do |u|
     %tr
@@ -14,6 +15,10 @@
       %td= u.firstname
       %td= u.lastname
       %td= u.email
+      %td
+        %a.btn{ :href => company_user_path(u) }
+          %i.icon-search
+          Show
       %td
         - if !u.owns_company?
           %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => company_user_path(u) }
