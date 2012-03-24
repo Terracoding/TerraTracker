@@ -10,11 +10,11 @@
         Company
       - if current_user.company
         %a{ :href => projects_path }
-          %i{ :class => "icon-user" }
+          %i{ :class => "icon-th-list" }
           Projects
         - if current_user.company.projects.count > 0
           %a{ :href => tasks_path }
-            %i{ :class => "icon-user" }
+            %i{ :class => "icon-ok" }
             Tasks
         %a{ :href => timeslips_path }
           %i{ :class => "icon-time" }
