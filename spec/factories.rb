@@ -17,4 +17,9 @@ FactoryGirl.define do
     company
     name      "project name"
   end
+  
+  factory :task do
+    project
+    name      "task name"
+  end
 end

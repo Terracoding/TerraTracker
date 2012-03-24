@@ -1,0 +1,32 @@
+- content_for(:title, 'Tasks')
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span10
+    %h1 Tasks
+    %table.table.table-striped
+      %thead
+        %tr
+          %th ID
+          %th Project Name
+          %th Task Name
+          %th 
+      - @tasks.each do |p|
+        %tr
+          %td= p.id
+          %td= p.project.name
+          %td= p.name
+          %td
+            %a.btn{ :href => task_path(p) }
+              %i.icon-search
+              Show
+            %a.btn{ :href => edit_task_path(p) }
+              %i.icon-pencil
+              Edit
+            %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => task_path(p) }
+              %i.icon-trash.icon-white
+              Delete
+    %p
+      %a.btn.btn-primary{ :href => new_task_path }
+        %i.icon-plus.icon-white
+        Add Task

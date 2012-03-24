@@ -3,6 +3,7 @@ Timetracker::Application.routes.draw do
 
   resources :dashboard
   resources :projects
+  resources :tasks
   resources :company_users, :except => [:index, :edit, :update]
   resources :company
   resources :timeslips

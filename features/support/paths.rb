@@ -17,6 +17,8 @@ module NavigationHelpers
       projects_path
     when /^the timeslips page%/
       timeslips_path
+    when /^the tasks page%/
+      tasks_path  
     else
       begin
         page_name =~ /^the (.*) page$/

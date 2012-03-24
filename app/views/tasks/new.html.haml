@@ -1,0 +1,11 @@
+- content_for(:title, 'New Task')
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span10
+    %h1 Create Task
+    = simple_form_for(@task, :url => @task, :html => {:class => 'form-horizontal' }) do |f|
+      / select project
+      .control-group= f.input :project_id, :required => true, :collection => @available_projects, :label => 'Project'
+      .control-group= f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Task Name'
+      = f.button :submit, "Create Task", :class => 'btn btn-primary'

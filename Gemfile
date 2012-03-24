@@ -27,4 +27,5 @@ group :test do
   gem 'cucumber-rails'
   gem 'ZenTest'
   gem 'database_cleaner'
+  gem 'launchy'
 end

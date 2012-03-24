@@ -3,7 +3,7 @@
   .span2
     = render :partial => "shared/sidebar"
   .span10
-    %h1 Create Company User
+    %h1 Create Project
     = simple_form_for(@project, :url => @project, :html => {:class => 'form-horizontal' }) do |f|
       .control-group= f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Project Name'
       = f.button :submit, "Create Project", :class => 'btn btn-primary'

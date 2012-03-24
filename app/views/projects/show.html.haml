@@ -1,0 +1,11 @@
+- content_for(:title, @project.name)
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span10
+    %h1= @project.name
+    %h3 Users
+    %p There are no users.
+    %h3 Tasks
+    %p There are no tasks.
+    
