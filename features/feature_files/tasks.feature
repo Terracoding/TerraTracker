@@ -18,7 +18,9 @@ Feature: Tasks
     When I follow "Add Task"
     And I select "Test Project" from "Project"
     And I fill in the following:
-      | Task Name         | Test Task            |
+      | Task Name         | Test Task           |
+      | Rate              | 20.00               |
+    And I check "Billable"
     And I press "Create Task"
     Then I should see "Test Task"
     And I should see "The task Test Task was successfully created."

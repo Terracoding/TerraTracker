@@ -3,6 +3,8 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
       t.references  :project
       t.string      :name
+      t.boolean     :billable
+      t.decimal     :rate, :precision => 10, :scale => 2
       t.timestamps
     end
   end

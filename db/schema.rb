@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20120324024353) do
   create_table "tasks", :force => true do |t|
     t.integer  "project_id"
     t.string   "name"
+    t.boolean  "billable"
+    t.decimal  "rate",       :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
