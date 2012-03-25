@@ -20,12 +20,12 @@ Feature: Company Users
     
   Scenario: Showing a company user
     Given I am on the company page
-    And I have a company user "jane@example.com"
+    And I have a company user "Jane"
     When I follow "Show"
     Then I should see "Company User"
     
   Scenario: Delete a new company user
     Given I am on the company page
-    And I have a company user "jane@example.com"
+    And I have a company user "Jane"
     When I follow "Delete"
     Then I should see "The user was successfully removed."
