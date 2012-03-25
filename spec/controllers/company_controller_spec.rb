@@ -26,7 +26,7 @@ describe CompanyController do
       company = mock_model(Company, :save => false)
       Company.stub(:new) { company }
       post :create, :company => {}
-      response.should render_template("new")
+      response.should render_template(:new)
       sign_out @user
     end
     
@@ -49,7 +49,7 @@ describe CompanyController do
       company = mock_model(Company, :update_attributes => false)   
       Company.stub(:find).with("12") { company }
       post :update, :id => "12"
-      response.should render_template("edit")
+      response.should render_template(:edit)
       sign_out @user
     end
   end

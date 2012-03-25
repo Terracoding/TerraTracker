@@ -22,4 +22,9 @@ FactoryGirl.define do
     project
     name      "task name"
   end
+  
+  factory :project_user do
+    project
+    user
+  end
 end
