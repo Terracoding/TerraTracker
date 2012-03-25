@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @project.company = current_company
     if @project.save
-      redirect_to(projects_path, :notice => "The project #{@project.name} was successfully created.")
+      redirect_to(project_path(@project), :notice => "The project #{@project.name} was successfully created.")
     else
       render :action => "new"
     end

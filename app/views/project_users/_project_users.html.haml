@@ -1,0 +1,18 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th ID
+      %th First Name
+      %th Last Name
+      %th Email
+      %th 
+  - @project.project_users.each do |p|
+    %tr
+      %td= p.id
+      %td= p.user.firstname
+      %td= p.user.lastname
+      %td= p.user.email
+      %td
+        %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => project_user_path(@project, p) }
+          %i.icon-trash.icon-white
+          Remove

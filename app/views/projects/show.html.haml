@@ -4,9 +4,12 @@
     = render :partial => "shared/sidebar"
   .span10
     %h1= @project.name
-    %h3 Users
-    %p There are no users.
     %h3 Tasks
     = render :partial => "tasks/tasks"
-    
-    
+    = link_to "Add Task", new_task_path, :class => 'btn btn-primary'
+    %h3 Users
+    - if @project.project_users.count > 0
+      = render :partial => "project_users/project_users"
+    - else
+      %p There are no project users assigned.
+    = link_to "Add Project User", new_project_user_path(@project), :class => 'btn btn-primary'

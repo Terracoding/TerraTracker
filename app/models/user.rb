@@ -8,4 +8,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :owns_company, :company
   
   belongs_to :company
+  has_many :project_users, :dependent => :destroy
+  has_many :projects, :through => :project_users
+  
+  def to_s
+    "#{firstname} #{lastname}"
+  end
 end
