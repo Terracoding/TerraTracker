@@ -65,14 +65,6 @@ describe ProjectUsersController do
       delete :destroy, :id => @project_user.id, :project_id => @project.id
       flash[:notice].should == "The user was successfully removed."
     end
-    
-    # it "should show error when trying to delete" do
-    #   project_user = Factory.create(:project_user, :user => @user, :project => @project)
-    #   project_user.stub(:destroy).and_return(false)
-    #   delete :destroy, :id => project_user.id, :project_id => @project.id
-    #   flash[:notice].should == "You cannot delete this user."
-    # end
-    
   end
   
 end
