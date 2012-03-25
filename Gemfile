@@ -32,4 +32,5 @@ group :test do
   gem 'ZenTest'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'growl'
 end

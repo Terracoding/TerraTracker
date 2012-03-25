@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   def redirect_projects
     if current_company.projects.count < 1
       flash[:error] = 'You need to set up a project before you can create a task.'
-      redirect_to(new_project_path, :error => 'error')
+      redirect_to(new_project_path)
     end
   end
 end
