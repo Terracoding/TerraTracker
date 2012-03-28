@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-  before_filter :authenticate_user!, :redirect_company, :redirect_sub_account, :redirect_projects
+  before_filter :authenticate_user!, :redirect_company, :redirect_projects
+  before_filter :can_manage, :except => [:index]
   
   def index
     @tasks = Task.joins(:project).where("projects.company_id" => current_company.id)
@@ -41,4 +42,14 @@ class TasksController < ApplicationController
     redirect_to(tasks_path, :notice => "The task was successfully removed.")
   end
   
+  private
+
+  def can_manage
+    if current_user.sub_account
+      redirect_to tasks_path
+    else
+      return true
+    end
+  end
+
 end

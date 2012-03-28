@@ -122,5 +122,33 @@ describe TasksController do
       sign_out @user
     end
   end
+  
+  context :can_manage do
+    before(:each) do
+      @company = Factory.create(:company)
+      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @sub_user = Factory.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
+      @project = Factory.create(:project, :company => @company)
+      sign_in @sub_user
+    end
+    it "should redirect a sub_account on new" do
+      post :new
+      response.should redirect_to(tasks_path)
+    end
+    it "should redirect a sub_account on edit" do
+      @task = Factory.create(:task, :project_id => @project.id)
+      post :edit, :id => @task.id
+      response.should redirect_to(tasks_path)
+    end
+    it "should redirect a sub_account on create" do
+      post :create
+      response.should redirect_to(tasks_path)
+    end
+    it "should redirect a sub_account on update" do
+      @task = Factory.create(:task, :project_id => @project.id)
+      put :update, :id => @task.id, :task => { :project_id => @project.id }
+      response.should redirect_to(tasks_path)
+    end
+  end
 
 end
