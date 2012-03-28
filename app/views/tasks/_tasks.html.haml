@@ -14,13 +14,14 @@
       %td= p.name
       %td= p.billable.to_s
       %td= number_with_precision(p.rate, :precision => 2)
-      %td
-        / %a.btn{ :href => task_path(p) }
-        /   %i.icon-search
-        /   Show
-        %a.btn{ :href => edit_task_path(p) }
-          %i.icon-pencil
-          Edit
-        %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => task_path(p) }
-          %i.icon-trash.icon-white
-          Delete
+      - if !current_user.sub_account
+        %td
+          / %a.btn{ :href => task_path(p) }
+          /   %i.icon-search
+          /   Show
+          %a.btn{ :href => edit_task_path(p) }
+            %i.icon-pencil
+            Edit
+          %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => task_path(p) }
+            %i.icon-trash.icon-white
+            Delete

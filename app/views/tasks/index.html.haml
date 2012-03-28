@@ -6,6 +6,7 @@
     %h1 Tasks
     = render :partial => "tasks/tasks"
     %p
-      %a.btn.btn-primary{ :href => new_task_path }
-        %i.icon-plus.icon-white
-        Add Task
+      - if !current_user.sub_account
+        %a.btn.btn-primary{ :href => new_task_path }
+          %i.icon-plus.icon-white
+          Add Task
