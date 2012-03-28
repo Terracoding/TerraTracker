@@ -1,0 +1,10 @@
+- content_for(:title, 'Account')
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span10
+    - if !@current_company
+      %div.alert{ :class => twitterized_type(:error) }
+        %a.close{ "data-dismiss" => "alert" } x
+        You have not set up your company.
+    %h1 Account

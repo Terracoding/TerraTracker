@@ -2,6 +2,7 @@ Timetracker::Application.routes.draw do
   devise_for :users
 
   resources :dashboard
+  resources :accounts
   resources :projects do
     resources :users, :controller => :project_users
   end
