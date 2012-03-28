@@ -11,5 +11,6 @@
     %p= "#{current_user.firstname}, welcome to your Dashboard."
     - if @projects
       %h3 Projects
+      %ul
       - @projects.each do |project|
-        %p= project.name
+        %li= project.name
