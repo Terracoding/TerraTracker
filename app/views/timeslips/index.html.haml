@@ -4,3 +4,27 @@
     = render :partial => "shared/sidebar"
   .span10
     %h1 Timeslips
+    %table.table.table-striped
+      %thead
+        %tr
+          %th User
+          %th Project
+          %th Task
+          %th Hours
+          %th Comment
+          %th 
+      - @timeslips.each do |t|
+        %tr
+          %td= t.user
+          %td= t.project
+          %td= t.task.name
+          %td= number_with_precision(t.hours, :precision => 2)
+          %td= t.comment
+          %td
+            %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => timeslip_path(t) }
+              %i.icon-trash.icon-white
+              Delete
+    %hr
+    %a.btn.btn-primary{ :href => new_timeslip_path }
+      %i.icon-plus.icon-white
+      Add Timeslip

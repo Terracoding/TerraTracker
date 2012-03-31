@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to(tasks_path, :notice => "The task #{@task.name} was successfully created.")
     else
-      render :new
+      render :action => :new
     end
   end
 

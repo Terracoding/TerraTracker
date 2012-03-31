@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_many :project_users, :dependent => :destroy
   has_many :projects, :through => :project_users
+  has_many :timeslips
   
   def to_s
     "#{firstname} #{lastname}"

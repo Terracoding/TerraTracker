@@ -4,6 +4,7 @@ describe User do
   
   describe "validations" do
     it { should belong_to(:company) }
+    it { should have_many(:timeslips) }
     it { should have_many(:project_users).dependent(:destroy) }
     it { should have_many(:projects).through(:project_users) }
   end

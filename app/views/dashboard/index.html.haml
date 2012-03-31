@@ -25,6 +25,7 @@
             %th= project.users.count
             %td= project.tasks.count
             %td
-              %a.btn{ :href => project_path(project) }
-                %i.icon-search
-                Show
+              - if !current_user.sub_account
+                %a.btn{ :href => project_path(project) }
+                  %i.icon-search
+                  Show

@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :project_users, :dependent => :destroy
   has_many :users, :through => :project_users
+  has_many :timeslips
   
   def to_s
     name

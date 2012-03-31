@@ -4,6 +4,8 @@ describe Company do
   context :validations do
     it { should have_many(:users) }
     it { should have_many(:projects) }
+    it { should have_many(:tasks).through(:projects) }
+    it { should have_many(:timeslips).through(:projects) }
   end
 
   context :tasks_count do
