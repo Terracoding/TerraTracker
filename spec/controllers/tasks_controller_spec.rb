@@ -151,4 +151,31 @@ describe TasksController do
     end
   end
 
+  context :redirect_projects do
+    before(:each) do
+      @user = Factory.create(:user, :email => 'company@example.com')
+      @company = Factory.create(:company)
+      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      sign_in @user
+    end
+
+    it "should redirect if the project count is less than 1" do
+      @company.stub_chain(:projects, :count).and_return(0)
+      get :index
+      response.should redirect_to(new_project_path)
+    end
+
+    it "should show an error message if the project count is less than 1" do
+      @company.stub_chain(:projects, :count).and_return(0)
+      get :index
+      flash[:error].should == "You need to set up a project before you can create a task."
+    end
+
+    it "shouldn't redirect if the company has a project" do
+      @project = Factory.create(:project, :company => @company)
+      get :index
+      response.should be_successful
+    end
+  end
+
 end

@@ -37,21 +37,5 @@ describe ApplicationController do
       end
     end
   end
-  
-  # context :redirect_projects do
-  #   before(:each) do
-  #     @user = Factory.create(:user, :email => 'company@example.com')
-  #     @company = Factory.create(:company)
-  #     @user = Factory.create(:user, :company => @company, :owns_company => true)
-  #     sign_in @user
-  #     controller.stub(:current_company).and_return(@company)
-  #     # controller.send(:redirect_projects)
-  #   end
-  # 
-  #   it "should redirect if the project count is less than 1" do
-  #     controller.send(:redirect_projects)
-  #     response.should redirect_to(new_project_path)
-  #   end
-  # end
 
 end
