@@ -12,7 +12,7 @@
       %td= p.id
       %td= p.project.name
       %td= p.name
-      %td= p.billable.to_s
+      %td= p.billable ? "Yes" : "No"
       %td= number_with_precision(p.rate, :precision => 2)
       - if !current_user.sub_account
         %td

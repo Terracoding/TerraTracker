@@ -7,6 +7,7 @@
     %h3 Tasks
     = render :partial => "tasks/tasks"
     = link_to "Add Task", new_task_path, :class => 'btn btn-primary'
+    %hr
     %h3 Users
     - if @project.project_users.count > 0
       = render :partial => "project_users/project_users"

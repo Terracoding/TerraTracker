@@ -10,7 +10,21 @@
     %h1 Dashboard
     %p= "#{current_user.firstname}, welcome to your Dashboard."
     - if @projects
+      %hr
       %h3 Projects
-      %ul
-      - @projects.each do |project|
-        %li= project.name
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Project Name
+            %th Users
+            %th Tasks
+            %th 
+        - @projects.each do |project|
+          %tr
+            %td= project.name
+            %th= project.users.count
+            %td= project.tasks.count
+            %td
+              %a.btn{ :href => project_path(project) }
+                %i.icon-search
+                Show
