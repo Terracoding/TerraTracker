@@ -8,8 +8,8 @@
         %a.close{ "data-dismiss" => "alert" } x
         You have not set up your company.
     %h1 Payments & Plans
-    - if @subscriptions
-      %h4 You are on the # plan.
+    - if @subscription
+      %h4= "You are on the #{@subscription} plan."
     - else
       %h4 You have not yet selected a plan.
     %hr

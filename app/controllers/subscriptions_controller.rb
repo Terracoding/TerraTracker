@@ -2,7 +2,7 @@ class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!, :redirect_sub_account, :get_company
   
   def index
-    @subscriptions = Subscription.find_by_user_id(current_user)
+    @subscription = Subscription.find_by_user_id(current_user.id)
   end
   
   def new
@@ -14,7 +14,7 @@ class SubscriptionsController < ApplicationController
     @subscription.user = current_user
     @subscription.plan_id = params[:subscription][:plan_id]
     if @subscription.save
-      redirect_to subscriptions_path, :notice => "Signed up!"
+      redirect_to subscriptions_path, :notice => "You have successfully subscribed to a package."
     else
       render :action => :new
     end

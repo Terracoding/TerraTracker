@@ -7,19 +7,6 @@ class Subscription < ActiveRecord::Base
   def available_plans
     [{ :id => 1, :name => "Starter $5.99/mo"}, { :id => 2, :name => "Basic $10.99/mo"}, { :id => 3, :name => "Professional $19.99/mo"}]
   end
-  
-  def get_plan(number)
-    case number
-      when 1
-        "starter"
-      when 2
-        "basic"
-      when 3
-        "professional"
-      else
-        "starter"
-    end
-  end
 
   def update_stripe
     if stripe_token.present?
@@ -41,6 +28,19 @@ class Subscription < ActiveRecord::Base
       self.stripe_token = nil
     elsif last_4_digits_changed?
       self.last_4_digits = last_4_digits_was
+    end
+  end
+  
+  def to_s
+    case plan_id
+      when 1
+        "Starter"
+      when 2
+        "Starter"
+      when 3
+        "Starter"
+      else
+        "Free"
     end
   end
 
