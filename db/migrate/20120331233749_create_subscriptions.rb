@@ -5,7 +5,7 @@ class CreateSubscriptions < ActiveRecord::Migration
       t.string      :last_4_digits
       t.string      :stripe_id
       t.boolean     :subscribed, :default => false
-      t.integer     :plan
+      t.integer     :plan_id
       t.timestamps
     end
   end

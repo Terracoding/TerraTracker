@@ -1,12 +1,11 @@
 class Subscription < ActiveRecord::Base
   attr_accessible :stripe_token, :last_4_digits, :credit_card_number
-  attr_accessor :credit_card_number, :stripe_token, :cvv, :expiry_date
+  attr_accessor :stripe_token
   belongs_to :user
-  #validates_presence_of :plan
   before_save :update_stripe
 
   def available_plans
-    { "Starter $5.99/mo" => 1, "Basic $10.99/mo" => 2, "Professional $19.99/mo" => 3 }
+    [{ :id => 1, :name => "Starter $5.99/mo"}, { :id => 2, :name => "Basic $10.99/mo"}, { :id => 3, :name => "Professional $19.99/mo"}]
   end
   
   def get_plan(number)
@@ -30,7 +29,7 @@ class Subscription < ActiveRecord::Base
           :card => stripe_token
         )
         self.last_4_digits = customer.active_card.last4
-        response = customer.update_subscription({:plan => get_plan(plan)})
+        response = customer.update_subscription({:plan => plan_id})
       else
         customer = Stripe::Customer.retrieve(stripe_id)
         customer.card = stripe_token

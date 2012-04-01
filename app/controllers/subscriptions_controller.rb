@@ -12,11 +12,12 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(params[:subscription])
     @subscription.user = current_user
-      if @subscription.save
-        redirect_to subscriptions_path, :notice => "Signed up!"
-      else
-        render :action => :new
-      end
+    @subscription.plan_id = params[:subscription][:plan_id]
+    if @subscription.save
+      redirect_to subscriptions_path, :notice => "Signed up!"
+    else
+      render :action => :new
+    end
     rescue Stripe::StripeError => e
       logger.error e.message
       @subscription.errors.add :base, "There was a problem with your credit card"

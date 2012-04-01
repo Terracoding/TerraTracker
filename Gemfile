@@ -8,7 +8,7 @@ gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem 'jquery-rails'
-gem 'stripe'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'

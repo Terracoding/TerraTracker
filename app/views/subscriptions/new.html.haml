@@ -4,17 +4,28 @@
     = render :partial => "shared/account_sidebar"
   .span10
     %h1 New Payment Plan
-    = simple_form_for(@subscription, :html => {:class => 'form-horizontal' }) do |f|
+    = form_for @subscription, :html => {:class => 'form-stacked'} do |f|
       - if @subscription.errors.any?
         .alert-message.block-message.error
           %p= "#{pluralize(@subscription.errors.count, "problem")} with your registration:"
           .errors
             - @subscription.errors.full_messages.each do |msg|
               %p= msg
+      .control-group= f.select :plan_id, @subscription.available_plans.collect{ |u| [u[:name], u[:id]] }
+      /collection_select(:post, :category_id, Category.all, :id, :name, {:disabled => lambda{|category| category.archived? }})
       = f.hidden_field :stripe_token
       = f.hidden_field :last_4_digits
-      .control-group= f.input :plan, :collection => @subscription.available_plans, :selected => params[:plan], :include_blank => false, :label => 'Plan'
-      .control-group= f.input :credit_card_number, :label => 'Credit Card Number'
-      .control-group= f.input :cvv, :label => 'Security code (CVV)'
-      .control-group= f.input :expiry_date, :as => :date, :label => 'Expiry Date', :start_year => Date.today.year, :end_year => Date.today.year + 25, :order => [:month, :year], :discard_day => true, :use_month_numbers => true
-      = f.button :submit, "Request", :class => 'btn btn-primary'
+      - if @subscription.last_4_digits
+        #change-card.clearfix
+          %label Card
+          .input
+            %span
+              Using card ending with #{@subscription.last_4_digits}
+              = link_to "(change)", "#"
+      #credit-card{:style => @subscription.last_4_digits ? "display:none" : "display:block"}
+        #credit-card-errors{:style => "display:none"}
+          #stripe-error-message.alert-message.block-message.error
+        .control-group= text_field_tag :credit_card_number, params[:credit_card_number], :class => "field", :disabled => true
+        .control-group= text_field_tag :cvv, params[:cvv], :class => "small", :disabled => true
+        .control-group= date_select "", :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25, :disabled => true}, {:class => "small"}
+        = f.submit "Request", :class => 'btn btn-primary'

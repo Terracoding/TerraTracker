@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: e885c8cc6484e2ee61768704a43969b9711cafe3
+  specs:
+    stripe (1.6.3)
+      rest-client (~> 1.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -188,8 +195,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    stripe (1.6.3)
-      rest-client (~> 1.4)
     term-ansicolor (1.0.7)
     therubyracer (0.9.10)
       libv8 (~> 3.3.10)
@@ -242,7 +247,7 @@ DEPENDENCIES
   shoulda
   simple_form
   simplecov
-  stripe
+  stripe!
   turn (= 0.8.2)
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)

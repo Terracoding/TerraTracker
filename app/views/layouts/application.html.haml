@@ -5,6 +5,8 @@
     %title= 'TimeTracker - ' + yield(:title)
     = stylesheet_link_tag     "application"
     = javascript_include_tag  "application"
+    = javascript_include_tag "https://js.stripe.com/v1/"
+    = javascript_tag "Stripe.publishableKey = '#{STRIPE_PUBLISHABLE_KEY}';"
     = csrf_meta_tags
   %body{ "data-spy" => "scroll", "data-target" => ".subnav", "data-offset" => "50" }
     %div.navbar.navbar-fixed-top
