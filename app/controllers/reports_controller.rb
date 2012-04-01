@@ -10,21 +10,30 @@ class ReportsController < ApplicationController
   end
 
   def generate_report
-    @report = Report.new(params[:report])
-    @report.company = current_company
-    @report.project = Project.find(@report.project_id)
-    @report.task = Task.find(@report.task_id)
-    @report.user = User.find(@report.user_id)
-    @report.timeframe = timeframe(@report.timeframe_id)
+    @report = get_report_data(Report.new(params[:report]))
+    render :index if !@report.valid?
+  end
+
+  def view_report
+    @report = get_report_data(Report.new(params[:report]))
     if @report.valid?
-      pdf = ReportGenerator.new(@report)
-      send_data pdf.render, filename: "#{@report.company.name.parameterize.underscore}-report.pdf", type: "application/pdf"
+      @pdf = ReportGenerator.new(@report)
+      send_data @pdf.render, filename: "#{@report.company.name.parameterize.underscore}-report.pdf", type: "application/pdf", disposition: "inline"
     else
-      render :generate_report
+      render :index
     end
   end
 
   private
+
+  def get_report_data(report)
+    report.company = current_company
+    report.project = Project.find(report.project_id)
+    report.task = Task.find(report.task_id)
+    report.user = User.find(report.user_id)
+    report.timeframe = timeframe(report.timeframe_id)
+    return report
+  end
 
   def timeframe(timeframe)
     case timeframe.to_i

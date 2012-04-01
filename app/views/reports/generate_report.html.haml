@@ -12,4 +12,9 @@
     %p= @report.task.name
     %h3 User
     %p= @report.user
-    %h3 PDF
+    = simple_form_for "report", :url => view_report_reports_path(@report), :html => { :class => 'form-horizontal', :target => "_blank" } do |f|
+      = f.hidden_field :timeframe, :value => @report.timeframe
+      = f.hidden_field :project_id, :value => @report.project_id
+      = f.hidden_field :task_id, :value => @report.task_id
+      = f.hidden_field :user_id, :value => @report.user_id
+      = f.button :submit, "Save PDF", :class => 'btn btn-primary'
