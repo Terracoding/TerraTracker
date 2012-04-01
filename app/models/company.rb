@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
+  belongs_to :user
   has_many :users
   has_many :projects
   has_many :tasks, :through => :projects
@@ -11,4 +12,5 @@ class Company < ActiveRecord::Base
     end
     return count
   end
+
 end

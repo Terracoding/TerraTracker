@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.company = current_company
+    ProjectUser.create(:project => @project, :user => current_user)
     if @project.save
       redirect_to(project_path(@project), :notice => "The project #{@project.name} was successfully created.")
     else

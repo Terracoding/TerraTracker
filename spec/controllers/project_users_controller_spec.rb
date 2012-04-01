@@ -61,15 +61,28 @@ describe ProjectUsersController do
     end
     
     it "should show the successful notice" do
-      @project_user = Factory.create(:project_user, :user => @user, :project => @project)
+      @project_user = Factory.create(:project_user, :user => @sub_account, :project => @project)
       delete :destroy, :id => @project_user.id, :project_id => @project.id
       flash[:notice].should == "The user was successfully removed."
     end
     
     it "should remove the user" do
-      @project_user = Factory.create(:project_user, :user => @user, :project => @project)
+      @project_user = Factory.create(:project_user, :user => @sub_account, :project => @project)
       delete :destroy, :id => @project_user.id, :project_id => @project.id
       ProjectUser.exists?(@project_user.id).should be_false
+    end
+    
+    it "should not allow the project manager to be removed" do
+      @project_user = Factory.create(:project_user, :user => @user, :project => @project)
+      delete :destroy, :id => @project_user.id, :project_id => @project.id
+      ProjectUser.exists?(@project_user.id).should be_true
+    end
+    
+    it "should show an error notice when the project manager is attempted to be removed" do
+      @project_user = Factory.create(:project_user, :user => @user, :project => @project)
+      delete :destroy, :id => @project_user.id, :project_id => @project.id
+      ProjectUser.exists?(@project_user.id).should be_true
+      flash[:error].should == "You cannot remove a project manager from the project users."
     end
   end
   

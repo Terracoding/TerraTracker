@@ -13,6 +13,7 @@
       %td= p.user.lastname
       %td= p.user.email
       %td
-        %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => project_user_path(@project, p) }
-          %i.icon-trash.icon-white
-          Remove
+        - if !p.user.owns_company
+          %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => project_user_path(@project, p) }
+            %i.icon-trash.icon-white
+            Remove

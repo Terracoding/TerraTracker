@@ -21,8 +21,14 @@ class ProjectUsersController < ApplicationController
   def destroy
     @project = Project.find(params[:project_id])
     @project_user = ProjectUser.find(params[:id])
-    @project_user.destroy
-    redirect_to(project_path(@project), :notice => "The user was successfully removed.")
+    if @project_user.user.owns_company
+      flash[:error] = "You cannot remove a project manager from the project users."
+      redirect_to project_path(@project)
+    else
+      @project_user.destroy
+      redirect_to(project_path(@project), :notice => "The user was successfully removed.")
+    end
+    
   end
 
 end
