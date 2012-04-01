@@ -1,0 +1,14 @@
+- content_for(:title, 'Generated Report')
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span10
+    %h1 Generated Report
+    %h3 Timeframe
+    %p= @timeframe
+    %h3 Project
+    %p= @project
+    %h3 Task
+    %p= @task.name
+    %h3 User
+    %p= @user
