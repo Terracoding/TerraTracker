@@ -11,10 +11,17 @@ class ReportsController < ApplicationController
 
   def generate_report
     @report = Report.new(params[:report])
+    @report.company = current_company
     @report.project = Project.find(@report.project_id)
     @report.task = Task.find(@report.task_id)
     @report.user = User.find(@report.user_id)
     @report.timeframe = timeframe(@report.timeframe_id)
+    if @report.valid?
+      pdf = ReportGenerator.new(@report)
+      send_data pdf.render, filename: "#{@report.company.name.parameterize.underscore}-report.pdf", type: "application/pdf"
+    else
+      render :generate_report
+    end
   end
 
   private

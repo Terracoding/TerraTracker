@@ -6,6 +6,7 @@ class Report
   attribute :project_id
   attribute :task_id
   attribute :user_id
+  attribute :company
   attribute :timeframe
   attribute :project
   attribute :task

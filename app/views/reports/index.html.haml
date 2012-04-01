@@ -17,5 +17,5 @@
         .controls= f.select :task_id, @tasks.collect{ |u| [u[:name], u[:id]] }, :include_blank => false, :label => 'Project'
       .control-group
         .control-label= f.label :user_id
-        .controls= f.select :user_id, @users.collect{ |u| ["#{u[:firstname]} #{u[:lastname]}", u[:id]] }, :include_blank => false, :label => 'Project'
+        .controls= f.select :user_id, @users.collect{ |u| ["#{u.to_s}", u[:id]] }, :include_blank => false, :label => 'Project'
       = f.submit "Generate Report", :class => 'btn btn-primary'
