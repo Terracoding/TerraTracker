@@ -14,7 +14,9 @@ Timetracker::Application.routes.draw do
     post :get_tasks
     post :get_users
   end
-  resources :reports
+  resources :reports do
+    post :generate_report, :on => :collection
+  end
 
   root :to => "home#index"
   

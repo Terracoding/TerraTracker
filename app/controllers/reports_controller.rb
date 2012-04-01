@@ -6,13 +6,15 @@ class ReportsController < ApplicationController
     @tasks = current_company.tasks
     current_user.sub_account ? @users = [current_user] : @users = User.where("company_id = ?", current_user.company.id)
     @timeframes = [["This Week", 1], ["Last Week", 2], ["This Month", 3], ["Last Month", 4]]
+    @report = Report.new
   end
 
-  def create
-    @project = Project.find(params[:report][:project])
-    @task = Task.find(params[:report][:task])
-    @user = User.find(params[:report][:user])
-    @timeframe = timeframe(params[:report][:timeframe])
+  def generate_report
+    @report = Report.new(params[:report])
+    @report.project = Project.find(@report.project_id)
+    @report.task = Task.find(@report.task_id)
+    @report.user = User.find(@report.user_id)
+    @report.timeframe = timeframe(@report.timeframe_id)
   end
 
   private

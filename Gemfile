@@ -10,6 +10,7 @@ gem 'simple_form'
 gem 'jquery-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'prawn'
+gem 'active_attr'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'
