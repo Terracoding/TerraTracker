@@ -10,7 +10,10 @@ Timetracker::Application.routes.draw do
   resources :tasks
   resources :company_users, :except => [:index, :edit, :update]
   resources :company
-  resources :timeslips
+  resources :timeslips do
+    post :get_tasks
+    post :get_users
+  end
 
   root :to => "home#index"
   

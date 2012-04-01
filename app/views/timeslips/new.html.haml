@@ -8,6 +8,6 @@
       .control-group= f.association :project, :required => true, :collection => @projects, :include_blank => false, :label => 'Project'
       .control-group= f.association :task, :required => true, :collection => @tasks, :include_blank => false, :label => 'Task'
       .control-group= f.association :user, :required => true, :collection => @users, :include_blank => false, :label => 'User'
-      .control-group= f.input :comment, :required => true, :autofocus => true, :label => 'Comment'
+      .control-group= f.input :comment, :autofocus => true, :label => 'Comment'
       .control-group= f.input :hours, :placeholder => '0:00'
       = f.button :submit, "Create Timeslip", :class => 'btn btn-primary'

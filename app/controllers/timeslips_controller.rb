@@ -31,5 +31,16 @@ class TimeslipsController < ApplicationController
       render :action => "index"
     end
   end
-  
+
+  def get_tasks
+    @tasks = Task.where(:project_id => params[:project_id])
+    render :json => @tasks
+  end
+
+  def get_users
+    @users = ProjectUser.where(:project_id => params[:project_id])
+    @users.map! { |current| current = current.user }
+    render :json => @users
+  end
+
 end
