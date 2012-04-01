@@ -4,16 +4,17 @@ Timetracker::Application.routes.draw do
   resources :dashboard
   resources :accounts
   resources :subscriptions
+  resources :company
+  resources :company_users, :except => [:index, :edit, :update]
   resources :projects do
     resources :users, :controller => :project_users
   end
   resources :tasks
-  resources :company_users, :except => [:index, :edit, :update]
-  resources :company
   resources :timeslips do
     post :get_tasks
     post :get_users
   end
+  resources :reports
 
   root :to => "home#index"
   
