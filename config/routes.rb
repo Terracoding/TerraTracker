@@ -3,6 +3,7 @@ Timetracker::Application.routes.draw do
 
   resources :dashboard
   resources :accounts
+  resources :subscriptions
   resources :projects do
     resources :users, :controller => :project_users
   end

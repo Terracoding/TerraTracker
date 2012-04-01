@@ -1,0 +1,31 @@
+- content_for(:title, 'Payments')
+.row
+  .span2
+    = render :partial => "shared/account_sidebar"
+  .span10
+    - if !@current_company
+      %div.alert{ :class => twitterized_type(:error) }
+        %a.close{ "data-dismiss" => "alert" } x
+        You have not set up your company.
+    %h1 Payments & Plans
+    - if @subscriptions
+      %h4 You are on the # plan.
+    - else
+      %h4 You have not yet selected a plan.
+    %hr
+    %p Choose a plan:
+    .well
+      %p Starter $5.99
+      %a.btn.btn-primary{ :href => new_subscription_path(:plan => 1) }
+        %i.icon-plus.icon-white
+        Choose the Starter Plan
+    .well
+      %p Basic $10.99
+      %a.btn.btn-primary{ :href => new_subscription_path(:plan => 2) }
+        %i.icon-plus.icon-white
+        Choose the Basic Plan
+    .well
+      %p Professional $19.99
+      %a.btn.btn-primary{ :href => new_subscription_path(:plan => 3) }
+        %i.icon-plus.icon-white
+        Choose the Professional Plan

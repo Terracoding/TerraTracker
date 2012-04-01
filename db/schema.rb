@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120325152814) do
+ActiveRecord::Schema.define(:version => 20120331233749) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(:version => 20120325152814) do
     t.datetime "updated_at"
   end
 
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "last_4_digits"
+    t.string   "stripe_id"
+    t.boolean  "subscribed",    :default => false
+    t.integer  "plan"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tasks", :force => true do |t|
     t.integer  "project_id"
     t.string   "name"
@@ -45,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20120325152814) do
 
   create_table "timeslips", :force => true do |t|
     t.integer  "project_id"
-    t.integer  "user_id"
     t.integer  "task_id"
+    t.integer  "user_id"
     t.decimal  "hours",      :precision => 10, :scale => 2
     t.string   "comment"
     t.datetime "created_at"
