@@ -27,4 +27,12 @@ FactoryGirl.define do
     project
     user
   end
+  
+  factory :timeslip do
+    project
+    task
+    user
+    hours     1.0
+    comment   "test comment"
+  end
 end

@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20120331233749) do
     t.string   "last_4_digits"
     t.string   "stripe_id"
     t.boolean  "subscribed",    :default => false
-    t.integer  "plan"
+    t.integer  "plan_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

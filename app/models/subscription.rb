@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :stripe_token, :last_4_digits, :credit_card_number
+  attr_accessible :stripe_token, :last_4_digits, :credit_card_number, :plan_id
   attr_accessor :stripe_token
   belongs_to :user
   before_save :update_stripe
@@ -36,9 +36,9 @@ class Subscription < ActiveRecord::Base
       when 1
         "Starter"
       when 2
-        "Starter"
+        "Basic"
       when 3
-        "Starter"
+        "Professional"
       else
         "Free"
     end
