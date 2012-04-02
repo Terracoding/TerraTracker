@@ -11,13 +11,15 @@ class ReportsController < ApplicationController
 
   def generate_report
     @report = get_report_data(Report.new(params[:report]))
+    @timeslips = get_timeslips(@report)
     render :index if !@report.valid?
   end
 
   def view_report
     @report = get_report_data(Report.new(params[:report]))
+    @timeslips = get_timeslips(@report)
     if @report.valid?
-      @pdf = ReportGenerator.new(@report)
+      @pdf = ReportGenerator.new(@report, @timeslips)
       send_data @pdf.render, filename: "#{@report.company.name.parameterize.underscore}-report.pdf", type: "application/pdf", disposition: "inline"
     else
       render :index
@@ -28,11 +30,18 @@ class ReportsController < ApplicationController
 
   def get_report_data(report)
     report.company = current_company
-    report.project = Project.find(report.project_id)
-    report.task = Task.find(report.task_id)
+    report.project = Project.find(report.project_id) if Project.exists?(report.project_id)
+    report.task = Task.find(report.task_id) if Task.exists?(report.task_id)
     report.user = User.find(report.user_id)
     report.timeframe = timeframe(report.timeframe_id)
     return report
+  end
+
+  def get_timeslips(report)
+    timeslips = Timeslip.where(:user_id => report.user)
+    timeslips = timeslips.where(:project_id => report.project_id) if report.project_id != ""
+    timeslips = timeslips.where(:task_id => report.task_id) if report.task_id != ""
+    return timeslips
   end
 
   def timeframe(timeframe)

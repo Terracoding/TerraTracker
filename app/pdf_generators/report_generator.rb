@@ -1,11 +1,14 @@
 class ReportGenerator < Prawn::Document
 
-  def initialize(report)
+  def initialize(report, timeslips)
     super(top_margin: 70)
     @report = report
+    @timeslips = timeslips
     display_header
     move_down 25
     display_table
+    display_total_hours
+    display_signatures
   end
 
   private
@@ -19,9 +22,39 @@ class ReportGenerator < Prawn::Document
   end
 
   def display_table
-    t = make_table([['hello']])
-    t.draw
+    table_info = [["Date", "Project", "Task", "Comment", "Hours", ]]
+    @timeslips.each do |t|
+      table_info << [
+        t.created_at.strftime("%e %b %y"),
+        t.project.to_s,
+        t.task.name,
+        t.comment,
+        t.hours]
+    end
+    table = make_table table_info,
+    :header => true,
+    :cell_style => { :borders => [:bottom], :border_color => "DDDDDD", :size => 11 },
+    :column_widths => [70, 90, 130, 200, 50]
+    table.rows(0).style(:text_color => "FFFFFF", :background_color => "000000")
+    table.draw
+    move_down 15
+  end
+
+  def display_total_hours
+    total_hours = 0
+    @timeslips.each { |t| total_hours += t.hours }
+    text "Total Hours: #{total_hours}", size: 11, style: :bold, :align => :right
+    move_down 25
+  end
+
+  def display_signatures
+    text "_____________________________________", size: 10
+    move_down 5
+    text "Consultant Signature             Date", size: 10
     move_down 20
+    text "_____________________________________", size: 10
+    move_down 5
+    text "Approver Signature               Date", size: 10
   end
 
 end
