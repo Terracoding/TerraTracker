@@ -98,6 +98,22 @@ describe TimeslipsController do
     end
   end
 
+  context :edit do
+    before(:each) do
+      @company = Factory.create(:company)
+      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @project = Factory.create(:project, :company => @company)
+      @timeslip = Factory.create(:timeslip, :project => @project, :user => @user)
+      sign_in @user
+    end
+
+    it "should edit the timeslip" do
+      post :edit, :id => @timeslip.id
+      response.should be_success
+      sign_out @user
+    end
+  end
+
   context :create do
     before(:each) do
       @company = Factory.create(:company)
@@ -118,6 +134,31 @@ describe TimeslipsController do
     it "should render new when not saving the timeslip" do
       post :create, :task => { :project_id => @project.id }
       response.should render_template(:new)
+      sign_out @user
+    end
+  end
+
+  context :update do
+    before(:each) do
+      @company = Factory.create(:company)
+      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @project = Factory.create(:project, :company => @company)
+      @timeslip = Factory.create(:timeslip, :project => @project, :user => @user)
+      sign_in @user
+    end
+
+    it "should be able to be updated" do
+      post :update, :id => @timeslip.id
+      flash[:notice].should == "The timeslip was successfully updated."
+      response.should redirect_to(timeslips_path)
+      sign_out @user
+    end
+
+    it "should render edit if not updated attributes" do
+      timeslip = mock_model(Timeslip, :update_attributes => false)
+      Timeslip.stub(:find).with("12") { timeslip }
+      post :update, :id => "12"
+      response.should render_template("edit")
       sign_out @user
     end
   end

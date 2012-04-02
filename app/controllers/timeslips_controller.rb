@@ -12,12 +12,25 @@ class TimeslipsController < ApplicationController
     current_user.sub_account ? @users = [current_user] : @users = User.where("company_id = ?", current_user.company.id)
   end
   
+  def edit
+    @timeslip = Timeslip.find(params[:id])
+  end
+
   def create
     @timeslip = Timeslip.new(params[:timeslip])
     if @timeslip.save
       redirect_to(timeslips_path, :notice => "The timeslip was successfully created.")
     else
       render :action => "new"
+    end
+  end
+
+  def update
+    @timeslip = Timeslip.find(params[:id])
+    if @timeslip.update_attributes(params[:timeslip])
+      redirect_to(timeslips_path, :notice => "The timeslip was successfully updated.")
+    else
+      render :action => "edit"
     end
   end
   
