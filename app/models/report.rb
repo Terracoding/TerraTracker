@@ -11,8 +11,4 @@ class Report
   attribute :project
   attribute :task
   attribute :user
-
-  def initalize
-    super
-  end
 end
