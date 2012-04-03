@@ -8,19 +8,19 @@ class SubscriptionsController < ApplicationController
       Subscription.destroy(current_user.subscription) if !@merchant_subscription
     end
     @starter_url = GoCardless.new_subscription_url(
-      :amount => "5.99",
+      :amount => "8.00",
       :name => "Starter Account",
       :interval_unit => "month",
       :interval_length => 1,
     )
     @basic_url = GoCardless.new_subscription_url(
-      :amount => "10.99",
+      :amount => "16.00",
       :name => "Basic Account",
       :interval_unit => "month",
       :interval_length => 1,
     )
     @professional_url = GoCardless.new_subscription_url(
-      :amount => "19.99",
+      :amount => "32.00",
       :name => "Professional Account",
       :interval_unit => "month",
       :interval_length => 1,

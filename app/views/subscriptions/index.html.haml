@@ -7,28 +7,48 @@
       %div.alert{ :class => twitterized_type(:error) }
         %a.close{ "data-dismiss" => "alert" } x
         You have not set up your company.
-    %h1 Payments & Plans
+    %h1 Plans & Upgrades
     - if @subscription
-      %h4= "You are on the #{@subscription} plan."
+      %div.alert{ :class => twitterized_type(:alert) }
+        %h4= "You are on the #{@subscription} plan."
     - else
       %h4 You have not yet selected a plan.
     %hr
     %p Choose a plan:
     .well
-      %p Starter £5.99
+      %h2 Starter
+      %dl.dl-horizontal
+        %dt Projects:
+        %dd 1
+        %dt Users:
+        %dd 1
+        %dt Cost:
+        %dd £8/month
       %a.btn.btn-primary{ :href => @starter_url, :target => "_blank" }
-        %i.icon-plus.icon-white
-        Choose the Starter Plan
+        Choose this plan
     .well
-      %p Basic £10.99
+      %h2 Basic
+      %dl.dl-horizontal
+        %dt Projects:
+        %dd 10
+        %dt Users:
+        %dd 15
+        %dt Cost:
+        %dd £16/month
       %a.btn.btn-primary{ :href => @basic_url, :target => "_blank" }
-        %i.icon-plus.icon-white
-        Choose the Basic Plan
+        Choose this plan
     .well
-      %p Professional £19.99
+      %h2 Professional
+      %dl.dl-horizontal
+        %dt Projects:
+        %dd 30
+        %dt Users:
+        %dd 100
+        %dt Cost:
+        %dd £32/month
       %a.btn.btn-primary{ :href => @professional_url, :target => "_blank" }
-        %i.icon-plus.icon-white
-        Choose the Professional Plan
+        Choose this plan
     - if @subscription
-      %p If you want to cancel your account subscription please click the following button:
-      = link_to "Cancel Subscription", cancel_subscriptions_path, :class => 'btn btn-danger'
+      .well
+        %p If you want to cancel your account subscription please click the following button:
+        = link_to "Cancel Subscription", cancel_subscriptions_path, :class => 'btn btn-danger'
