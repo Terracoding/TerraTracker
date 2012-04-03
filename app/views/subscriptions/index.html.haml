@@ -10,6 +10,7 @@
     %h1 Payments & Plans
     - if @subscription
       %h4= "You are on the #{@subscription} plan."
+      = link_to "Cancel", cancel_subscriptions_path
     - else
       %h4 You have not yet selected a plan.
     %hr

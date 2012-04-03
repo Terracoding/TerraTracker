@@ -5,6 +5,7 @@ Timetracker::Application.routes.draw do
   resources :accounts
   resources :subscriptions do
     get :confirm_subscription, :on => :collection
+    get :cancel, :on => :collection
   end
   resources :company
   resources :company_users, :except => [:index, :edit, :update]

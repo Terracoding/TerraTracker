@@ -3,6 +3,10 @@ class SubscriptionsController < ApplicationController
   
   def index
     @subscription = Subscription.find_by_user_id(current_user.id)
+    if @subscription
+      @merchant_subscription = GoCardless::Subscription.find(@subscription.resource_id)
+      Subscription.destroy(current_user.subscription) if !@merchant_subscription
+    end
     @starter_url = GoCardless.new_subscription_url(
       :amount => "5.99",
       :name => "Starter Account",
@@ -44,6 +48,14 @@ class SubscriptionsController < ApplicationController
       end
     rescue GoCardless::ApiError => e
       flash[:error] = e
+    end
+  end
+  
+  def cancel
+    @subscription = Subscription.find_by_user_id(current_user.id)
+    if @subscription
+      @merchant_subscription = GoCardless::Subscription.find(@subscription.resource_id)
+      @merchant_subscription.cancel
     end
   end
   
