@@ -18,7 +18,9 @@ module NavigationHelpers
     when /^the timeslips page%/
       timeslips_path
     when /^the tasks page%/
-      tasks_path  
+      tasks_path
+    when /^the reports page%/
+      reports_path
     else
       begin
         page_name =~ /^the (.*) page$/

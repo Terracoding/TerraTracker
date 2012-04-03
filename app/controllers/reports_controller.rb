@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  include ReportsHelper
   before_filter :authenticate_user!, :redirect_company, :redirect_projects
 
   def index
@@ -13,7 +14,7 @@ class ReportsController < ApplicationController
     @report = get_report_data(Report.new(params[:report]))
     @timeslips = get_timeslips(@report)
     @total_hours = 0
-    @timeslips.each { |t| @total_hours += t.hours }
+    @timeslips.each { |t| @total_hours += t.hours.to_f }
     render :index if !@report.valid?
   end
 
