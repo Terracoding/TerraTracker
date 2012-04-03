@@ -53,10 +53,8 @@ class SubscriptionsController < ApplicationController
   
   def cancel
     @subscription = Subscription.find_by_user_id(current_user.id)
-    if @subscription
-      @merchant_subscription = GoCardless::Subscription.find(@subscription.resource_id)
-      @merchant_subscription.cancel
-    end
+    s = GoCardless::Subscription.find(@subscription.resource_id)
+    s.cancel!
   end
   
   private
