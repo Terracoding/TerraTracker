@@ -8,7 +8,7 @@ gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem 'jquery-rails'
-gem 'gocardless'
+gem 'gocardless', :git => "https://github.com/gocardless/gocardless-ruby"
 gem 'prawn'
 gem 'active_attr'
 

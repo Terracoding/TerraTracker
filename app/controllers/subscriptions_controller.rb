@@ -53,8 +53,14 @@ class SubscriptionsController < ApplicationController
   
   def cancel
     @subscription = Subscription.find_by_user_id(current_user.id)
-    s = GoCardless::Subscription.find(@subscription.resource_id)
-    s.cancel!
+    if @subscription
+      s = GoCardless::Subscription.find(@subscription.resource_id)
+      if s.cancel!
+        @subscription.delete
+        flash[:notice] = "You have cancelled your subscription!"
+      end
+    end
+    redirect_to subscriptions_path
   end
   
   private
