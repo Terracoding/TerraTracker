@@ -16,7 +16,7 @@ function get_tasks()
   $.ajax(
   { 
     type: "POST",
-    url: "timeslips/get_tasks",
+    url: "get_tasks",
     data: "project_id="+project_id,
     success: function(tasks)
     {
@@ -40,7 +40,7 @@ function get_users()
   $.ajax(
   { 
     type: "POST",
-    url: "timeslips/get_users",
+    url: "get_users",
     data: "project_id="+project_id,
     success: function(tasks)
     {

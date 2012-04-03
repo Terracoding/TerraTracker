@@ -14,8 +14,8 @@ Timetracker::Application.routes.draw do
   end
   resources :tasks
   resources :timeslips do
-    post :get_tasks
-    post :get_users
+    post :get_tasks, :on => :collection
+    post :get_users, :on => :collection
   end
   resources :reports do
     post :generate_report, :on => :collection

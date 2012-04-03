@@ -221,4 +221,28 @@ describe TimeslipsController do
       end
     end
   end
+
+  describe "JSON methods" do
+    before(:each) do
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
+      @task = FactoryGirl.create(:task, :project_id => @project.id)
+      @project_user = FactoryGirl.create(:project_user, :user => @user, :project => @project)
+      sign_in @user
+    end
+    context :get_tasks do
+      it "should get a list of tasks for a project" do
+        post :get_tasks, :project_id => @project.id
+        response.body.should == [@task].to_json
+      end
+    end
+
+    context :get_users do
+      it "should get a list of users for a project" do
+        post :get_users, :project_id => @project.id
+        response.body.should == [@user].to_json
+      end
+    end
+  end
 end
