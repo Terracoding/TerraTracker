@@ -12,8 +12,8 @@ describe Project do
 
   context :to_s do
     it "should return the project name" do
-      company = Factory.create(:company)
-      project = Factory.create(:project, :company => company)
+      company = FactoryGirl.create(:company)
+      project = FactoryGirl.create(:project, :company => company)
       project.to_s.should == project.name
     end
   end

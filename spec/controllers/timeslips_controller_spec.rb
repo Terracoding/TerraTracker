@@ -4,12 +4,12 @@ describe TimeslipsController do
   
   context :index do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @sub_user = Factory.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
-      @project = Factory.create(:project, :company => @company)
-      @sub_timeslip = Factory.create(:timeslip, :project => @project, :user => @sub_user)
-      @user_timeslip = Factory.create(:timeslip, :project => @project, :user => @user)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @sub_user = FactoryGirl.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
+      @project = FactoryGirl.create(:project, :company => @company)
+      @sub_timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @sub_user)
+      @user_timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
     end
 
     describe "company owner" do
@@ -33,12 +33,12 @@ describe TimeslipsController do
 
   context :new do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @sub_user = Factory.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
-      @project = Factory.create(:project, :company => @company)
-      @sub_timeslip = Factory.create(:timeslip, :project => @project, :user => @sub_user)
-      @user_timeslip = Factory.create(:timeslip, :project => @project, :user => @user)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @sub_user = FactoryGirl.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
+      @project = FactoryGirl.create(:project, :company => @company)
+      @sub_timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @sub_user)
+      @user_timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
     end
 
     describe "project manager" do
@@ -56,7 +56,7 @@ describe TimeslipsController do
       end
 
       it "should get the current tasks" do
-        task = Factory.create(:task, :project_id => @project.id, :name => 'task name')
+        task = FactoryGirl.create(:task, :project_id => @project.id, :name => 'task name')
         assigns[:tasks].count.should == 1
       end
 
@@ -84,7 +84,7 @@ describe TimeslipsController do
       end
 
       it "should get the current tasks" do
-        task = Factory.create(:task, :project_id => @project.id, :name => 'task name')
+        task = FactoryGirl.create(:task, :project_id => @project.id, :name => 'task name')
         assigns[:tasks].count.should == 1
       end
 
@@ -100,10 +100,10 @@ describe TimeslipsController do
 
   context :edit do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
-      @timeslip = Factory.create(:timeslip, :project => @project, :user => @user)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
+      @timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
       sign_in @user
     end
 
@@ -116,15 +116,15 @@ describe TimeslipsController do
 
   context :create do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @sub_user = Factory.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
-      @project = Factory.create(:project, :company => @company)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @sub_user = FactoryGirl.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
+      @project = FactoryGirl.create(:project, :company => @company)
       sign_in @user
     end
 
     it "should create a new timeslip" do
-      timeslip = Factory.create(:timeslip, :project => @project, :user => @user)
+      timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
       Timeslip.stub(:new) { timeslip }
       post :create
       response.should redirect_to(timeslips_path)
@@ -140,10 +140,10 @@ describe TimeslipsController do
 
   context :update do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
-      @timeslip = Factory.create(:timeslip, :project => @project, :user => @user)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
+      @timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
       sign_in @user
     end
 
@@ -166,12 +166,12 @@ describe TimeslipsController do
   context :destroy do
     describe "manager" do
       before(:each) do
-        @company = Factory.create(:company)
-        @user = Factory.create(:user, :company => @company, :owns_company => true)
-        @sub_user = Factory.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
-        @project = Factory.create(:project, :company => @company)
-        @task = Factory.create(:task, :project_id => @project.id)
-        @timeslip = Factory.create(:timeslip, :project => @project, :user => @user)
+        @company = FactoryGirl.create(:company)
+        @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+        @sub_user = FactoryGirl.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
+        @project = FactoryGirl.create(:project, :company => @company)
+        @task = FactoryGirl.create(:task, :project_id => @project.id)
+        @timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
         sign_in @user
       end
 
@@ -197,12 +197,12 @@ describe TimeslipsController do
 
     describe "account removing another accounts timeslip" do
       before(:each) do
-        @company = Factory.create(:company)
-        @user = Factory.create(:user, :company => @company, :owns_company => true)
-        @sub_user = Factory.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
-        @project = Factory.create(:project, :company => @company)
-        @task = Factory.create(:task, :project_id => @project.id)
-        @timeslip = Factory.create(:timeslip, :project => @project, :user => @user)
+        @company = FactoryGirl.create(:company)
+        @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+        @sub_user = FactoryGirl.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
+        @project = FactoryGirl.create(:project, :company => @company)
+        @task = FactoryGirl.create(:task, :project_id => @project.id)
+        @timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
         sign_in @sub_user
       end
 

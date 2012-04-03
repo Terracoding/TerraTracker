@@ -4,9 +4,9 @@ describe TasksController do
   
   context :index do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
       sign_in @user
     end
     
@@ -19,9 +19,9 @@ describe TasksController do
   
   context :new do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
       sign_in @user
     end
     
@@ -34,20 +34,20 @@ describe TasksController do
   
   context :create do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
       sign_in @user
     end
     
     it "should create a new task with a project" do
-      task = Factory.build(:task, :project => @project)
+      task = FactoryGirl.build(:task, :project => @project)
       task.project.should == @project
       sign_out @user
     end
     
     it "should redirect when saving the new task" do
-      task = Factory.create(:task, :project_id => @project.id, :name => 'task name')
+      task = FactoryGirl.create(:task, :project_id => @project.id, :name => 'task name')
       Task.stub(:new) { task }
       post :create, :task => { :project_id => @project.id }
       response.should redirect_to(tasks_path)
@@ -63,10 +63,10 @@ describe TasksController do
   
   context :edit do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
-      @task = Factory.create(:task, :project_id => @project.id)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
+      @task = FactoryGirl.create(:task, :project_id => @project.id)
       sign_in @user
     end
     
@@ -79,10 +79,10 @@ describe TasksController do
   
   context :update do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
-      @task = Factory.create(:task, :project_id => @project.id)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
+      @task = FactoryGirl.create(:task, :project_id => @project.id)
       sign_in @user
     end
 
@@ -104,10 +104,10 @@ describe TasksController do
   
   context :destroy do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
-      @task = Factory.create(:task, :project_id => @project.id)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
+      @task = FactoryGirl.create(:task, :project_id => @project.id)
       sign_in @user
       delete :destroy, :id => @task.id
     end
@@ -125,10 +125,10 @@ describe TasksController do
   
   context :can_manage do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @sub_user = Factory.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
-      @project = Factory.create(:project, :company => @company)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @sub_user = FactoryGirl.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
+      @project = FactoryGirl.create(:project, :company => @company)
       sign_in @sub_user
     end
     it "should redirect a sub_account on new" do
@@ -136,7 +136,7 @@ describe TasksController do
       response.should redirect_to(tasks_path)
     end
     it "should redirect a sub_account on edit" do
-      @task = Factory.create(:task, :project_id => @project.id)
+      @task = FactoryGirl.create(:task, :project_id => @project.id)
       post :edit, :id => @task.id
       response.should redirect_to(tasks_path)
     end
@@ -145,7 +145,7 @@ describe TasksController do
       response.should redirect_to(tasks_path)
     end
     it "should redirect a sub_account on update" do
-      @task = Factory.create(:task, :project_id => @project.id)
+      @task = FactoryGirl.create(:task, :project_id => @project.id)
       put :update, :id => @task.id, :task => { :project_id => @project.id }
       response.should redirect_to(tasks_path)
     end
@@ -153,9 +153,9 @@ describe TasksController do
 
   context :redirect_projects do
     before(:each) do
-      @user = Factory.create(:user, :email => 'company@example.com')
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @user = FactoryGirl.create(:user, :email => 'company@example.com')
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
       sign_in @user
     end
 
@@ -172,7 +172,7 @@ describe TasksController do
     end
 
     it "shouldn't redirect if the company has a project" do
-      @project = Factory.create(:project, :company => @company)
+      @project = FactoryGirl.create(:project, :company => @company)
       get :index
       response.should be_successful
     end

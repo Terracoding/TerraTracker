@@ -4,7 +4,7 @@ describe ApplicationController do
   
   describe "user paths" do
     before(:each) do
-      @user = Factory.create(:user)
+      @user = FactoryGirl.create(:user)
     end
     
     controller do

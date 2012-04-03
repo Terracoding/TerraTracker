@@ -4,7 +4,7 @@ describe CompanyController do
 
   describe "creating a company" do
     before :each do
-      @user = Factory.create(:user)
+      @user = FactoryGirl.create(:user)
       sign_in @user
     end
     
@@ -31,7 +31,7 @@ describe CompanyController do
     end
     
     it "should edit the company" do
-      company = Factory.create(:company)
+      company = FactoryGirl.create(:company)
       post :edit, :id => company.id
       response.should be_success
       sign_out @user
@@ -56,9 +56,9 @@ describe CompanyController do
   
   describe "redirecting" do
     before :each do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @sub_account = Factory.create(:user, :email => 'sub@example.com', :company => @company, :sub_account => true)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @sub_account = FactoryGirl.create(:user, :email => 'sub@example.com', :company => @company, :sub_account => true)
     end
 
     it "should redirect to the dashboard when visting as a sub account" do

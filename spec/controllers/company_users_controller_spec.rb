@@ -4,8 +4,8 @@ describe CompanyUsersController do
   
   describe "methods" do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
       sign_in @user
     end
   
@@ -22,7 +22,7 @@ describe CompanyUsersController do
     end
     
     it "should create the company user" do
-      company_user = Factory.create(:user, :email => "subaccount@example.com", :company => @company, :sub_account => true)
+      company_user = FactoryGirl.create(:user, :email => "subaccount@example.com", :company => @company, :sub_account => true)
       User.stub(:new) { company_user }
       post :create, :user => {}
       response.should redirect_to(company_index_path)
@@ -41,13 +41,13 @@ describe CompanyUsersController do
 
   context :destroy do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
       sign_in @user
     end
 
     it "should delete a eligible user" do
-      company_user = Factory.create(:user, :email => "subaccount@example.com", :company => @company, :sub_account => true)
+      company_user = FactoryGirl.create(:user, :email => "subaccount@example.com", :company => @company, :sub_account => true)
       delete :destroy, :id => company_user.id
       flash[:notice].should == "The user was successfully removed."
       response.should redirect_to(company_index_path)

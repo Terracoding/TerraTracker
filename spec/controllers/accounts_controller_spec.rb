@@ -9,8 +9,8 @@ describe AccountsController do
     end
 
     it "should get the current company" do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
       sign_in @user
       get :index
       response.should be_successful

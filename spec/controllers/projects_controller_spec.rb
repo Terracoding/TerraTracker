@@ -4,9 +4,9 @@ describe ProjectsController do
   
   describe "visiting projects as a sub account" do
     before :each do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @sub_account = Factory.create(:user, :email => 'sub@example.com', :company => @company, :sub_account => true)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @sub_account = FactoryGirl.create(:user, :email => 'sub@example.com', :company => @company, :sub_account => true)
     end
 
     it "should redirect to the dashboard when visting as a sub account" do
@@ -26,8 +26,8 @@ describe ProjectsController do
   
   context :new do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
       sign_in @user
     end
     it "should create the project" do
@@ -39,19 +39,19 @@ describe ProjectsController do
   
   context :create do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
       sign_in @user
     end
     
     it "should create a new project with a company" do
-      project = Factory.build(:project, :company => @company)
+      project = FactoryGirl.build(:project, :company => @company)
       project.company.should == @company
       sign_out @user
     end
     
     it "should create the company user" do
-      project = Factory.create(:project, :company => @company)
+      project = FactoryGirl.create(:project, :company => @company)
       Project.stub(:new) { project }
       post :create, :project => {}
       response.should redirect_to(project_path(project))
@@ -70,9 +70,9 @@ describe ProjectsController do
   
   context :edit do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
       sign_in @user
     end
     
@@ -85,9 +85,9 @@ describe ProjectsController do
   
   context :show do
     before (:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
       sign_in @user
     end
     
@@ -100,9 +100,9 @@ describe ProjectsController do
   
   context :update do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
       sign_in @user
     end
 
@@ -124,9 +124,9 @@ describe ProjectsController do
 
   context :destroy do
     before(:each) do
-      @company = Factory.create(:company)
-      @user = Factory.create(:user, :company => @company, :owns_company => true)
-      @project = Factory.create(:project, :company => @company)
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @project = FactoryGirl.create(:project, :company => @company)
       sign_in @user
       delete :destroy, :id => @project.id
     end
