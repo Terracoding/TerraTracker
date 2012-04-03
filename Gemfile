@@ -31,7 +31,7 @@ group :test do
   gem 'webrat'
   gem 'factory_girl_rails'
   gem 'cucumber'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'ZenTest'
   gem 'database_cleaner'
   gem 'launchy'
