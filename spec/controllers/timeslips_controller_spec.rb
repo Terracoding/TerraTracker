@@ -170,7 +170,7 @@ describe TimeslipsController do
         @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
         @sub_user = FactoryGirl.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
         @project = FactoryGirl.create(:project, :company => @company)
-        @task = FactoryGirl.create(:task, :project_id => @project.id)
+        @task = FactoryGirl.create(:task)
         @timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
         sign_in @user
       end
