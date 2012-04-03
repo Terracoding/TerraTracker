@@ -8,7 +8,14 @@ Feature: Dashboard
     And I own the company "TestCompany"
 
   Scenario: I should see my projects on the dashboard
-   Given I have a project "test project"
-   When I am on the dashboard page
-   Then I should see "Projects"
-   And I should see "test project"
+    Given I have a project "test project"
+    When I am on the dashboard page
+    Then I should see "Projects"
+    And I should see "test project"
+
+  Scenario: I should see my account usage for one user
+    Given I have a project "Test Project"
+    When I am on the dashboard page
+    Then I should see "Projects: 1"
+    And I should see "Users: 1"
+    And I should see "Plan: Basic"
