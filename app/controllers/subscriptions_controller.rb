@@ -3,40 +3,48 @@ class SubscriptionsController < ApplicationController
   
   def index
     @subscription = Subscription.find_by_user_id(current_user.id)
+    @starter_url = GoCardless.new_subscription_url(
+      :amount => "5.99",
+      :name => "Starter Account",
+      :interval_unit => "month",
+      :interval_length => 1,
+    )
+    @basic_url = GoCardless.new_subscription_url(
+      :amount => "10.99",
+      :name => "Basic Account",
+      :interval_unit => "month",
+      :interval_length => 1,
+    )
+    @professional_url = GoCardless.new_subscription_url(
+      :amount => "19.99",
+      :name => "Professional Account",
+      :interval_unit => "month",
+      :interval_length => 1,
+    )
   end
-  
-  def new
-    @subscription = Subscription.new
-  end
-  
-  def create
-    @subscription = Subscription.new(params[:subscription])
-    @subscription.user = current_user
-    @subscription.plan_id = params[:subscription][:plan_id]
-    if @subscription.save
-      redirect_to subscriptions_path, :notice => "You have successfully subscribed to a package."
-    else
-      render :action => :new
+
+  def confirm_subscription
+    begin
+      @confirmation = GoCardless.confirm_resource(params)
+      if @confirmation
+        Subscription.destroy(current_user.subscription) if Subscription.exists?(current_user.subscription)
+        @subscription = Subscription.create!(
+          :user => current_user,
+          :resource_uri => params[:resource_uri],
+          :resource_id => params[:resource_id],
+          :resource_type => params[:resource_type],
+          :signature => params[:signature],
+          :subscribed => true,
+          :merchant_id => @confirmation.merchant_id,
+          :subscription_acount => @confirmation.amount,
+          :resource_user_id => @confirmation.user_id,
+          :plan_id => get_plan_id(@confirmation.amount)
+        )
+        flash[:notice] = "You have successfully subscribed to the #{@subscription.to_s} plan."
+      end
+    rescue GoCardless::ApiError => e
+      flash[:error] = e
     end
-    rescue Stripe::StripeError => e
-      logger.error e.message
-      @subscription.errors.add :base, "There was a problem with your credit card"
-      @subscription.stripe_token = nil
-      render :action => :new
-  end
-  
-  def update
-    #   current_user.update_attributes(params[:user])
-    #   if current_user.save
-    #     redirect_to root_path, :notice => "Profile updated"
-    #   else
-    #     render :action => :edit
-    #   end
-    # rescue Stripe::StripeError => e
-    #   logger.error e.message
-    #   @user.errors.add :base, "There was a problem with your credit card"
-    #   @user.stripe_token = nil
-    #   render :action => :edit
   end
   
   private
@@ -45,6 +53,19 @@ class SubscriptionsController < ApplicationController
     if current_company
       @current_company = current_company
       @projects = @current_company.projects if @current_company.projects
+    end
+  end
+  
+  def get_plan_id(amount)
+    case amount
+    when "5.99"
+      return 1
+    when "10.99"
+      return 2
+    when "19.99"
+      return 3
+    else
+      return 0
     end
   end
 

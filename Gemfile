@@ -8,7 +8,7 @@ gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem 'jquery-rails'
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'gocardless'
 gem 'prawn'
 gem 'active_attr'
 

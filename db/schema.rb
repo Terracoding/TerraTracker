@@ -41,10 +41,15 @@ ActiveRecord::Schema.define(:version => 20120401180032) do
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
-    t.string   "last_4_digits"
-    t.string   "stripe_id"
-    t.boolean  "subscribed",    :default => false
-    t.integer  "plan_id"
+    t.string   "plan_id"
+    t.string   "resource_id"
+    t.string   "signature"
+    t.string   "resource_type"
+    t.string   "resource_uri"
+    t.boolean  "subscribed",          :default => false
+    t.string   "merchant_id"
+    t.string   "subscription_acount"
+    t.string   "resource_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
