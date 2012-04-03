@@ -1,3 +1,4 @@
+#coding: utf-8
 require 'spec_helper'
 
 describe Subscription do
@@ -8,7 +9,7 @@ describe Subscription do
   context :available_plans do
     it "should return the available plans" do
       @subscription = Subscription.new
-      @subscription.available_plans.should == [{ :id => 1, :name => "Starter $5.99/mo"}, { :id => 2, :name => "Basic $10.99/mo"}, { :id => 3, :name => "Professional $19.99/mo"}]
+      @subscription.available_plans.should == [{ :id => 1, :name => "Starter £8/month"}, { :id => 2, :name => "Basic £16/month"}, { :id => 3, :name => "Professional £32/month"}]
     end
   end
 

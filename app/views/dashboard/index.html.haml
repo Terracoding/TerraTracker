@@ -9,9 +9,16 @@
         You have not set up your company.
     %h1 Dashboard
     %p= "#{current_user.firstname}, welcome to your Dashboard."
+    %dl.dl-horizontal
+      %dt Projects:
+      %dd= @projects ? @projects.count : 0
+      %dt Users:
+      %dd= @current_company ? @current_company.users.count : 1
+      %dt Plan:
+      %dd= @subscription ? @subscription.to_s : "Free Account"
     - if @projects
       %hr
-      %h3 Projects
+      %h2 Projects
       %table.table.table-striped
         %thead
           %tr
