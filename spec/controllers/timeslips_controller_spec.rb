@@ -37,14 +37,13 @@ describe TimeslipsController do
       @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
       @sub_user = FactoryGirl.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
       @project = FactoryGirl.create(:project, :company => @company)
-      @sub_timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @sub_user)
-      @user_timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
+      @project2 = FactoryGirl.create(:project, :company => @company)
+      task = FactoryGirl.create(:task, :project_id => @project.id, :name => 'task name')
     end
 
     describe "project manager" do
       before(:each) do
         sign_in @user
-        post :new
       end
 
       after(:each) do
@@ -52,20 +51,30 @@ describe TimeslipsController do
       end
 
       it "should create a new task" do
+        post :new
         response.should be_success
       end
 
       it "should get the current tasks" do
-        task = FactoryGirl.create(:task, :project_id => @project.id, :name => 'task name')
-        assigns[:tasks].count.should == 1
+        task = FactoryGirl.create(:task, :project_id => @project2.id, :name => 'task name')
+        post :new
+        assigns[:tasks].count.should == 2
       end
 
-      it "should get the current projects" do
-        assigns[:projects].count.should == 1
+      it "should get the current projects if they have at least 1 tasks" do
+        task = FactoryGirl.create(:task, :project_id => @project2.id, :name => 'task name')
+        post :new
+        assigns[:projects].count.should == 2
       end
 
       it "should get the current users" do
+        post :new
         assigns[:users].count.should == 2
+      end
+      
+      it "should not get a project if it has no tasks" do
+        post :new
+        assigns[:projects].count.should == 1
       end
     end
 
@@ -85,7 +94,7 @@ describe TimeslipsController do
 
       it "should get the current tasks" do
         task = FactoryGirl.create(:task, :project_id => @project.id, :name => 'task name')
-        assigns[:tasks].count.should == 1
+        assigns[:tasks].count.should == 2
       end
 
       it "should get the current projects" do

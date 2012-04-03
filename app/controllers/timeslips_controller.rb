@@ -8,7 +8,9 @@ class TimeslipsController < ApplicationController
   def new
     @timeslip = Timeslip.new
     @tasks = current_company.tasks
-    @projects = current_company.projects
+    p = Project.where("company_id = ?", current_company.id)
+    @projects = []
+    p.each { |project| @projects << project if project.tasks.count > 0 }
     current_user.sub_account ? @users = [current_user] : @users = User.where("company_id = ?", current_user.company.id)
   end
   
