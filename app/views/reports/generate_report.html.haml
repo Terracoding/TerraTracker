@@ -3,7 +3,7 @@
   .span2
     = render :partial => "shared/sidebar"
   .span10
-    %h1 Generated Report
+    %h1= "Timesheet for #{@report.user}"
     %table.table.table-striped
       %thead
         %tr
@@ -19,6 +19,7 @@
           %td= t.task.name
           %td= t.comment
           %td= number_with_precision(t.hours, :precision => 2)
+    %h4= "Total Hours: #{@total_hours}"
     = simple_form_for "report", :url => view_report_reports_path(@report), :html => { :class => 'form-horizontal', :target => "_blank" } do |f|
       = f.hidden_field :timeframe, :value => @report.timeframe
       = f.hidden_field :project_id, :value => @report.project_id

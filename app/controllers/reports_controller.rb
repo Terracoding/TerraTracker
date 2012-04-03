@@ -12,6 +12,8 @@ class ReportsController < ApplicationController
   def generate_report
     @report = get_report_data(Report.new(params[:report]))
     @timeslips = get_timeslips(@report)
+    @total_hours = 0
+    @timeslips.each { |t| @total_hours += t.hours }
     render :index if !@report.valid?
   end
 
