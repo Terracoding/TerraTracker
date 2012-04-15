@@ -17,10 +17,25 @@ Feature: Timeslips
     And I select "John Doe" from "User"
     And I fill in the following:
       | Comment         | This is a test comment  |
-      | Hours           | 1.0                     |
+      | Hours           | 1.1                     |
     And I press "Create Timeslip"
     Then I should see "The timeslip was successfully created."
     And I should see "This is a test comment"
+    And I should see "1.1"
+
+  Scenario: I should be able to create a timeslip with a different time format
+    Given I am on the timeslips page
+    When I follow "Add Timeslip"
+    And I select "Test Project" from "Project"
+    And I select "Test Task" from "Task"
+    And I select "John Doe" from "User"
+    And I fill in the following:
+      | Comment         | This is a test comment  |
+      | Hours           | 1:30                    |
+    And I press "Create Timeslip"
+    Then I should see "The timeslip was successfully created."
+    And I should see "This is a test comment"
+    And I should see "1.5"
 
   Scenario: I should be able to edit a timeslip
     Given I have a timeslip
@@ -35,6 +50,7 @@ Feature: Timeslips
     And I press "Update"
     Then I should see "The timeslip was successfully updated."
     And I should see "This is a second test comment"
+    And I should see "2.1"
   
   Scenario: I should be able to delete a timeslip
     Given I have a timeslip
