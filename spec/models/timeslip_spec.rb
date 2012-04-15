@@ -7,4 +7,33 @@ describe Timeslip do
   it { should validate_presence_of(:task) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:project) }
+
+  describe "handling hours" do
+    before(:each) do
+      @task = FactoryGirl.create :task
+      @user = FactoryGirl.create :user
+      @project = FactoryGirl.create :project
+      @timeslip = Timeslip.new(task: @task, user: @user, project: @project)
+    end
+
+    it "handles mass assignment" do
+      @timeslip = Timeslip.new({:task => @task, :user => @user, :project => @project, :hours => "5:30"})
+      @timeslip.hours.should == BigDecimal("5.5")
+    end
+
+    it "converts hours and minutes to a decimal" do
+      @timeslip.hours = "5:30"
+      @timeslip.hours.should == BigDecimal("5.5")
+    end
+
+    it "keeps whole hours as is" do
+      @timeslip.hours = "5"
+      @timeslip.hours.should == BigDecimal("5")
+    end
+
+    it "keeps decimals as is" do
+      @timeslip.hours = "5.5"
+      @timeslip.hours.should == BigDecimal("5.5")
+    end
+  end
 end
