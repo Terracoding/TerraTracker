@@ -35,5 +35,10 @@ describe Timeslip do
       @timeslip.hours = "5.5"
       @timeslip.hours.should == BigDecimal("5.5")
     end
+
+    it "treats input as lazy (0:5 = 50 minutes)" do
+      @timeslip.hours = "0:5"
+      @timeslip.hours.should == BigDecimal((5.to_f/6).to_s)
+    end
   end
 end
