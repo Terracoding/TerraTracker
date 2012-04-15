@@ -18,4 +18,4 @@ Feature: Dashboard
     When I am on the dashboard page
     Then I should see "Projects: 1"
     And I should see "Users: 1"
-    And I should see "Plan: Basic"
+    And I should see "Plan: Free Account"

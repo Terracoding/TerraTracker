@@ -74,11 +74,11 @@ class SubscriptionsController < ApplicationController
   
   def get_plan_id(amount)
     case amount
-    when "5.99"
+    when "8.0"
       return 1
-    when "10.99"
+    when "16.0"
       return 2
-    when "19.99"
+    when "32.0"
       return 3
     else
       return 0
