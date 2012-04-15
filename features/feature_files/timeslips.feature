@@ -23,7 +23,7 @@ Feature: Timeslips
     And I should see "This is a test comment"
     And I should see "1.1"
 
-  Scenario: I should be able to create a timeslip with a different time format
+  Scenario: I should be able to create a timeslip with a different time format (1:30)
     Given I am on the timeslips page
     When I follow "Add Timeslip"
     And I select "Test Project" from "Project"
@@ -36,6 +36,34 @@ Feature: Timeslips
     Then I should see "The timeslip was successfully created."
     And I should see "This is a test comment"
     And I should see "1.5"
+
+  Scenario: I should be able to create a timeslip with a different time format (0:5)
+    Given I am on the timeslips page
+    When I follow "Add Timeslip"
+    And I select "Test Project" from "Project"
+    And I select "Test Task" from "Task"
+    And I select "John Doe" from "User"
+    And I fill in the following:
+      | Comment         | This is a test comment  |
+      | Hours           | 0:5                    |
+    And I press "Create Timeslip"
+    Then I should see "The timeslip was successfully created."
+    And I should see "This is a test comment"
+    And I should see "0.83"
+
+  Scenario: I should be able to create a timeslip with a different time format (0:05)
+    Given I am on the timeslips page
+    When I follow "Add Timeslip"
+    And I select "Test Project" from "Project"
+    And I select "Test Task" from "Task"
+    And I select "John Doe" from "User"
+    And I fill in the following:
+      | Comment         | This is a test comment  |
+      | Hours           | 0:05                    |
+    And I press "Create Timeslip"
+    Then I should see "The timeslip was successfully created."
+    And I should see "This is a test comment"
+    And I should see "0.08"
 
   Scenario: I should be able to edit a timeslip
     Given I have a timeslip
