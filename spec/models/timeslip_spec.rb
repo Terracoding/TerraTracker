@@ -40,5 +40,10 @@ describe Timeslip do
       @timeslip.hours = "0:5"
       @timeslip.hours.should == BigDecimal((5.to_f/6).to_s)
     end
+
+    it "works correctly with verbose time format input (0:05 = 5 minutes)" do
+      @timeslip.hours = "0:05"
+      @timeslip.hours.should == BigDecimal((5.to_f/60).to_s)
+    end
   end
 end
