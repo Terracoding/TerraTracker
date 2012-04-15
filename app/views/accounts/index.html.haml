@@ -8,3 +8,6 @@
         %a.close{ "data-dismiss" => "alert" } x
         You have not set up your company.
     %h1 Account
+    %h4 Name
+    %p= "#{current_user.firstname} #{current_user.lastname}"
+    = link_to "Edit Profile", "#", :class => 'btn btn-primary'

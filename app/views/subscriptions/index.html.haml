@@ -10,7 +10,8 @@
     %h1 Plans & Upgrades
     - if @subscription
       %div.alert{ :class => twitterized_type(:alert) }
-        %h4= "You are on the #{@subscription} plan."
+        %h2= "#{@subscription} Account"
+        %p= "You are allowed #{@subscription.projects_limit} projects and #{@subscription.users_limit} users."
     - else
       %h4 You have not yet selected a plan.
     %hr
@@ -20,9 +21,9 @@
       %h2 Starter
       %dl.dl-horizontal
         %dt Projects:
-        %dd 1
+        %dd 2
         %dt Users:
-        %dd 1
+        %dd 2
         %dt Cost:
         %dd £8/month
       %a.btn.btn-primary{ :href => @starter_url, :target => "_blank" }

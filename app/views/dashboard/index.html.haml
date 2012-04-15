@@ -11,9 +11,9 @@
     %p= "#{current_user.firstname}, welcome to your Dashboard."
     %dl.dl-horizontal
       %dt Projects:
-      %dd= @projects ? @projects.count : 0
+      %dd= "#{@projects ? @projects.count : 0}/#{@subscription ? @subscription.projects_limit : 1}"
       %dt Users:
-      %dd= @current_company ? @current_company.users.count : 1
+      %dd= "#{@current_company ? @current_company.users.count : 1}/#{@subscription ? @subscription.users_limit : 1}"
       %dt Plan:
       %dd= @subscription ? @subscription.to_s : "Free Account"
     - if @projects

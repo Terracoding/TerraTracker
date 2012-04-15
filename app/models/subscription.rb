@@ -19,4 +19,30 @@ class Subscription < ActiveRecord::Base
     end
   end
 
+  def projects_limit
+    case plan_id
+      when 1
+        2
+      when 2
+        10
+      when 3
+        30
+      else
+        1
+    end
+  end
+
+  def users_limit
+    case plan_id
+      when 1
+        2
+      when 2
+        15
+      when 3
+        100
+      else
+        1
+    end
+  end
+
 end

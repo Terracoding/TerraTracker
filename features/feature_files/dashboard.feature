@@ -16,6 +16,6 @@ Feature: Dashboard
   Scenario: I should see my account usage for one user
     Given I have a project "Test Project"
     When I am on the dashboard page
-    Then I should see "Projects: 1"
-    And I should see "Users: 1"
+    Then I should see "Projects: 1/1"
+    And I should see "Users: 1/1"
     And I should see "Plan: Free Account"
