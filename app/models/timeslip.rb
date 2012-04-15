@@ -9,7 +9,8 @@ class Timeslip < ActiveRecord::Base
   def hours=(hours)
     if hours.to_s =~ /:/
       time_split = hours.split(':')
-      time_mins = time_split[1].to_f / 60
+      time_split[1] = (time_split[1].to_f > 9) ? time_split[1].to_f : (time_split[1].to_f * 10)
+      time_mins = time_split[1] / 60
       self.hours = time_split[0].to_f + time_mins
     else
       super
