@@ -2,7 +2,6 @@ module NavigationHelpers
 
   def path_to(page_name)
     case page_name
-
     when /^the home\s?page$/
       '/'
     when /^the dashboard page$/
@@ -21,6 +20,8 @@ module NavigationHelpers
       tasks_path
     when /^the reports page%/
       reports_path
+    when /^the account page%/
+      accounts_path
     else
       begin
         page_name =~ /^the (.*) page$/

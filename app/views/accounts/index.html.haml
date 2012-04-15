@@ -10,4 +10,6 @@
     %h1 Account
     %h4 Name
     %p= "#{current_user.firstname} #{current_user.lastname}"
-    = link_to "Edit Profile", "#", :class => 'btn btn-primary'
+    %h4 Email
+    %p= current_user.email
+    = link_to "Edit Account", edit_user_registration_path, :class => 'btn'
