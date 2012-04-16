@@ -11,3 +11,4 @@
       .control-group= f.input :comment, :autofocus => true, :label => 'Comment'
       .control-group= f.input :hours, :placeholder => '0:00', :as => :string
       = f.button :submit, "Create Timeslip", :class => 'btn btn-primary'
+      = link_to "Back", :back, :class => 'btn'
