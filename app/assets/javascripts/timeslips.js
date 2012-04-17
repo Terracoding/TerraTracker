@@ -1,12 +1,14 @@
 $(document).ready(function()
 {
-  $('.inline-errors').ready(function()
-  { 
-    get_tasks();
-    $('#timeslip_project_id').change(function() { get_tasks(); });
-		get_users();
-		$('#timeslip_project_id').change(function() { get_users(); });
-  });
+	if ($('#timeslip_project_id').length > 0) {
+	  $('.inline-errors').ready(function()
+	  {
+	    get_tasks();
+	    $('#timeslip_project_id').change(function() { get_tasks(); });
+			get_users();
+			$('#timeslip_project_id').change(function() { get_users(); });
+	  });
+	}
 });
 
 function get_tasks()
