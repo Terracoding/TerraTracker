@@ -36,3 +36,17 @@
                 %a.btn{ :href => project_path(project) }
                   %i.icon-search
                   Show
+    - if @recent_timeslips
+      %hr
+      %h2 Recent Timeslips
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Date
+            %th Task
+            %th Time
+        - @recent_timeslips.each do |timeslip|
+          %tr
+            %td= timeslip.created_at.strftime("%e %b %y")
+            %th= link_to timeslip.task.name, edit_timeslip_path(timeslip)
+            %td= number_with_precision(timeslip.hours, :precision => 2)
