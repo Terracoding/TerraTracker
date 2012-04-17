@@ -8,7 +8,7 @@
       %th Rate
       %th 
   - @tasks.each do |p|
-    %tr
+    %tr{ :id => p.id}
       %td= p.id
       %td= p.project.name
       %td= p.name
@@ -16,12 +16,9 @@
       %td= number_with_precision(p.rate, :precision => 2)
       - if !current_user.sub_account
         %td
-          / %a.btn{ :href => task_path(p) }
-          /   %i.icon-search
-          /   Show
-          %a.btn{ :href => edit_task_path(p) }
+          = link_to edit_task_path(p), :class => "btn" do
             %i.icon-pencil
             Edit
-          %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => task_path(p) }
+          = link_to task_path(p), :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
             %i.icon-trash.icon-white
             Delete

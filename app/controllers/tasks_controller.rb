@@ -39,7 +39,10 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to(tasks_path, :notice => "The task was successfully removed.")
+    respond_to do |format|
+      format.html { redirect_to(tasks_path, :notice => "The task was successfully removed.") }
+      format.js
+    end
   end
   
   private
