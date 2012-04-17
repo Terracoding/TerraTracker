@@ -41,7 +41,10 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    redirect_to(projects_path, :notice => "The project was successfully removed.")
+    respond_to do |format|
+      format.html { redirect_to(projects_path, :notice => "The project was successfully removed.") }
+      format.js
+    end
   end
   
 end

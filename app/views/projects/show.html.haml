@@ -4,6 +4,14 @@
     = render :partial => "shared/sidebar"
   .span10
     %h1= @project.name
+    %p
+      = link_to "View All Projects", projects_path, :class => 'btn'
+      %a.btn{ :href => edit_project_path(@project) }
+        %i.icon-pencil
+        Edit Project
+      %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => project_path(@project) }
+        %i.icon-trash.icon-white
+        Delete Project
     %h3 Tasks
     = render :partial => "tasks/tasks"
     = link_to "Add Task", new_task_path, :class => 'btn btn-primary'
