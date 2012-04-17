@@ -3,7 +3,7 @@
   .span2
     = render :partial => "shared/sidebar"
   .span10
-    %h1= @project.name
+    %h1= "#{@project.name} (#{@project.status})"
     %p
       = link_to "View All Projects", projects_path, :class => 'btn'
       %a.btn{ :href => edit_project_path(@project) }

@@ -9,11 +9,13 @@
         %tr
           %th ID
           %th Project Name
+          %th Status
           %th 
       - @projects.each do |p|
         %tr{ :id => p.id}
           %td= p.id
           %td= p.name
+          %td= p.status
           %td
             = link_to project_path(p), :class => "btn" do
               %i.icon-search

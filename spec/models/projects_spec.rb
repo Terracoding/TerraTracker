@@ -18,4 +18,10 @@ describe Project do
     end
   end
 
+  context :available_statuses do
+    it "should return a list of available statuses" do
+      p = Project.new
+      p.available_statuses.should == ["Active","Completed","Cancelled"]
+    end
+  end
 end
