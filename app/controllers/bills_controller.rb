@@ -2,7 +2,7 @@ class BillsController < ApplicationController
   before_filter :authenticate_user!, :redirect_sub_account, :redirect_company
 
   def index
-    
+    @bills = Bill.where(:company_id => current_company)
   end
 
   def new

@@ -4,6 +4,21 @@
     = render :partial => "shared/sidebar"
   .span10
     %h1 Bills
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Reference
+          %th Bill Date
+          %th Due Date
+          %th Value
+          %th Comment
+      - @bills.each do |bill|
+        %tr{ :id => bill.id}
+          %td= bill.reference_id
+          %td= bill.bill_date.strftime("%e %b %y")
+          %td= bill.due_date.strftime("%e %b %y")
+          %td= number_with_precision(bill.value, :precision => 2)
+          %td= bill.comment
     = link_to new_bill_path, :class => "btn btn-primary" do
       %i.icon-plus.icon-white
       Add Bill

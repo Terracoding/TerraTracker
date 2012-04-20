@@ -16,3 +16,4 @@ Feature: Bills
       | Comments          | This is a comment   |
     And I press "Create Bill"
     Then I should see "The bill was successfully created."
+    And I should see "This is a comment"
