@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120420185946) do
     t.date     "due_date"
     t.decimal  "value",        :precision => 10, :scale => 2
     t.text     "comment"
+    t.boolean  "paid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

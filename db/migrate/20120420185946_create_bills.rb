@@ -8,6 +8,7 @@ class CreateBills < ActiveRecord::Migration
       t.date        :due_date
       t.decimal     :value, :precision => 10, :scale => 2
       t.text        :comment
+      t.boolean     :paid
       t.timestamps
     end
   end
