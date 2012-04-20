@@ -22,6 +22,8 @@ module NavigationHelpers
       reports_path
     when /^the account page%/
       accounts_path
+    when /^the bills page%/
+      bills_path
     else
       begin
         page_name =~ /^the (.*) page$/
