@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401180032) do
+ActiveRecord::Schema.define(:version => 20120420185946) do
+
+  create_table "bills", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.string   "reference_id"
+    t.date     "bill_date"
+    t.date     "due_date"
+    t.decimal  "value",        :precision => 10, :scale => 2
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "companies", :force => true do |t|
     t.string   "name"
