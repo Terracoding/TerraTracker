@@ -6,8 +6,8 @@
     %h1 Create Bill
     = simple_form_for(@bill, :url => @bill, :html => {:class => 'form-horizontal' }) do |f|
       = f.input :reference_id, :required => true, :autofocus => true, :label => 'Reference'
-      = f.input :bill_date, :required => true, :order => [:day, :month, :year], :type => Date
-      = f.input :due_date, :required => true, :order => [:day, :month, :year], :type => Date
+      = f.input :bill_date, :required => true, :order => [:day, :month, :year], :as => :date, :input_html => { :class => 'span1' }
+      = f.input :due_date, :required => true, :order => [:day, :month, :year], :as => :date, :input_html => { :class => 'span1' }
       = f.input :value, :placeholder => "0.00", :required => true
       = f.input :comment, :label => "Comments"
       = f.input :paid
