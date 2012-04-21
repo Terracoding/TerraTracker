@@ -1,12 +1,12 @@
 class ProjectUsersController < ApplicationController
   before_filter :authenticate_user!, :redirect_company, :redirect_sub_account, :redirect_projects
+  before_filter :get_available_users, :only => [:new, :create]
 
   def new
     @project = Project.find(params[:project_id])
     @project_user = ProjectUser.new
-    @available_users = current_company.users
   end
-  
+
   def create
     @project = Project.find(params[:project_id])
     @project_user = ProjectUser.new(params[:project_user])
@@ -17,7 +17,7 @@ class ProjectUsersController < ApplicationController
       render :action => "new"
     end
   end
-  
+
   def destroy
     @project = Project.find(params[:project_id])
     @project_user = ProjectUser.find(params[:id])
@@ -28,7 +28,13 @@ class ProjectUsersController < ApplicationController
       @project_user.destroy
       redirect_to(project_path(@project), :notice => "The user was successfully removed.")
     end
-    
+
+  end
+
+  private
+
+  def get_available_users
+    @available_users = current_company.users
   end
 
 end
