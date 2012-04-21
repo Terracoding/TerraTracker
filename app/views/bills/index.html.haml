@@ -27,7 +27,7 @@
             - elsif bill.due_date < DateTime.now
               %span.label.label-important Overdue
             - else
-              %span.label.label-warning No
+              %span.label.label-warning Unpaid
           %td
             =link_to bill, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
               %i.icon-trash.icon-white

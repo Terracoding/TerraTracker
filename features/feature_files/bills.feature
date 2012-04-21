@@ -29,7 +29,7 @@ Feature: Bills
   Scenario: I should be able to have an unpaid bill
     Given "john" has created a bill due in the future with comment "This is a comment" and reference "001"
     When I am on the bills page
-    Then I should see "No"
+    Then I should see "Unpaid"
 
   Scenario: I should be able to have a paid bill
     Given I am on the bills page
