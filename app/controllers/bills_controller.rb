@@ -20,4 +20,13 @@ class BillsController < ApplicationController
     end
   end
 
+  def destroy
+    @bill = Bill.find(params[:id])
+    @bill.destroy
+    respond_to do |format|
+      format.html { redirect_to(bills_path, :notice => "The bill was successfully removed.") }
+      format.js
+    end
+  end
+
 end

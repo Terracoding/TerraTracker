@@ -66,4 +66,24 @@ describe BillsController do
        sign_out @user
      end
    end
+
+   context :destroy do
+     before(:each) do
+       @company = FactoryGirl.create(:company)
+       @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+       @bill = FactoryGirl.create(:bill, :company => @company, :user => @user)
+       sign_in @user
+       delete :destroy, :id => @bill.id
+     end
+
+     it "should redirect to the bills path" do
+       response.should redirect_to(bills_path)
+       sign_out @user
+     end
+
+     it "should show a flash notice" do
+       flash[:notice].should == "The bill was successfully removed."
+       sign_out @user
+     end
+   end
 end
