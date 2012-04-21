@@ -15,7 +15,14 @@
         %tr{ :id => p.id}
           %td= p.id
           %td= p.name
-          %td= p.status
+          %td
+            - if p.status == "Active"
+              %span.label.label-info= p.status
+            - elsif p.status == "Completed"
+              %span.label.label-success= p.status
+            - else
+              %span.label.label-important= p.status
+            
           %td
             = link_to project_path(p), :class => "btn" do
               %i.icon-search
