@@ -12,7 +12,7 @@
           %th Due Date
           %th Value
           %th Comment
-          %th Paid
+          %th Status
           %th
       - @bills.each do |bill|
         %tr{ :id => bill.id}
@@ -21,7 +21,13 @@
           %td= bill.due_date.strftime("%e %b %y")
           %td= number_with_precision(bill.value, :precision => 2)
           %td= bill.comment
-          %td= bill.paid ? "Yes" : "No"
+          %td
+            - if bill.paid
+              %span.label.label-success Paid
+            - elsif bill.due_date < DateTime.now
+              %span.label.label-important Overdue
+            - else
+              %span.label.label-warning No
           %td
             =link_to bill, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
               %i.icon-trash.icon-white

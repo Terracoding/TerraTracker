@@ -11,3 +11,13 @@ Given /^I have a bill with comment "([^"]*)" and reference "([^"]*)"$/ do |comme
     And I should see "#{comment}"
   }
 end
+
+Given /^"([^"]*)" has created an overdue bill with comment "([^"]*)" and reference "([^"]*)"$/ do |user,comment,reference|
+  user = User.find_by_email("#{user.parameterize}@example.com")
+  Bill.create!(user_id: user.id, company_id: user.company.id, reference_id: reference, value: 20.00, comment: comment, due_date: 3.days.ago, bill_date: 1.day.ago)
+end
+
+Given /^"([^"]*)" has created a bill due in the future with comment "([^"]*)" and reference "([^"]*)"$/ do |user,comment,reference|
+  user = User.find_by_email("#{user.parameterize}@example.com")
+  Bill.create!(user_id: user.id, company_id: user.company.id, reference_id: reference, value: 20.00, comment: comment, due_date: 3.days.from_now, bill_date: 1.day.ago)
+end
