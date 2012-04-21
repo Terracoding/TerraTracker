@@ -16,7 +16,7 @@ Feature: Project Users
     And I select "Jane Doe" from "User"
     And I press "Add User"
     Then I should see "Jane was successfully added to the project."
-    
+
   Scenario: Remove project user
     Given I have the project user "Jane"
     And I am on the projects page
@@ -24,3 +24,12 @@ Feature: Project Users
     And I follow "Remove"
     Then I should see "The user was successfully removed."
     And I should not see "Jane"
+
+  Scenario: Creating duplicate users
+    Given I have the project user "Jane"
+    When I am on the projects page
+    And I follow "Show"
+    And I follow "Add Project User"
+    And I select "Jane Doe" from "User"
+    And I press "Add User"
+    Then I should not see "Jane was successfully added to the project."
