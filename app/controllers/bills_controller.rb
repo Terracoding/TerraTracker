@@ -5,6 +5,10 @@ class BillsController < ApplicationController
     @bills = Bill.where(:company_id => current_company)
   end
 
+  def show
+    @bill = Bill.find(params[:id])
+  end
+
   def new
     @bill = Bill.new
   end

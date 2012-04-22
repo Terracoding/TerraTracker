@@ -1,0 +1,9 @@
+- content_for(:title, "View Bill")
+.row
+  .span2
+    = render :partial => "shared/sidebar"
+  .span10
+    %h1 Bill
+    %p= "Comment: "+@bill.comment
+    %p= "Due Date: "+@bill.due_date.strftime("%e %b %y")
+    %p= "Bill Date: "+@bill.bill_date.strftime("%e %b %y")
