@@ -8,3 +8,4 @@
       = f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Project Name'
       = f.input :status, :collection => @project.available_statuses, :include_blank => false
       = f.button :submit, "Update", :class => 'btn btn-primary'
+      = link_to "Back", :back, :class => 'btn'
