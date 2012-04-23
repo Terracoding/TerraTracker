@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120420185946) do
     t.integer  "user_id"
     t.integer  "company_id"
     t.string   "reference_id"
-    t.date     "bill_date"
-    t.date     "due_date"
+    t.date     "bill_date",                                   :default => '2012-04-23'
+    t.date     "due_date",                                    :default => '2012-04-23'
     t.decimal  "value",        :precision => 10, :scale => 2
     t.text     "comment"
     t.boolean  "paid"

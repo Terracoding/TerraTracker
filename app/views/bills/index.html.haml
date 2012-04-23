@@ -32,7 +32,7 @@
             = link_to bill_path(bill), :class => "btn" do
               %i.icon-search
               Show
-            =link_to bill, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
+            = link_to bill, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
               %i.icon-trash.icon-white
               Delete
     = link_to new_bill_path, :class => "btn btn-primary" do
