@@ -5,12 +5,16 @@ class BillsController < ApplicationController
     @bills = Bill.where(:company_id => current_company)
   end
 
-  def show
+  def new
+    @bill = Bill.new
+  end
+
+  def edit
     @bill = Bill.find(params[:id])
   end
 
-  def new
-    @bill = Bill.new
+  def show
+    @bill = Bill.find(params[:id])
   end
 
   def create
@@ -21,6 +25,15 @@ class BillsController < ApplicationController
       redirect_to(bills_path, :notice => "The bill was successfully created.")
     else
       render :action => :new
+    end
+  end
+
+  def update
+    @bill = Bill.find(params[:id])
+    if @bill.update_attributes(params[:bill])
+      redirect_to(bills_path, :notice => "The bill was successfully updated.")
+    else
+      render :action => "edit"
     end
   end
 

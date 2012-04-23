@@ -1,9 +1,9 @@
-- content_for(:title, 'New Bill')
+- content_for(:title, 'Edit Bill')
 .row
   .span2
     = render :partial => "shared/sidebar"
   .span10
-    %h1 Create Bill
+    %h1 End Bill
     = simple_form_for(@bill, :url => @bill, :html => {:class => 'form-horizontal' }) do |f|
       = f.input :reference_id, :autofocus => true, :label => 'Reference'
       = f.input :bill_date, :as => :string, :input_html => { :value => @bill.bill_date.strftime("%d/%m/%Y") }
@@ -11,7 +11,7 @@
       = f.input :value, :placeholder => "0.00", :required => true
       = f.input :comment, :label => "Comments"
       = f.input :paid
-      = f.button :submit, "Create Bill", :class => 'btn btn-primary'
+      = f.button :submit, "Update Bill", :class => 'btn btn-primary'
       = link_to "Back", :back, :class => 'btn'
 
 :javascript

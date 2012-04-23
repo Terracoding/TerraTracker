@@ -30,6 +30,36 @@ describe BillsController do
     end
   end
 
+  context :edit do
+    before(:each) do
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @bill = FactoryGirl.create(:bill, :company => @company, :user => @user)
+      sign_in @user
+    end
+
+    it "should edit the bill" do
+      post :edit, :id => @bill.id
+      response.should be_success
+      sign_out @user
+    end
+  end
+
+  context :show do
+    before (:each) do
+      @company = FactoryGirl.create(:company)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @bill = FactoryGirl.create(:bill, :company => @company, :user => @user)
+      sign_in @user
+    end
+
+    it "should be able to show the bill" do
+      post :show, :id => @bill.id
+      response.should render_template("show")
+      sign_out @user
+    end
+  end
+
   context :create do
      before(:each) do
        @company = FactoryGirl.create(:company)
@@ -63,6 +93,30 @@ describe BillsController do
        bill.stub(:save).and_return(false)
        post :create
        response.should render_template("new")
+       sign_out @user
+     end
+   end
+
+   context :update do
+     before(:each) do
+       @company = FactoryGirl.create(:company)
+       @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+       @bill = FactoryGirl.create(:bill, :company => @company, :user => @user, :due_date => DateTime.now, :bill_date => DateTime.now, :reference_id => "01", :value => 20)
+       sign_in @user
+     end
+
+     it "should redirect to bills path after updating" do
+       put :update, :id => @bill.id
+       flash[:notice].should == "The bill was successfully updated."
+       response.should redirect_to(bills_path)
+       sign_out @user
+     end
+
+     it "should render edit template if not updated attributes" do
+       Bill.should_receive(:find).and_return(@bill)
+       @bill.stub(:update_attributes).and_return(false)
+       put :update, :id => @bill.id
+       response.should render_template(:edit)
        sign_out @user
      end
    end

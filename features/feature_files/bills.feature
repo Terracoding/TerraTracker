@@ -47,3 +47,19 @@ Feature: Bills
     Given "john" has created an overdue bill with comment "This is a comment" and reference "001"
     When I am on the bills page
     Then I should see "Overdue"
+
+  Scenario: I should be able to show a bill
+    Given I have a bill with comment "This is a comment" and reference "001"
+    And I am on the bills page
+    When I follow "Show"
+    Then I should see "This is a comment"
+
+  Scenario: I should be able to edit a bill
+    Given I have a bill with comment "This is a comment" and reference "001"
+    And I am on the bills page
+    When I follow "Edit"
+    And I fill in the following:
+      | Comments       | This is the updated comment       |
+    And I press "Update"
+    Then I should see "This is the updated comment"
+    And I should see "The bill was successfully updated."
