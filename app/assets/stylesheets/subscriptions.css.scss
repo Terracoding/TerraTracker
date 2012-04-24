@@ -1,0 +1,70 @@
+.subscription {
+  width: 215px;
+  text-align: center;
+  margin: 10px;
+  padding-bottom: 10px;
+  display: inline-block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 5px #C9C9C9;
+  -webkit-box-shadow: 0 0 5px #C9C9C9;
+  box-shadow: 0 0 5px #C9C9C9;
+}
+.subscription .header {
+  background: #4289AA;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 3px;
+}
+.subscription .title {
+  color: #FFF;
+  font-weight: bold;
+  text-shadow: 0px -1px 0px #1E4358;
+}
+.subscription .description {
+  color: #FFF;
+  font-style: italic;
+  text-shadow: 0px -1px 0px #1E4358;
+}
+.subscription .price {
+  background: #FFF9EA;
+  color: #B5AC3D;
+  padding: 20px;
+  font-weight: bold;
+}
+.subscription .price .currency {
+  font-size: 20px;
+  vertical-align: top;
+  margin-right: 5px;
+}
+.subscription .price .value {
+  font-size: 40px;
+}
+.subscription .price .duration {
+  display: block;
+  font-size: 15px;
+  margin-top: 5px;
+}
+.subscription .details {
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top: 1px solid #E6E6E6;
+  padding-top: 10px;
+  background: #FFF;
+  padding-bottom: 10px;
+}
+.subscription .details p {
+  padding: 3px 20px 5px 20px;
+  color: #838383;
+  text-align: left;
+  border-bottom: 1px solid #EDEDED;
+}
