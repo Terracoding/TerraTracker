@@ -1,7 +1,7 @@
 - content_for(:title, 'Edit Bill')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    = render :partial => "shared/bills_sidebar"
   .span10
     %h1 End Bill
     = simple_form_for(@bill, :url => @bill, :html => {:class => 'form-horizontal' }) do |f|

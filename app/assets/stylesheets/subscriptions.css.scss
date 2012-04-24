@@ -1,3 +1,7 @@
+.subscriptions {
+  margin: auto;
+  text-align: center;
+}
 .subscription {
   width: 215px;
   text-align: center;
@@ -24,18 +28,20 @@
 .subscription .title {
   color: #FFF;
   font-weight: bold;
-  text-shadow: 0px -1px 0px #1E4358;
+  text-shadow: 0px -1px 0px #225275;
 }
 .subscription .description {
   color: #FFF;
   font-style: italic;
-  text-shadow: 0px -1px 0px #1E4358;
+  text-shadow: 0px -1px 0px #225275;
+  font-family: Georgia, serif;
 }
 .subscription .price {
   background: #FFF9EA;
   color: #B5AC3D;
   padding: 20px;
   font-weight: bold;
+  font-family: Tahoma, Geneva, sans-serif;
 }
 .subscription .price .currency {
   font-size: 20px;
@@ -47,7 +53,7 @@
 }
 .subscription .price .duration {
   display: block;
-  font-size: 15px;
+  font-size: 16px;
   margin-top: 5px;
 }
 .subscription .details {

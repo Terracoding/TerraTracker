@@ -15,47 +15,61 @@
     - else
       %h4 You have not yet selected a plan.
     %hr
-    %h1 Choose a plan:
-    %hr
-    .subscription
-      .header
-        %h2.title STARTER
-        %p.description Perfect for small organisations
-      .price
-        %span.currency £
-        %span.value 8
-        %span.duration MONTHLY
-      .details
-        %p 2 Projects
-        %p 2 Users
-        %p Technical Support
-      %a.btn{ :href => @starter_url, :target => "_blank" } Choose this plan
-    .subscription
-      .header
-        %h2.title BASIC
-        %p.description Perfect for small organisations
-      .price
-        %span.currency £
-        %span.value 16
-        %span.duration MONTHLY
-      .details
-        %p 10 Projects
-        %p 15 Users
-        %p Technical Support
-      %a.btn{ :href => @basic_url, :target => "_blank" } Choose this plan
-    .subscription
-      .header
-        %h2.title PROFESSIONAL
-        %p.description Perfect for small organisations
-      .price
-        %span.currency £
-        %span.value 32
-        %span.duration MONTHLY
-      .details
-        %p 30 Projects
-        %p 100 Users
-        %p Technical Support
-      %a.btn{ :href => @professional_url, :target => "_blank" } Choose this plan
+    .subscriptions
+      %h3 Available Plans
+      %br
+      .subscription
+        .header
+          %h2.title FREE
+          %p.description Perfect for small organisations
+        .price
+          %span.currency £
+          %span.value 0
+          %span.duration MONTHLY
+        .details
+          %p 1 Project
+          %p 1 User
+          %p &nbsp;
+        %a.btn.btn-success.disabled{ :href => "#", :target => "_blank", :disabled => "true", :onclick => "return false" } Choose this plan
+      .subscription
+        .header
+          %h2.title STARTER
+          %p.description Perfect for small organisations
+        .price
+          %span.currency £
+          %span.value 8
+          %span.duration MONTHLY
+        .details
+          %p 2 Projects
+          %p 2 Users
+          %p Technical Support
+        %a.btn.btn-success{ :href => @starter_url, :target => "_blank" } Choose this plan
+      .subscription
+        .header
+          %h2.title BASIC
+          %p.description Perfect for small organisations
+        .price
+          %span.currency £
+          %span.value 16
+          %span.duration MONTHLY
+        .details
+          %p 10 Projects
+          %p 15 Users
+          %p Technical Support
+        %a.btn.btn-success{ :href => @basic_url, :target => "_blank" } Choose this plan
+      .subscription
+        .header
+          %h2.title PROFESSIONAL
+          %p.description Perfect for small organisations
+        .price
+          %span.currency £
+          %span.value 32
+          %span.duration MONTHLY
+        .details
+          %p 30 Projects
+          %p 100 Users
+          %p Technical Support
+        %a.btn.btn-success{ :href => @professional_url, :target => "_blank" } Choose this plan
     - if @subscription
       .well
         %p If you want to cancel your account subscription please click the following button:
