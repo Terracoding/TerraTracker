@@ -57,7 +57,7 @@ describe ReportsController do
     end
   end
 
-  context :generate_report do
+  context :generating_reports do
     before(:each) do
       @company = FactoryGirl.create(:company)
       @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
@@ -69,6 +69,11 @@ describe ReportsController do
 
     it "should generate a report" do
       post :generate_report, :report => { :user_id => @user.id, :task_id => @task.id, :project_id => @project.id }
+      response.should be_successful
+    end
+
+    it "should generate a pdf" do
+      post :view_report, :report => { :user_id => @user.id, :task_id => @task.id, :project_id => @project.id }
       response.should be_successful
     end
   end
