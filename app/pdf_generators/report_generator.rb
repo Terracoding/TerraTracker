@@ -42,7 +42,7 @@ class ReportGenerator < Prawn::Document
 
   def display_total_hours
     total_hours = 0
-    @timeslips.each { |t| total_hours += t.hours }
+    @timeslips.each { |t| total_hours += t.hours if t.hours != nil }
     text "Total Hours: #{total_hours}", size: 11, style: :bold, :align => :right
     move_down 25
   end
