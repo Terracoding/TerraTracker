@@ -25,7 +25,7 @@ class ReportGenerator < Prawn::Document
     table_info = [["Date", "Project", "Task", "Comment", "Hours", ]]
     @timeslips.each do |t|
       table_info << [
-        t.created_at.strftime("%e %b %y"),
+        t.date.strftime("%e %b %y"),
         t.project.to_s,
         t.task.name,
         t.comment,

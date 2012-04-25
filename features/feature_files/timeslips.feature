@@ -16,6 +16,7 @@ Feature: Timeslips
     And I select "Test Task" from "Task"
     And I select "John Doe" from "User"
     And I fill in the following:
+      | Date            | 16/04/2012              |
       | Comment         | This is a test comment  |
       | Hours           | 1.1                     |
     And I press "Create Timeslip"
@@ -30,6 +31,7 @@ Feature: Timeslips
     And I select "Test Task" from "Task"
     And I select "John Doe" from "User"
     And I fill in the following:
+      | Date            | 16/04/2012              |
       | Comment         | This is a test comment  |
       | Hours           | 1:30                    |
     And I press "Create Timeslip"

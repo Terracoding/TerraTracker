@@ -9,7 +9,7 @@ Feature: Reports
     And I have a project "Test Project"
     And I have the task "Test Task"
     And I have a timeslip
-    
+
   Scenario: I should be able to create a report for all projects and tasks
     Given I am on the reports page
     And I select "This Week" from "Timeframe"
@@ -21,6 +21,7 @@ Feature: Reports
     And I should see "Test Task"
     And I should see "This is a test comment"
     And I should see "Total Hours: 1.0"
+    And I should see "16 Apr 12"
 
   Scenario: I should be able to create a report for a specific project and task
     Given I am on the reports page
@@ -33,3 +34,4 @@ Feature: Reports
     And I should see "Test Task"
     And I should see "This is a test comment"
     And I should see "Total Hours: 1.0"
+    And I should see "16 Apr 12"
