@@ -7,6 +7,7 @@ describe Timeslip do
   it { should validate_presence_of(:task) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:project) }
+  it { should validate_presence_of(:date) }
 
   describe "handling hours" do
     before(:each) do

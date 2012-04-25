@@ -5,6 +5,7 @@ class Timeslip < ActiveRecord::Base
   validates_presence_of :task
   validates_presence_of :user
   validates_presence_of :project
+  validates_presence_of :date
 
   def hours=(hours)
     if hours.to_s =~ /:/
