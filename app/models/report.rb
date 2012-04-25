@@ -1,7 +1,6 @@
 class Report
   include ActiveAttr::Model
   include ActiveAttr::AttributeDefaults
-
   attribute :timeframe_id
   attribute :project_id
   attribute :task_id
