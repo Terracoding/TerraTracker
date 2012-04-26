@@ -29,7 +29,7 @@
         - @projects.each do |project|
           %tr
             %td= project.name
-            %th= project.users.count
+            %td= project.users.count
             %td= project.tasks.count
             %td
               - if !current_user.sub_account
@@ -48,5 +48,5 @@
         - @recent_timeslips.each do |timeslip|
           %tr
             %td= timeslip.created_at.strftime("%e %b %y")
-            %th= link_to timeslip.task.name, edit_timeslip_path(timeslip)
+            %td= link_to timeslip.task.name, edit_timeslip_path(timeslip)
             %td= number_with_precision(timeslip.hours, :precision => 2)
