@@ -1,9 +1,10 @@
 class ReportGenerator < Prawn::Document
 
-  def initialize(report, timeslips)
+  def initialize(report, timeslips, user)
     super(top_margin: 70)
     @report = report
     @timeslips = timeslips
+    @current_user = user
     display_header
     move_down 25
     display_table
@@ -14,11 +15,15 @@ class ReportGenerator < Prawn::Document
   private
 
   def display_header
+    if @current_user.company.image
+      image @current_user.company.image.path(:thumb)
+    else
+      fill_color "000000"
+      text @report.company.name, size: 24, style: :bold, :align => :left
+      move_down 5
+    end
     fill_color "777777"
     text "Timesheet for #{@report.user.to_s}", size: 14, style: :bold, :align => :right
-    fill_color "000000"
-    text @report.company.name, size: 24, style: :bold, :align => :left
-    move_down 5
   end
 
   def display_table

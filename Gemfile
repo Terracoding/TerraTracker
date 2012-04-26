@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'gocardless', :git => "https://github.com/gocardless/gocardless-ruby"
 gem 'prawn'
 gem 'active_attr'
+gem 'paperclip'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'

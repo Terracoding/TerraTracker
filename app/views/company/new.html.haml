@@ -7,4 +7,5 @@
     = simple_form_for(@company, :url => company_index_path(@company), :html => {:class => 'form-horizontal' }) do |f|
       = f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Company Name'
       = f.input :registration_number, :class => 'input-xlarge', :label => 'Registration Number'
+      = f.input :image, :label => 'Company Logo'
       = f.button :submit, "Create Company", :class => 'btn btn-primary'

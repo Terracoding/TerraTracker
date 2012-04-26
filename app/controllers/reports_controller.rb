@@ -22,7 +22,7 @@ class ReportsController < ApplicationController
     @report = get_report_data(Report.new(params[:report]))
     @timeslips = get_timeslips(@report)
     if @report.valid?
-      @pdf = ReportGenerator.new(@report, @timeslips)
+      @pdf = ReportGenerator.new(@report, @timeslips, current_user)
       send_data @pdf.render, filename: "#{@report.company.name.parameterize.underscore}-report.pdf", type: "application/pdf", disposition: "inline"
     else
       render :index
