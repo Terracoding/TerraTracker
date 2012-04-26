@@ -2,7 +2,11 @@ class TimeslipsController < ApplicationController
   before_filter :authenticate_user!, :redirect_company, :redirect_projects
   
   def index
-    current_user.sub_account ? @timeslips = current_user.timeslips : @timeslips = current_company.timeslips
+    if current_user.sub_account
+      @timeslips_by_date = current_user.timeslips.order('date ASC').group_by { |timeslip| timeslip.date.strftime("%A %e %b %Y") }
+    else
+      @timeslips_by_date = current_company.timeslips.order('date ASC').group_by { |timeslip| timeslip.date.strftime("%A %e %b %Y") }
+    end
   end
   
   def new
