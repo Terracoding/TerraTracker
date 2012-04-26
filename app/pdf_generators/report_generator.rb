@@ -15,7 +15,7 @@ class ReportGenerator < Prawn::Document
   private
 
   def display_header
-    if @current_user.company.image
+    if @current_user.company.image.path(:thumb)
       image @current_user.company.image.path(:thumb)
     else
       fill_color "000000"
