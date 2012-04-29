@@ -26,6 +26,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string      :firstname
       t.string      :lastname
+      t.boolean     :company_admin, :default => true
       t.boolean     :owns_company
       t.boolean     :sub_account
       t.references  :company

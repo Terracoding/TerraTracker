@@ -13,6 +13,7 @@ class CompanyUsersController < ApplicationController
     @user = User.new(params[:user])
     @user.company = @current_company
     @user.sub_account = true
+    @user.company_admin = false
     if @user.save
       redirect_to company_index_path, :notice => "You have successfully added #{@user.firstname} #{@user.lastname} to your company."
     else
@@ -22,7 +23,7 @@ class CompanyUsersController < ApplicationController
   
   def destroy
     @user = User.find(params[:id])
-    if !@user.owns_company? && @user.sub_account
+    if !@user.company_admin? && current_user.company_admin
       @user.destroy
       redirect_to(company_index_path, :notice => "The user was successfully removed.")
     else
