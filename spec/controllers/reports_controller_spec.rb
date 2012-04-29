@@ -76,5 +76,15 @@ describe ReportsController do
       post :view_report, :report => { :user_id => @user.id, :task_id => @task.id, :project_id => @project.id }
       response.should be_successful
     end
+
+    it "should return to index if the report is invalid" do
+      report_stub = stub
+      report_stub.stub(:valid?).and_return(false)
+      Report.stub(:new).with(nil).and_return(report_stub)
+      controller.stub!(:get_report_data).with(report_stub).and_return(report_stub)
+      controller.stub!(:get_timeslips)
+      post :view_report
+      response.should be_successful
+    end
   end
 end
