@@ -6,7 +6,7 @@ class CreateTimeslips < ActiveRecord::Migration
       t.references  :user
       t.decimal     :hours, :precision => 10, :scale => 2
       t.string      :comment
-      t.date        :date, :default => DateTime.now
+      t.date        :date
       t.timestamps
     end
   end

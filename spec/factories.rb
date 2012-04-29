@@ -34,14 +34,15 @@ FactoryGirl.define do
     user
     hours     1.0
     comment   "test comment"
+    date      Date.today
   end
 
   factory :bill do
     user
     company
     reference_id  "0"
-    bill_date     Date.new
-    due_date      Date.new
+    bill_date     Date.today
+    due_date      Date.today
     value         "1.00"
     comment       "test comment"
   end

@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120420185946) do
     t.integer  "user_id"
     t.integer  "company_id"
     t.string   "reference_id"
-    t.date     "bill_date",                                   :default => '2012-04-26'
-    t.date     "due_date",                                    :default => '2012-04-26'
+    t.date     "bill_date"
+    t.date     "due_date"
     t.decimal  "value",        :precision => 10, :scale => 2
     t.text     "comment"
     t.boolean  "paid"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20120420185946) do
     t.integer  "user_id"
     t.decimal  "hours",      :precision => 10, :scale => 2
     t.string   "comment"
-    t.date     "date",                                      :default => '2012-04-26'
+    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

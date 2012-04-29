@@ -1,6 +1,6 @@
 class TimeslipsController < ApplicationController
   before_filter :authenticate_user!, :redirect_company, :redirect_projects
-  
+
   def index
     if current_user.sub_account
       @timeslips_by_date = current_user.timeslips.order('date ASC').group_by { |timeslip| timeslip.date.strftime("%A %e %b %Y") }
@@ -8,16 +8,16 @@ class TimeslipsController < ApplicationController
       @timeslips_by_date = current_company.timeslips.order('date ASC').group_by { |timeslip| timeslip.date.strftime("%A %e %b %Y") }
     end
   end
-  
+
   def new
-    @timeslip = Timeslip.new
+    @timeslip = Timeslip.new(:date => Date.today)
     @tasks = current_company.tasks
     p = Project.where("company_id = ?", current_company.id)
     @projects = []
     p.each { |project| @projects << project if project.tasks.count > 0 }
     current_user.sub_account ? @users = [current_user] : @users = User.where("company_id = ?", current_user.company.id)
   end
-  
+
   def edit
     @timeslip = Timeslip.find(params[:id])
   end

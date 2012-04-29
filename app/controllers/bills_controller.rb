@@ -6,7 +6,7 @@ class BillsController < ApplicationController
   end
 
   def new
-    @bill = Bill.new
+    @bill = Bill.new(:bill_date => Date.today, :due_date => Date.today)
   end
 
   def edit
