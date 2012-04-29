@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20120429223740) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "plan_id",             :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
