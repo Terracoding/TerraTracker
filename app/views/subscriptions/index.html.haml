@@ -9,68 +9,15 @@
         You have not set up your company.
     %h1 Plans & Upgrades
     - if @subscription
-      %div.alert{ :class => twitterized_type(:alert) }
-        %h2= "#{@subscription} Account"
-        %p= "You are allowed #{@subscription.projects_limit} projects and #{@subscription.users_limit} users."
+      %h4= "#{@subscription} Account"
+      %p= "You are allowed #{@subscription.projects_limit} projects and #{@subscription.users_limit} users."
     - else
       %h4 You have not yet selected a plan.
     %hr
     .subscriptions
       %h3 Available Plans
       %br
-      .subscription
-        .header
-          %h2.title FREE
-          %p.description Perfect for small organisations
-        .price
-          %span.currency £
-          %span.value 0
-          %span.duration MONTHLY
-        .details
-          %p 1 Project
-          %p 1 User
-          %p &nbsp;
-        %a.btn.btn-success.disabled{ :href => "#", :target => "_blank", :disabled => "true", :onclick => "return false" } Choose this plan
-      .subscription
-        .header
-          %h2.title STARTER
-          %p.description Perfect for small organisations
-        .price
-          %span.currency £
-          %span.value 8
-          %span.duration MONTHLY
-        .details
-          %p 2 Projects
-          %p 2 Users
-          %p Technical Support
-        %a.btn.btn-success{ :href => @starter_url, :target => "_blank" } Choose this plan
-      .subscription
-        .header
-          %h2.title BASIC
-          %p.description Perfect for small organisations
-        .price
-          %span.currency £
-          %span.value 16
-          %span.duration MONTHLY
-        .details
-          %p 10 Projects
-          %p 15 Users
-          %p Technical Support
-        %a.btn.btn-success{ :href => @basic_url, :target => "_blank" } Choose this plan
-      .subscription
-        .header
-          %h2.title PROFESSIONAL
-          %p.description Perfect for small organisations
-        .price
-          %span.currency £
-          %span.value 32
-          %span.duration MONTHLY
-        .details
-          %p 30 Projects
-          %p 100 Users
-          %p Technical Support
-        %a.btn.btn-success{ :href => @professional_url, :target => "_blank" } Choose this plan
-    - if @subscription
-      .well
-        %p If you want to cancel your account subscription please click the following button:
-        = link_to "Cancel Subscription", cancel_subscriptions_path, :class => 'btn btn-danger'
+      = render :partial => "subscriptions/plan", :locals => { :title => "free", :description => "Perfect for small organisations", :value => 0, :duration => "MONTHLY", :project_count => 1, :user_count => 1, :url => "#" }
+      = render :partial => "subscriptions/plan", :locals => { :title => "starter", :description => "Perfect for small organisations", :value => 8, :duration => "MONTHLY", :project_count => 2, :user_count => 2, :url => @starter_url }
+      = render :partial => "subscriptions/plan", :locals => { :title => "basic", :description => "Perfect for small organisations", :value => 16, :duration => "MONTHLY", :project_count => 10, :user_count => 15, :url => @basic_url }
+      = render :partial => "subscriptions/plan", :locals => { :title => "professional", :description => "Perfect for small organisations", :value => 32, :duration => "MONTHLY", :project_count => 30, :user_count => 100, :url => @professional_url }
