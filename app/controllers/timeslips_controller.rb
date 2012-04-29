@@ -61,5 +61,4 @@ class TimeslipsController < ApplicationController
     @users.map! { |current| current = current.user }
     render :json => @users
   end
-
 end

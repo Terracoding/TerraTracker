@@ -4,7 +4,7 @@
     = render :partial => "shared/sidebar"
   .span10
     %h1= "Add #{@project.name} User"
-    = simple_form_for(@project_user, :url => project_users_path(@project), :html => {:class => 'form-horizontal' }) do |f|
-      .control-group= f.input :user_id, :required => true, :collection => @available_users, :selected => @available_users[0], :include_blank => false, :label => 'User'
+    = simple_form_for(@project_user, :url => project_users_path(@project), :html => { :class => 'form-horizontal' }) do |f|
+      = f.input :user_id, :required => true, :collection => @available_users, :selected => @available_users[0], :include_blank => false, :label => 'User'
       = f.button :submit, "Add User", :class => 'btn btn-primary'
     %p= link_to "Can't find the user? Make sure they are added to your company.", new_company_user_path
