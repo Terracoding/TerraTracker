@@ -31,6 +31,7 @@ class SubscriptionsController < ApplicationController
     begin
       @confirmation = GoCardless.confirm_resource(params)
       if @confirmation
+        cancel
         Subscription.destroy(current_user.subscription) if Subscription.exists?(current_user.subscription)
         @subscription = Subscription.create!(
           :user => current_user,
