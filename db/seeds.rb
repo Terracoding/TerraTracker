@@ -1,5 +1,5 @@
 company = Company.create(:name => "TerraCoding", :registration_number => "1001")
-user_1 = User.create(:company => company, :owns_company => true, :email => "domness@gmail.com", :firstname => "Dominic", :lastname => "Wroblewski", :password => "password", :password_confirmation => "password")
+user_1 = User.create(:company => company, :owns_company => true, :company_admin => true, :email => "domness@gmail.com", :firstname => "Dominic", :lastname => "Wroblewski", :password => "password", :password_confirmation => "password")
 user_2 = User.create(:company => company, :owns_company => true, :email => "haargoth@gmail.com", :firstname => "Robert", :lastname => "White", :password => "password", :password_confirmation => "password")
 project = Project.create(:company => company, :status => "Active", :name => "TimeTracker")
 project_2 = Project.create(:company => company, :status => "Active", :name => "OMS")

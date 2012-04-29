@@ -1,10 +1,11 @@
 FactoryGirl.define do
   factory :user do
     company
-    firstname 'Test'
-    lastname  'User'
-    email     'example@example.com'
-    password  'please'
+    company_admin   false
+    firstname       'Test'
+    lastname        'User'
+    email           'example@example.com'
+    password        'please'
     password_confirmation 'please'
   end
 

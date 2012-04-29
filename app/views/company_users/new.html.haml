@@ -1,13 +1,15 @@
-- content_for(:title, 'New Company')
+- content_for(:title, 'New Company User')
 .row
   .span2
     = render :partial => "shared/sidebar"
   .span10
     %h1 Create Company User
     = simple_form_for(@user, :url => company_users_path(@user), :html => {:class => 'form-horizontal' }) do |f|
-      .control-group= f.input :firstname, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'First Name'
-      .control-group= f.input :lastname, :required => true, :class => 'input-xlarge', :label => 'Last Name'
-      .control-group= f.input :email, :required => true, :class => 'input-xlarge'
-      .control-group= f.input :password, :required => true, :class => 'input-xlarge'
+      = f.input :firstname, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'First Name'
+      = f.input :lastname, :required => true, :class => 'input-xlarge', :label => 'Last Name'
+      = f.input :email, :required => true, :class => 'input-xlarge'
+      = f.input :password, :required => true, :class => 'input-xlarge'
+      - if current_user.company_admin
+        = f.input :owns_company, :label => 'Company Management'
       = f.button :submit, "Create Company User", :class => 'btn btn-primary'
       = link_to "Back", :back, :class => 'btn'

@@ -20,7 +20,7 @@
           %i.icon-search
           Show
       %td
-        - if !u.owns_company?
+        - if !u.company_admin?
           %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => company_user_path(u) }
             %i.icon-trash.icon-white
             Delete

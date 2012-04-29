@@ -42,7 +42,7 @@ describe CompanyUsersController do
   context :destroy do
     before(:each) do
       @company = FactoryGirl.create(:company)
-      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true, :company_admin => true)
       sign_in @user
     end
 

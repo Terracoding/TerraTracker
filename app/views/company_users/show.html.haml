@@ -3,11 +3,11 @@
   .span2
     = render :partial => "shared/sidebar"
   .span10
-    %h1 Company User
-    %h3 Name
-    %p= "#{@user.firstname} #{@user.lastname}"
+    %h1
+      = "#{@user.firstname} #{@user.lastname}"
+      = @user.company_admin ? "(Admin)" : nil
     %h3 Role
-    %p= @user.owns_company ? "Owner" : "User"
+    %p= @user.owns_company ? "Management" : "User"
     %h3 Email
     %p= @user.email
     %hr
