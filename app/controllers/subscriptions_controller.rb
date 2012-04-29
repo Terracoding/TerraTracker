@@ -1,30 +1,13 @@
 class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!, :redirect_sub_account, :get_company
-  
+
   def index
     @subscription = Subscription.find_by_user_id(current_user.id)
     if @subscription
       @merchant_subscription = GoCardless::Subscription.find(@subscription.resource_id)
       Subscription.destroy(current_user.subscription) if !@merchant_subscription
     end
-    @starter_url = GoCardless.new_subscription_url(
-      :amount => "8.00",
-      :name => "Starter Account",
-      :interval_unit => "month",
-      :interval_length => 1,
-    )
-    @basic_url = GoCardless.new_subscription_url(
-      :amount => "16.00",
-      :name => "Basic Account",
-      :interval_unit => "month",
-      :interval_length => 1,
-    )
-    @professional_url = GoCardless.new_subscription_url(
-      :amount => "32.00",
-      :name => "Professional Account",
-      :interval_unit => "month",
-      :interval_length => 1,
-    )
+    @plans = Plan.find(:all)
   end
 
   def confirm_subscription
@@ -51,7 +34,7 @@ class SubscriptionsController < ApplicationController
       flash[:error] = e
     end
   end
-  
+
   def cancel
     @subscription = Subscription.find_by_user_id(current_user.id)
     if @subscription
@@ -63,7 +46,7 @@ class SubscriptionsController < ApplicationController
     end
     redirect_to subscriptions_path
   end
-  
+
   private
 
   def get_company
@@ -72,7 +55,7 @@ class SubscriptionsController < ApplicationController
       @projects = @current_company.projects if @current_company.projects
     end
   end
-  
+
   def get_plan_id(amount)
     case amount
     when "8.0"
@@ -85,5 +68,4 @@ class SubscriptionsController < ApplicationController
       return 0
     end
   end
-
 end

@@ -17,7 +17,5 @@
     .subscriptions
       %h3 Available Plans
       %br
-      = render :partial => "subscriptions/plan", :locals => { :title => "free", :description => "Perfect for small organisations", :value => 0, :duration => "MONTHLY", :project_count => 1, :user_count => 1, :url => "#" }
-      = render :partial => "subscriptions/plan", :locals => { :title => "starter", :description => "Perfect for small organisations", :value => 8, :duration => "MONTHLY", :project_count => 2, :user_count => 2, :url => @starter_url }
-      = render :partial => "subscriptions/plan", :locals => { :title => "basic", :description => "Perfect for small organisations", :value => 16, :duration => "MONTHLY", :project_count => 10, :user_count => 15, :url => @basic_url }
-      = render :partial => "subscriptions/plan", :locals => { :title => "professional", :description => "Perfect for small organisations", :value => 32, :duration => "MONTHLY", :project_count => 30, :user_count => 100, :url => @professional_url }
+      - @plans.each do |plan|
+        = render :partial => "subscriptions/plan", :locals => { :plan => plan }

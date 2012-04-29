@@ -1,16 +1,16 @@
 .subscription
   .header
-    %h2.title= title.upcase
-    %p.description= description
+    %h2.title= plan.title.upcase
+    %p.description= plan.description
   .price
     %span.currency £
-    %span.value= value
-    %span.duration= duration
+    %span.value= plan.value
+    %span.duration= plan.duration
   .details
-    %p= "#{project_count} Projects"
-    %p= "#{user_count} Users"
+    %p= "#{plan.project_count} Projects"
+    %p= "#{plan.user_count} Users"
     %p Technical Support
-  - if @subscription.to_s.downcase == title
+  - if current_plan(plan)
     = link_to "Cancel Subscription", cancel_subscriptions_path, :class => 'btn btn-danger'
   - else
-    %a.btn.btn-success{ :href => url, :target => "_blank" } Choose this plan
+    %a.btn.btn-success{ :href => plan.generate_new_url, :target => "_blank" } Choose this plan
