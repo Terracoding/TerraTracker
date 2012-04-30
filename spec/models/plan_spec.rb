@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Plan do
   context :validations do
     it { should have_many(:subscriptions) }
-    it { should have_many(:companies).through(:subscriptions) }
+    it { should have_many(:companies) }
 
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }

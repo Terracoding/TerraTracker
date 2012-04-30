@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
   belongs_to :user
+  belongs_to :plan
   has_many :users
   has_many :projects
   has_many :tasks, :through => :projects
