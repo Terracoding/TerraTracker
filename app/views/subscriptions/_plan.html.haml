@@ -10,7 +10,9 @@
     %p= "#{plan.project_count} Projects"
     %p= "#{plan.user_count} Users"
     %p Technical Support
-  - if current_plan(plan)
+  - if current_plan(plan) && !@subscription.nil?
     = link_to "Cancel Subscription", cancel_subscriptions_path, :class => 'btn btn-danger'
-  - else
+  - elsif !current_plan(plan)
     %a.btn.btn-success{ :href => plan.generate_new_url, :target => "_blank" } Choose this plan
+  - else
+    %a.btn.btn-success{ :href => "#", :disabled => 'true' } Current Plan

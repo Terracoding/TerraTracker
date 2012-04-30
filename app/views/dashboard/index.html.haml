@@ -9,13 +9,14 @@
         You have not set up your company.
     %h1 Dashboard
     %p= "#{current_user.firstname}, welcome to your Dashboard."
-    %dl.dl-horizontal
-      %dt Projects:
-      %dd= "#{@projects ? @projects.count : 0}/#{@current_company.plan.project_count}"
-      %dt Users:
-      %dd= "#{@current_company ? @current_company.users.count : 1}/#{@current_company.plan.user_count}"
-      %dt Plan:
-      %dd= @current_company.plan.title
+    - if @current_company
+      %dl.dl-horizontal
+        %dt Projects:
+        %dd= "#{@projects ? @projects.count : 0}/#{@current_company.plan.project_count}"
+        %dt Users:
+        %dd= "#{@current_company ? @current_company.users.count : 1}/#{@current_company.plan.user_count}"
+        %dt Plan:
+        %dd= "#{@current_company.plan.title.capitalize} Account"
     - if @projects
       %hr
       %h2 Projects

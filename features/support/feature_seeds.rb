@@ -1,0 +1,4 @@
+Plan.create!(:title => "free", :description => "Perfect for small organisations", :value => 0, :duration => "MONTHLY", :project_count => 1, :user_count => 1)
+Plan.create!(:title => "starter", :description => "Perfect for small organisations", :value => 8, :duration => "MONTHLY", :project_count => 2, :user_count => 2)
+Plan.create!(:title => "basic", :description => "Perfect for small organisations", :value => 16, :duration => "MONTHLY", :project_count => 10, :user_count => 15)
+Plan.create!(:title => "professional", :description => "Perfect for small organisations", :value => 32, :duration => "MONTHLY", :project_count => 30, :user_count => 100)
