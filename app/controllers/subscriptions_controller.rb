@@ -2,7 +2,7 @@ class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!, :redirect_sub_account, :get_company
 
   def index
-    @subscription = Subscription.find_by_user_id(current_user.id)
+    @subscription = Subscription.find_by_company_id(@current_company.id)
     if @subscription
       @merchant_subscription = GoCardless::Subscription.find(@subscription.resource_id)
       Subscription.destroy(current_user.subscription) if !@merchant_subscription
@@ -15,9 +15,9 @@ class SubscriptionsController < ApplicationController
       @confirmation = GoCardless.confirm_resource(params)
       if @confirmation
         cancel
-        Subscription.destroy(current_user.subscription) if Subscription.exists?(current_user.subscription)
+        Subscription.destroy(@current_company.subscription) if Subscription.exists?(@current_company.subscription)
         @subscription = Subscription.create!(
-          :user => current_user,
+          :company => current_company,
           :resource_uri => params[:resource_uri],
           :resource_id => params[:resource_id],
           :resource_type => params[:resource_type],
@@ -25,10 +25,10 @@ class SubscriptionsController < ApplicationController
           :subscribed => true,
           :merchant_id => @confirmation.merchant_id,
           :subscription_acount => @confirmation.amount,
-          :resource_user_id => @confirmation.user_id,
-          :plan_id => get_plan_id(@confirmation.amount)
+          :resource_user_id => @confirmation.user_id
         )
-        flash[:notice] = "You have successfully subscribed to the #{@subscription.to_s} plan."
+        @current_company.update_attribute(:plan, Plan.find_by_value(@confirmation.amount))
+        flash[:notice] = "You have successfully subscribed to the #{@current_company.plan.title.capitalize} plan."
       end
     rescue GoCardless::ApiError => e
       flash[:error] = e
@@ -36,11 +36,12 @@ class SubscriptionsController < ApplicationController
   end
 
   def cancel
-    @subscription = Subscription.find_by_user_id(current_user.id)
+    @subscription = Subscription.find_by_company_id(@current_company.id)
     if @subscription
       s = GoCardless::Subscription.find(@subscription.resource_id)
       if s.cancel!
         @subscription.delete
+        @current_company.update_attribute(:plan, Plan.find(1))
         flash[:notice] = "You have cancelled your subscription!"
       end
     end
@@ -53,19 +54,6 @@ class SubscriptionsController < ApplicationController
     if current_company
       @current_company = current_company
       @projects = @current_company.projects if @current_company.projects
-    end
-  end
-
-  def get_plan_id(amount)
-    case amount
-    when "8.0"
-      return 1
-    when "16.0"
-      return 2
-    when "32.0"
-      return 3
-    else
-      return 0
     end
   end
 end

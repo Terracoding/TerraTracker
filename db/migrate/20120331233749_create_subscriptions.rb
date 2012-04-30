@@ -1,8 +1,7 @@
 class CreateSubscriptions < ActiveRecord::Migration
   def change
     create_table :subscriptions do |t|
-      t.references  :user
-      t.integer     :plan_id
+      t.references  :company
       t.string      :resource_id
       t.string      :signature
       t.string      :resource_type

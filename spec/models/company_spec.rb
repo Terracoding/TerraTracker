@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Company do
   context :validations do
     it { should belong_to(:plan) }
+    it { should have_one(:subscription) }
     it { should have_many(:users) }
     it { should have_many(:projects) }
     it { should have_many(:tasks).through(:projects) }

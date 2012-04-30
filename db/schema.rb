@@ -70,8 +70,7 @@ ActiveRecord::Schema.define(:version => 20120429223740) do
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "plan_id"
+    t.integer  "company_id"
     t.string   "resource_id"
     t.string   "signature"
     t.string   "resource_type"

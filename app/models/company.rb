@@ -6,6 +6,7 @@ class Company < ActiveRecord::Base
   has_many :tasks, :through => :projects
   has_many :timeslips, :through => :projects
   has_one :image
+  has_one :subscription
   has_attached_file :image,
     :styles => { :logo => "300x67#", :medium => "300x300>", :thumb => "150x34#"},
     :url => "/system/company_logos/:attachment/:id/:style/:filename",
