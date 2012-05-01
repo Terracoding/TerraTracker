@@ -1,0 +1,13 @@
+.subscription
+  .header
+    %h2.title= plan.title.upcase
+    %p.description= plan.description
+  .price
+    %span.currency £
+    %span.value= plan.value
+    %span.duration= plan.duration
+  .details
+    %p= "#{plan.project_count} Projects"
+    %p= "#{plan.user_count} Users"
+    %p Technical Support
+    %a.btn.btn-success{ :href => new_user_registration_path, :target => "_blank" } Try For Free

@@ -8,7 +8,6 @@
         %a.close{ "data-dismiss" => "alert" } x
         You have not set up your company.
     %h1 Plans & Upgrades
-    / - if @subscription
     %h4= "#{@current_company.plan.title.capitalize} Account"
     %p= "You are allowed #{@current_company.plan.project_count} projects and #{@current_company.plan.user_count} users."
     %hr
