@@ -8,7 +8,7 @@ Feature: User registration
 
   Scenario: Signing up to use the system as a user
     Given I am on the home page
-    When I follow "Register"
+    When I follow "Try For Free"
     And I fill in the following:
       | First Name            | John                  |
       | Last Name             | Doe                   |

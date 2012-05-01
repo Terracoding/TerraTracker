@@ -1,12 +1,13 @@
 - content_for(:title, 'Home')
 
 %div{ :class => "container"}
-.row
-  .home.masthead
-    %h1 TimeTracker
-    %p Accounting software
-    - if current_user
-      = link_to "Dashboard", dashboard_index_path, :class => "btn btn-info btn-large"
-    - else
-      = link_to "Login", new_user_session_path, :class => "btn btn-info btn-large"
-      = link_to "Register", new_user_registration_path, :class => "btn btn-info btn-large"
+.home.masthead
+  %h1 Time Tracker
+  %p Accounting software
+  - if current_user
+    = link_to "Dashboard", dashboard_index_path, :class => "btn btn-primary btn-large"
+  - else
+    = link_to "Login", new_user_session_path, :class => "btn btn-primary btn-large"
+    = link_to "Try For Free", new_user_registration_path, :class => "btn btn-primary btn-large"
+.home.preview
+  = image_tag("iMac_Preview.png")
