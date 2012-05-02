@@ -1,5 +1,6 @@
 *.psd
 *.pdf
+.git
 test
 spec
 coverage
