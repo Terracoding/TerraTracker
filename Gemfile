@@ -12,6 +12,7 @@ gem 'gocardless', :git => "https://github.com/gocardless/gocardless-ruby"
 gem 'prawn'
 gem 'active_attr'
 gem 'paperclip'
+gem 'rspec-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'
@@ -27,7 +28,6 @@ end
 group :test do
   gem 'turn', '0.8.2', :require => false
   gem 'capybara'
-  gem 'rspec-rails'
   gem 'shoulda'
   gem 'simplecov', :require => false
   gem 'webrat'
