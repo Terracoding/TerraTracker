@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
-gem 'mysql2'
+gem 'pg'
 gem 'haml'
 gem 'haml-rails'
 gem 'devise'
@@ -21,6 +21,7 @@ end
 
 group :development do
   gem 'guard-spork'
+  gem 'mysql2'
 end
 
 group :test do
