@@ -7,8 +7,8 @@
     %p Here you can create your time tracking reports.
     = simple_form_for @report, :url => generate_report_reports_path, :html => {:class => 'form-horizontal'} do |f|
       .control-group
-        .control-label= f.label :timeframe_id
-        .controls= f.select :timeframe_id, @timeframes, :include_blank => false, :label => 'Project'
+        .control-label= f.label :timeframe
+        .controls= f.select :timeframe, @timeframes, :include_blank => false, :label => 'Project'
       .control-group
         .control-label= f.label :project_id
         .controls= f.select :project_id, @projects.collect{ |u| [u[:name], u[:id]] }, :include_blank => 'All Projects', :label => 'Project'

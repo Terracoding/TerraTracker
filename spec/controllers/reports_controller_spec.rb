@@ -27,7 +27,7 @@ describe ReportsController do
     it "should get the available timeframes" do
       sign_in @user
       get :index
-      assigns[:timeframes].should == [["This Week", 1], ["Last Week", 2], ["This Month", 3], ["Last Month", 4]]
+      assigns[:timeframes].should == ["This Week", "Last Week", "This Month", "Last Month", "Custom"]
       sign_out @user
     end
 

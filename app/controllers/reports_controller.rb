@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
     @projects = current_company.projects
     @tasks = current_company.tasks
     current_user.sub_account ? @users = [current_user] : @users = User.where("company_id = ?", current_user.company.id)
-    @timeframes = [["This Week", 1], ["Last Week", 2], ["This Month", 3], ["Last Month", 4]]
+    @timeframes = ["This Week", "Last Week", "This Month", "Last Month", "Custom"]
     @report = Report.new
   end
 
@@ -36,7 +36,6 @@ class ReportsController < ApplicationController
     report.project = Project.find(report.project_id) if Project.exists?(report.project_id)
     report.task = Task.find(report.task_id) if Task.exists?(report.task_id)
     report.user = User.find(report.user_id)
-    report.timeframe = timeframe(report.timeframe_id)
     return report
   end
 
@@ -44,6 +43,7 @@ class ReportsController < ApplicationController
     timeslips = Timeslip.where(:user_id => report.user)
     timeslips = timeslips.where(:project_id => report.project_id) if report.project_id != ""
     timeslips = timeslips.where(:task_id => report.task_id) if report.task_id != ""
+    timeslips = get_timeslips_with_timeframe(report.timeframe, timeslips)
     return timeslips
   end
 
