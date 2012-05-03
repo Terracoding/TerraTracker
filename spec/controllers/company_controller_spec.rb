@@ -17,6 +17,8 @@ describe CompanyController do
     it "should create a new company" do
       company = mock_model(Company, :save => true)
       Company.stub(:new) { company }
+      company.stub_chain(:plan, :user_count).and_return(5000)
+      company.stub_chain(:users, :count).and_return(1)
       post :create, :company => {}
       response.should redirect_to(company_index_path)
       sign_out @user
