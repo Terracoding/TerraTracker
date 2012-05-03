@@ -6,7 +6,7 @@ describe Project do
     before(:each) do
       @company = FactoryGirl.create(:company)
     end
-    subject { Factory.create(:project, :company => @company) }
+    subject { FactoryGirl.create(:project, :company => @company) }
     it { should belong_to(:company) }
     it { should validate_presence_of(:name) }
     it { should have_many(:tasks).dependent(:destroy) }

@@ -10,8 +10,8 @@ FactoryGirl.define do
   end
 
   factory :plan do
-    title               "test"
-    description         "test plan"
+    title               "Free"
+    description         "Free plan"
     value               0
     duration            "MONTHLY"
     project_count       100

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   private
 
   def check_user_limit
-    if company.plan.user_count <= company.users.count
+    if company && company.plan.user_count <= company.users.count
       self.errors[:base] << "You have reached your user limit. If you wish to add more users, please upgrade your account."
       return false
     end
