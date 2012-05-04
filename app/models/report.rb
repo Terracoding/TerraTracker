@@ -10,4 +10,6 @@ class Report
   attribute :project
   attribute :task
   attribute :user
+  attribute :start_date
+  attribute :end_date
 end

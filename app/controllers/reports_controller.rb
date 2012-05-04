@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
     @tasks = current_company.tasks
     current_user.sub_account ? @users = [current_user] : @users = User.where("company_id = ?", current_user.company.id)
     @timeframes = ["This Week", "Last Week", "This Month", "Last Month", "Custom"]
-    @report = Report.new
+    @report = Report.new(:start_date => Date.today, :end_date => Date.today)
   end
 
   def generate_report
@@ -43,7 +43,11 @@ class ReportsController < ApplicationController
     timeslips = Timeslip.where(:user_id => report.user)
     timeslips = timeslips.where(:project_id => report.project_id) if report.project_id != ""
     timeslips = timeslips.where(:task_id => report.task_id) if report.task_id != ""
-    timeslips = get_timeslips_with_timeframe(report.timeframe, timeslips)
+    if (report.timeframe == "Custom")
+      timeslips = get_timeslips_with_dates(timeslips, report.start_date, report.end_date)
+    else
+      timeslips = get_timeslips_with_timeframe(timeslips, report.timeframe)
+    end
     return timeslips
   end
 

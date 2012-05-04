@@ -5,7 +5,7 @@ Given /^I have a bill with comment "([^"]*)" and reference "([^"]*)"$/ do |comme
     And I fill in the following:
       | Reference         | #{reference}        |
       | Value             | 20.00               |
-      | Comments          | #{comment}        |
+      | Comments          | #{comment}          |
     And I press "Create Bill"
     Then I should see "The bill was successfully created."
     And I should see "#{comment}"

@@ -9,6 +9,9 @@
       .control-group
         .control-label= f.label :timeframe
         .controls= f.select :timeframe, @timeframes, :include_blank => false, :label => 'Project'
+      .control-group.custom_timeframe
+        = f.input :start_date, :as => :string, :input_html => { :value => @report.start_date.strftime("%d/%m/%Y") }
+        = f.input :end_date, :as => :string, :input_html => { :value => @report.end_date.strftime("%d/%m/%Y") }
       .control-group
         .control-label= f.label :project_id
         .controls= f.select :project_id, @projects.collect{ |u| [u[:name], u[:id]] }, :include_blank => 'All Projects', :label => 'Project'
@@ -19,3 +22,16 @@
         .control-label= f.label :user_id
         .controls= f.select :user_id, @users.collect{ |u| ["#{u.to_s}", u[:id]] }, :include_blank => false, :label => 'User'
       = f.submit "Generate Report", :class => 'btn btn-primary'
+
+:javascript
+  $(function() {
+    $("#report_start_date").datepicker({format: 'dd/mm/yyyy'});
+    $("#report_end_date").datepicker({format: 'dd/mm/yyyy'});
+  });
+  $("#report_timeframe").change(function () {
+    if($("#report_timeframe option:selected").text() == "Custom") {
+      $(".custom_timeframe").css({ 'display': 'block' });
+    } else {
+      $(".custom_timeframe").css({ 'display': 'none' });
+    }
+  });

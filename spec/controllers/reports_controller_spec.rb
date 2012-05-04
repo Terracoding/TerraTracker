@@ -34,7 +34,7 @@ describe ReportsController do
     it "should create a new report" do
       sign_in @user
       get :index
-      assigns[:report].should == Report.new
+      assigns[:report].should == Report.new(:start_date => Date.today, :end_date => Date.today)
       sign_out @user
     end
 

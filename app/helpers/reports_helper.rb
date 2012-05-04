@@ -1,6 +1,6 @@
 module ReportsHelper
 
-  def get_timeslips_with_timeframe(timeframe, timeslips)
+  def get_timeslips_with_timeframe(timeslips, timeframe)
     if timeframe == "This Week"
       timeslips.where("date > ?", Time.now - 1.week)
     elsif timeframe == "Last Week"
@@ -14,4 +14,7 @@ module ReportsHelper
     end
   end
 
+  def get_timeslips_with_dates(timeslips, start_date, end_date)
+    timeslips.where("date >= ? AND date <= ?", Date.parse(start_date), Date.parse(end_date))
+  end
 end
