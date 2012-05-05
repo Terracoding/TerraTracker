@@ -18,7 +18,7 @@
       %p= "Bill Date: "+@bill.bill_date.strftime("%e %b %y")
       %p= "Bill Value: "+number_with_precision(@bill.value, :precision => 2)
     = link_to edit_bill_path(@bill), :class => "btn btn-primary" do
-      %i.icon-pencil
+      %i.icon-pencil.icon-white
       Edit
     = link_to bills_path, :class => "btn" do
       %i.icon-th-list
