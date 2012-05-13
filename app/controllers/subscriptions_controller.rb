@@ -8,6 +8,8 @@ class SubscriptionsController < ApplicationController
       Subscription.destroy(current_user.subscription) if !@merchant_subscription
     end
     @plans = Plan.find(:all)
+    @project_disabled = current_company.plan.project_count >= current_company.projects.count
+    @user_disabled = current_company.plan.user_count >= current_company.users.count
   end
 
   def confirm_subscription
