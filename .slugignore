@@ -1,0 +1,12 @@
+*.psd
+*.pdf
+.git
+test
+spec
+coverage
+log
+public/system
+vendor
+tmp
+features
+doc
