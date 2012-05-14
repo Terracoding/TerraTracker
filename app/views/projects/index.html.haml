@@ -36,3 +36,8 @@
     %a.btn.btn-primary{ :href => new_project_path }
       %i.icon-plus.icon-white
       Add Project
+    - if @archived_projects_count > 0
+      %hr
+      %p
+        = "You have #{@archived_projects_count} archived project(s)."
+        = link_to "Click here to view archived projects.", archived_projects_path

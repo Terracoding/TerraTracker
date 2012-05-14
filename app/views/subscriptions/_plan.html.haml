@@ -11,15 +11,30 @@
     %p= "#{plan.user_count} Users"
     %p Technical Support
   - if current_plan(plan) && !@subscription.nil? && !@user_disabled && !@project_disabled
-    = link_to "Cancel Subscription", cancel_subscriptions_path, :class => 'btn btn-danger'
-  - elsif !current_plan(plan) && plan.project_count >= @current_company.projects.count && plan.user_count >= @current_company.users.count 
+    = link_to "Cancel Subscription", cancel_subscriptions_path, :class => "btn btn-danger"
+  - elsif current_plan(plan) && !@subscription.nil?
+    %a.btn.btn-danger{ :id => plan.id, :href => "#cancelCurrentModal", "data-toggle" => "modal", :target => "_blank"} Cancel Subscription
+    .modal.hide.fade#cancelCurrentModal
+      .modal-header
+        %h3 Warning
+      .modal-body
+        %p As you have over the limit of users/projects for this plan, some projects will be archived and hidden until you upgrade.
+      .modal-footer
+        %a{ :href => "#", :class => "btn", "data-dismiss" => "modal"} Close
+        = link_to "Cancel Subscription", cancel_subscriptions_path, :class => "btn btn-danger"
+  - elsif !current_plan(plan) && plan.project_count >= @current_company.projects.where(:archived => false).count && plan.user_count >= @current_company.users.count 
+    %a.btn.btn-success{ :id => plan.id, :href => plan.generate_new_url, :target => "_blank" } Choose this plan
+  - elsif !current_plan(plan) && plan.project_count > @current_company.plan.project_count
     %a.btn.btn-success{ :id => plan.id, :href => plan.generate_new_url, :target => "_blank" } Choose this plan
   - elsif !current_plan(plan)
-    %a.btn.btn-success{ :id => plan.id, :href => plan.generate_new_url, :target => "_blank", :disabled => 'true'} Choose this plan
-    :javascript
-      $('##{plan.id}').popover({placement: 'top', title: 'Action Needed', content: 'To be able to switch to this plan, you need to make sure you have a limit of #{plan.project_count} project(s) and #{plan.user_count} user(s).'})
+    %a.btn.btn-success{ :id => plan.id, :href => "#cancelModal", "data-toggle" => "modal", :target => "_blank"} Choose this plan
+    .modal.hide.fade#cancelModal
+      .modal-header
+        %h3 Warning
+      .modal-body
+        %p As you have over the limit of users/projects for this plan, some projects will have to be archived before you upgrade.
+      .modal-footer
+        %a{ :href => "#", :class => "btn", "data-dismiss" => "modal"} Close
+        = link_to "Choose this plan", cancel_subscriptions_path, :class => "btn btn-danger"
   - else
     %a.btn.btn-success{ :id => plan.id, :href => "#", :disabled => 'true' } Current Plan
-    :javascript
-      $('##{plan.id}').popover({placement: 'top', title: 'Action Needed', content: 'To be able to cancel this plan, you need to make sure you have a limit of #{@plans.first.project_count} project(s) and #{@plans.first.user_count} user(s).'})
-

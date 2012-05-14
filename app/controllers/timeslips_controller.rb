@@ -12,7 +12,7 @@ class TimeslipsController < ApplicationController
   def new
     @timeslip = Timeslip.new(:date => Date.today)
     @tasks = current_company.tasks
-    p = Project.where("company_id = ?", current_company.id)
+    p = Project.where("company_id = ? AND archived = false", current_company.id)
     @projects = []
     p.each { |project| @projects << project if project.tasks.count > 0 }
     current_user.sub_account ? @users = [current_user] : @users = User.where("company_id = ?", current_user.company.id)

@@ -3,17 +3,17 @@ class TasksController < ApplicationController
   before_filter :can_manage, :except => [:index]
   
   def index
-    @tasks = Task.joins(:project).where("projects.company_id" => current_company.id)
+    @tasks = Task.joins(:project).where("projects.company_id" => current_company.id, "projects.archived" => false)
   end
   
   def new
     @task = Task.new
-    @available_projects = current_company.projects
+    @available_projects = current_company.projects.where(:archived => false)
   end
 
   def edit
     @task = Task.find(params[:id])
-    @available_projects = current_company.projects
+    @available_projects = current_company.projects.where(:archived => false)
   end
 
   def create

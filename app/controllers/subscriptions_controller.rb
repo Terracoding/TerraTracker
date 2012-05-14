@@ -44,6 +44,14 @@ class SubscriptionsController < ApplicationController
       if s.cancel!
         @subscription.delete
         @current_company.update_attribute(:plan, Plan.find(1))
+        project_limit = Plan.find(1).project_count
+        projects = @current_company.projects.where(:archived => false)
+        counter = 0
+        projects.each do |project|
+          counter += 1
+          project.archived = true if counter > project_limit
+          project.save
+        end
         flash[:notice] = "You have cancelled your subscription!"
       end
     end

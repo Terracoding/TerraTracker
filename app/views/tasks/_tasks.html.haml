@@ -14,7 +14,7 @@
       %td= p.name
       %td= p.billable ? "Yes" : "No"
       %td= number_with_precision(p.rate, :precision => 2)
-      - if !current_user.sub_account
+      - if !current_user.sub_account && p.project.archived == false
         %td
           = link_to edit_task_path(p), :class => "btn" do
             %i.icon-pencil

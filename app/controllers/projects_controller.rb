@@ -2,9 +2,15 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!, :redirect_company, :redirect_sub_account
   
   def index
-    @projects = Project.where(:company_id => current_company.id)
+    @all_projects = Project.where(:company_id => current_company.id)
+    @projects = @all_projects.where(:archived => false)
+    @archived_projects_count = @all_projects.where(:archived => true).count
   end
-  
+
+  def archived
+    @projects = Project.where(:company_id => current_company.id, :archived => true)
+  end
+
   def show
     @project = Project.find(params[:id])
     @tasks = @project.tasks
@@ -16,6 +22,7 @@ class ProjectsController < ApplicationController
   
   def edit
     @project = Project.find(params[:id])
+    @archived_count = current_user.projects.where(:archived => true).count
   end
   
   def create
@@ -46,5 +53,5 @@ class ProjectsController < ApplicationController
       format.js
     end
   end
-  
+
 end

@@ -34,8 +34,8 @@ class WebhooksController < ApplicationController
         subscription = Subscription.find_by_resource_id(resource[:id])
         if subscription
           company = Company.find(subscription.company_id)
-          company.update_attribute(:plan_id, Plan.find(1).id)
-          # Archive companies latest projects
+          company.update_attribute(:plan_id, 1)
+          # Archive projects
           # Make company remove/disable some project users
           subscription.delete
           subscriptions_cancelled += 1
