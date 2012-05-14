@@ -57,4 +57,12 @@ FactoryGirl.define do
     value         "1.00"
     comment       "test comment"
   end
+
+  factory :subscription do
+    company
+    resource_id   10
+    resource_type "subscription"
+    subscribed    1
+    merchant_id   11
+  end
 end

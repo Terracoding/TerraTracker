@@ -2,13 +2,47 @@ class WebhooksController < ApplicationController
 
   def receive_payload
     if params[:payload]
-      respond_to { |format| format.json { render :json => "Got a payload?", :status => 200 }}
-      if GoCardless.webhook_valid?(params[:payload])
-        respond_to { |format| format.json { render :json => "Got it!", :status => 200 }}
-      end
+      GoCardless.webhook_valid?(params[:payload]) ?  valid_payload : invalid_payload
     else
-      respond_to { |format| format.json { render :json => "Didn't get a payload: #{params.inspect}", :status => 200 }}
+      no_payload
     end
+  end
+
+  private
+
+  def no_payload
+    respond_to { |format| format.json { render :json => "No payload found", :status => 401 }}
+  end
+
+  def invalid_payload
+    respond_to { |format| format.json { render :json => "Invalid payload", :status => 401 }}
+  end
+
+  def valid_payload
+    @payload = params[:payload]
+    if @payload[:action] == "cancelled"
+      cancel_subscription
+    else
+      respond_to { |format| format.json { render :json => "Nothing to change", :status => 200 }}
+    end
+  end
+
+  def cancel_subscription
+    subscriptions_cancelled = 0
+    @payload[:subscriptions].each do |resource|
+      if resource[:status] == "cancelled"
+        subscription = Subscription.find_by_resource_id(resource[:id])
+        if subscription
+          company = Company.find(subscription.company_id)
+          company.update_attribute(:plan_id, Plan.find(1).id)
+          # Archive companies latest projects
+          # Make company remove/disable some project users
+          subscription.delete
+          subscriptions_cancelled += 1
+        end
+      end
+    end
+    respond_to { |format| format.json { render :json => "#{subscriptions_cancelled} successfully cancelled", :status => 200 }}
   end
 
 end
