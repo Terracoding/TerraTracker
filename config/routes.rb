@@ -11,6 +11,7 @@ Timetracker::Application.routes.draw do
   resources :company_users, :except => [:index, :edit, :update]
   resources :projects do
     resources :users, :controller => :project_users
+    get :archived, :on => :collection
   end
   resources :tasks
   resources :timeslips do

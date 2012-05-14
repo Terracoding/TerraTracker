@@ -29,7 +29,7 @@ describe Project do
     end
   end
 
-  context :check_user_limit do
+  context :check_project_creation do
     before(:each) do
       company = FactoryGirl.create(:company)
       @project = FactoryGirl.build(:project, :company => company)
@@ -38,20 +38,38 @@ describe Project do
     it "should does not return false if less than the user limit" do
       @project.stub_chain(:company, :projects, :count).and_return(1)
       @project.stub_chain(:company, :plan, :project_count).and_return(4)
+      @project.stub_chain(:company, :projects, :where, :count).and_return(0)
       @project.save.should_not be_false
     end
 
     it "should return false if project limit met" do
       @project.stub_chain(:company, :projects, :count).and_return(2)
       @project.stub_chain(:company, :plan, :project_count).and_return(2)
+      @project.stub_chain(:company, :projects, :where, :count).and_return(0)
       @project.save.should be_false
     end
 
     it "should provide an error message when returning false" do
       @project.stub_chain(:company, :projects, :count).and_return(2)
       @project.stub_chain(:company, :plan, :project_count).and_return(2)
+      @project.stub_chain(:company, :projects, :where, :count).and_return(0)
       @project.save
       @project.errors.full_messages.should include "You have reached your project limit. If you wish to add more projects, please upgrade your account."
+    end
+  end
+
+  context :check_project_limit do
+    before(:each) do
+      company = FactoryGirl.create(:company)
+      @project = FactoryGirl.create(:project, :company => company, :archived => true)
+    end
+
+    it "should not allow a user to unarchive a project when they are at their limit" do
+      @project.stub_chain(:company, :projects, :count).and_return(1)
+      @project.stub_chain(:company, :plan, :project_count).and_return(1)
+      @project.stub_chain(:company, :projects, :where, :count).and_return(1)
+      @project.archived = false
+      @project.should_not be_valid
     end
   end
 end

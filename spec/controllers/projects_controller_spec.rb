@@ -23,7 +23,18 @@ describe ProjectsController do
       sign_out @user
     end
   end
-  
+
+  context :archived do
+    it "should provide a list of archived projects" do
+      company = FactoryGirl.create(:company)
+      user = FactoryGirl.create(:user, :company => company, :owns_company => true)
+      project = FactoryGirl.build(:project, :company => company, :archived => true)
+      sign_in user
+      post :archived, :user => {}
+      response.should be_success
+    end
+  end
+
   context :new do
     before(:each) do
       @company = FactoryGirl.create(:company)

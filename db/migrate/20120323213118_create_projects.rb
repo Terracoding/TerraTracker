@@ -4,6 +4,7 @@ class CreateProjects < ActiveRecord::Migration
       t.references  :company
       t.string      :name
       t.string      :status
+      t.boolean     :archived, :default => false
       t.timestamps
     end
   end

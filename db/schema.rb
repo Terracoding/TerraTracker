@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20120429223740) do
     t.integer  "company_id"
     t.string   "name"
     t.string   "status"
+    t.boolean  "archived",   :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
