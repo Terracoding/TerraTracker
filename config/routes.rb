@@ -21,11 +21,13 @@ Timetracker::Application.routes.draw do
     post :generate_report, :on => :collection
     post :view_report, :on => :collection
   end
+  resources :webhooks do
+    post :receive_payload, :on => :collection
+  end
   resources :bills
-
   root :to => "home#index"
   match 'home/plans' => 'home#plans'
-  match 'webhooks/process' => 'webhooks#process'
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
