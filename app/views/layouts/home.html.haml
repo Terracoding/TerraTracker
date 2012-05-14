@@ -1,0 +1,17 @@
+!!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :charset => "utf-8" }
+    %title= 'TimeTracker - ' + yield(:title)
+    = stylesheet_link_tag     "application"
+    = javascript_include_tag  "application"
+    = csrf_meta_tags
+  %body{ "data-spy" => "scroll", "class" => "home-body"}
+    .home-container
+      #notification
+        = render :partial => "shared/flash_messages", :locals => {:flash => flash}
+      = yield
+
+      %hr.soften
+      %footer
+        %p &copy; #{Date.today.year} TerraCoding Ltd
