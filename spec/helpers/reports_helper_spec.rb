@@ -1,20 +1,32 @@
 require 'spec_helper'
 
 describe ReportsHelper do
-  
-  context :timeframe do
-    it "should return this week" do
-      timeframe(1).should == "This Week"
+
+  context :get_timeslips_with_timeframe do
+    it "should return timeslips from this week" do
+      pending "not yet implemented"
     end
-    it "should return last week" do
-      timeframe(2).should == "Last Week"
+
+    it "should return timeslips from last week" do
+      pending "not yet implemented"
     end
-    it "should return this month" do
-      timeframe(3).should == "This Month"
+
+    it "should return timeslips from this month" do
+      pending "not yet implemented"
     end
-    it "should return last month" do
-      timeframe(4).should == "Last Month"
+
+    it "should return timeslips from last month" do
+      pending "not yet implemented"
     end
   end
 
+  context :get_timeslips_with_dates do
+    it "should return timeslips between two dates" do
+      pending "not yet implemented"
+    end
+
+    it "shouldn't return timeslips outside of the two dates" do
+      pending "not yet implemented"
+    end
+  end
 end

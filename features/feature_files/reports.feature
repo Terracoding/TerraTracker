@@ -12,7 +12,10 @@ Feature: Reports
 
   Scenario: I should be able to create a report for all projects and tasks
     Given I am on the reports page
-    And I select "This Week" from "Timeframe"
+    And I select "Custom" from "Timeframe"
+    And I fill in the following:
+      | Start date          | 16/04/2012        |
+      | End date            | 16/04/2012        |
     And I select "All Projects" from "Project"
     And I select "All Tasks" from "Task"
     And I select "John Doe" from "User"
@@ -25,7 +28,10 @@ Feature: Reports
 
   Scenario: I should be able to create a report for a specific project and task
     Given I am on the reports page
-    And I select "This Week" from "Timeframe"
+    And I select "Custom" from "Timeframe"
+    And I fill in the following:
+      | Start date          | 16/04/2012        |
+      | End date            | 16/04/2012        |
     And I select "Test Project" from "Project"
     And I select "Test Task" from "Task"
     And I select "John Doe" from "User"

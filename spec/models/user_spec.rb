@@ -16,4 +16,29 @@ describe User do
     end
   end
 
+  context :check_user_limit do
+    before(:each) do
+      @valid_user = FactoryGirl.build(:user)
+    end
+
+    it "should does not return false if less than the user limit" do
+      @valid_user.stub_chain(:company, :users, :count).and_return(1)
+      @valid_user.stub_chain(:company, :plan, :user_count).and_return(4)
+      @valid_user.save.should_not be_false
+    end
+
+    it "should return false if user limit met" do
+      @valid_user.stub_chain(:company, :users, :count).and_return(2)
+      @valid_user.stub_chain(:company, :plan, :user_count).and_return(2)
+      @valid_user.save.should be_false
+    end
+
+    it "should provide an error message when returning false" do
+      @valid_user.stub_chain(:company, :users, :count).and_return(2)
+      @valid_user.stub_chain(:company, :plan, :user_count).and_return(2)
+      @valid_user.save
+      @valid_user.errors.full_messages.should include "You have reached your user limit. If you wish to add more users, please upgrade your account."
+    end
+  end
+
 end

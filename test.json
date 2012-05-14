@@ -1,0 +1,14 @@
+{
+  "payload": {
+    "subscriptions": [
+      {
+        "id": "1",
+        "status": "cancelled",
+        "uri": "https://sandbox.gocardless.com/api/v1/subscriptions/1"
+      }
+    ],
+    "action": "cancelled",
+    "resource_type": "subscription",
+    "signature": "2511e5410fd95d492d4d84a5046a1beb0914b14d58e5f21607c07489a49f19db"
+  }
+}

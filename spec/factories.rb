@@ -9,8 +9,18 @@ FactoryGirl.define do
     password_confirmation 'please'
   end
 
+  factory :plan do
+    title               "Free"
+    description         "Free plan"
+    value               0
+    duration            "MONTHLY"
+    project_count       100
+    user_count          100
+  end
+
   factory :company do
     name                "company name"
+    plan                FactoryGirl.create(:plan)
     registration_number "0001"
   end
 

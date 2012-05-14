@@ -1,5 +1,6 @@
 body {
   background: #F0F0F0;
+  background-image: url("bg.png");
 }
 .main-container {
   padding: 20px;
@@ -27,23 +28,24 @@ footer {
   text-align: center;
 }
 .main-container:before,
-.main-container:after {
+.main-container:after, .home-container:before, .home-container:after {
   display: table;
   content: "";
 }
-.main-container:after {
+.main-container:after, .home-container:after {
   clear: both;
 }
 @media (max-width: 767px) {
   .main-container-fluid {
     padding: 0;
   }
-  .main-container {
+  .main-container, .home-container {
     width: auto;
   }
 }
 @media (min-width: 768px) and (max-width: 979px) {
   .main-container,
+  .home-container,
   .navbar-fixed-top .main-container,
   .navbar-fixed-bottom .main-container {
     width: 724px;
@@ -51,14 +53,24 @@ footer {
 }
 @media (min-width: 1200px) {
   .main-container,
+  .home-container,
   .navbar-fixed-top .main-container,
   .navbar-fixed-bottom .main-container {
     width: 1170px;
   }
 }
 @media (max-width: 979px) {
-  .navbar .main-container {
+  .navbar .main-container, .home-container {
     width: auto;
     padding: 0;
   }
+}
+hr.soften {
+  height: 1px;
+  margin: 54px 0;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  border: 0;
 }
