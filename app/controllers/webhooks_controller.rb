@@ -35,7 +35,16 @@ class WebhooksController < ApplicationController
         if subscription
           company = Company.find(subscription.company_id)
           company.update_attribute(:plan_id, 1)
-          # Archive projects
+          projects = @current_company.projects.where(:archived => false)
+          counter = 0
+          project_limit = Plan.find(1).project_count
+          projects.each do |project|
+            if !project.archived
+              counter += 1
+              project.archived = true if counter > project_limit
+              project.save
+            end
+          end
           # Make company remove/disable some project users
           subscription.delete
           subscriptions_cancelled += 1
