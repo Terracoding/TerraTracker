@@ -25,6 +25,7 @@ Timetracker::Application.routes.draw do
 
   root :to => "home#index"
   match 'home/plans' => 'home#plans'
+  match 'webhooks/process' => 'webhooks#process'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
