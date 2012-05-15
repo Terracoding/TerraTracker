@@ -1,68 +1,43 @@
 .home-body {
-  background-image: url("header_bg.png");
-  padding: 30px;
+  background: #F8F8F8;
+  background-image: url("bg.png");
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+.home {
+  .header {
+		margin-top: 40px;
+    text-align: center;
+    background: #FFF;
+    padding: 30px;
+    font-size: 15px;
+    border: 1px solid #C6C6C6;
+    border-width: 0 0 1px 0;
+    .masthead {
+			h1 {
+				font-size: 51px;
+				margin-bottom: 5px;
+			}
+			p {
+				font-size: 19px;
+				font-weight: 300;
+			}
+    }
+  }
 }
 .home-container {
   margin: auto;
-/*  width: 900px;*/
-  padding: 10px;
   border: 0;
   height: 100%;
   background: #FEFFFE;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  -moz-box-shadow: 0 0 5px #1F1F1F;
-  -webkit-box-shadow: 0 0 5px #1F1F1F;
-  box-shadow: 0 0 5px #1F1F1F;
-}
-.home {
-  margin: auto;
-  text-align: center;
-}
-.home h1 {
-  margin-bottom: 9px;
-  font-size: 45px;
-  line-height: 1;
-}
-.home p {
-  margin-bottom: 18px;
-  font-weight: 300;
-}
-.home .btn-large {
-  font-size: 20px;
-  font-weight: normal;
-  padding: 14px 24px;
-  margin: 10px;
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-}
-.masthead {
-  padding-top: 36px;
-  margin-bottom: 72px;
-  margin: auto 30px 30px 30px;
-}
-.masthead h1,
-.masthead p {
-  text-align: center;
-}
-.masthead h1 {
-  margin-bottom: 15px;
-}
-.masthead p {
-  font-size: 21px;
-  line-height: 36px;
-}
-.session-form {
-  margin: auto;
-  max-width: 500px;
-}
-form {
-  margin-top: 20px;
-}
-h1 {
-  margin-bottom: 15px;
+  -moz-box-shadow: 0 0 5px #8E8E8E;
+  -webkit-box-shadow: 0 0 5px #8E8E8E;
+  box-shadow: 0 0 5px #8E8E8E;
 }
 .preview .thumbnail {
   border: 0;

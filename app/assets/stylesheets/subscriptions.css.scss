@@ -1,11 +1,12 @@
 .subscriptions {
-  margin: auto;
+  margin: 20px auto auto auto;
   text-align: center;
 }
 .subscription {
   width: 215px;
   text-align: center;
   margin: 10px;
+	padding-top: 0;
   padding-bottom: 10px;
   display: inline-block;
   -webkit-border-radius: 3px;
@@ -16,6 +17,7 @@
   box-shadow: 0 0 5px #C9C9C9;
 }
 .subscription .header {
+	margin-top: 0;
   background: #4289AA;
   -webkit-border-top-left-radius: 3px;
   -webkit-border-top-right-radius: 3px;

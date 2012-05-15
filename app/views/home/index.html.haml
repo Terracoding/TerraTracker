@@ -1,14 +1,4 @@
 - content_for(:title, 'TimeTracker')
-
-%div{ :class => "container"}
-.home.masthead
-  %h1 Time Tracker
-  %p Timesheet & Reporting Software
-  - if current_user
-    = link_to "Dashboard", dashboard_index_path, :class => "btn btn-primary btn-large"
-  - else
-    = link_to "Login", new_user_session_path, :class => "btn btn-primary btn-large"
-    = link_to "Try For Free", new_user_registration_path, :class => "btn btn-primary btn-large"
 .home.preview
   .thumbnail= image_tag("iMac_Preview.png")
 .home
