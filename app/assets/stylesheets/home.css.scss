@@ -8,14 +8,14 @@
 }
 .home {
 	font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
-	background: #E6E6E6;
-	background-image: url("bg.png");
+	background: #F3F3F3;
+	background-image: url("header_bg.png");
 	.header {
 		background: #FFF;
 		color: #000;
 		text-align: center;
 		padding: 20px 5px 20px 5px;
-		border: 1px solid #DCDCDC;
+		border: 1px solid #484848;
 		border-width: 0 0 1px 0;
 		p {
 			font-size: 16px;
@@ -24,9 +24,15 @@
 		}
 	}
 	.masthead {
+		margin: 20px;
+		border: 1px solid #3B3B3B;
+		padding: 20px;
 		text-shadow: 0 -1px #33363C;
-		margin-top: 50px;
 		text-align: center;
+		background: #FFF;
+		-moz-box-shadow: 0 1px 5px #323232;
+	  -webkit-box-shadow: 0 1px 5px #323232;
+	  box-shadow: 0 1px 5px #323232;
 		h1 {
 			font-size: 51px;
 			margin-bottom: 5px;
