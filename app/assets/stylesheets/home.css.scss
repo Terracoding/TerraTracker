@@ -1,5 +1,5 @@
 .home-body {
-  background: #40444C;
+  background: #F3F3F3;
 	color: #FFF;
   font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 300;
@@ -8,6 +8,21 @@
 }
 .home {
 	font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
+	background: #E6E6E6;
+	background-image: url("bg.png");
+	.header {
+		background: #FFF;
+		color: #000;
+		text-align: center;
+		padding: 20px 5px 20px 5px;
+		border: 1px solid #DCDCDC;
+		border-width: 0 0 1px 0;
+		p {
+			font-size: 16px;
+			font-weight: 300;
+			font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
+		}
+	}
 	.masthead {
 		text-shadow: 0 -1px #33363C;
 		margin-top: 50px;
@@ -23,6 +38,14 @@
 			letter-spacing: 1px;
 			margin-bottom: 30px;
 		}
+	}
+	footer {
+		background: #F3F3F3;
+		color: #515151;
+		height: 100px;
+		padding-top: 20px;
+		border: 1px solid #DBDBDB;
+		border-width: 1px 0 0 0;
 	}
 }
 .home-container {
