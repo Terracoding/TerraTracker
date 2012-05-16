@@ -14,11 +14,6 @@
         .thumbnail= image_tag("logo_large.png")
         %p Timesheet & Reporting Software
       .masthead
-        - if current_user
-          = link_to "Dashboard", dashboard_index_path, :class => "btn btn-primary btn-large"
-        - else
-          = link_to "Login", new_user_session_path, :class => "btn btn-primary btn-large"
-          = link_to "Try For Free", new_user_registration_path, :class => "btn btn-primary btn-large"
         = yield
       %footer
         %p &copy; #{Date.today.year} TerraCoding Ltd

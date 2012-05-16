@@ -1,4 +1,18 @@
 - content_for(:title, 'TimeTracker')
-.thumbnail= image_tag("iMac_Preview.png")
-= link_to "See Plans & Pricing", home_plans_path, :class => "btn btn-large"
-  
+.container
+  .introduction.row
+    .span5
+      .thumbnail= image_tag("iMac_Preview.png")
+    .span6
+      %h1 TimeTracker
+      %h2 Time management made easy
+      .description
+        %p Sending invoices to a client is an important part of a freelance developers work.
+        %p TimeTracker makes this simple by giving the ability to record expenses and have them turned into PDFs along with the company name, personal details and other information.
+        %p Try out TimeTracker today for free!
+      - if current_user
+        = link_to "Dashboard", dashboard_index_path, :class => "btn btn-primary btn-large"
+      - else
+        = link_to "Login", new_user_session_path, :class => "btn btn-primary btn-large"
+        = link_to "Try For Free", new_user_registration_path, :class => "btn btn-primary btn-large"
+  %p= link_to "See Plans & Pricing", home_plans_path, :class => "btn btn-large"

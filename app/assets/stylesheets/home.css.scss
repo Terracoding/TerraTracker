@@ -1,6 +1,5 @@
 .home-body {
-  background: #F3F3F3;
-	color: #FFF;
+  background: #FFF;
   font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 300;
   margin: 0;
@@ -9,13 +8,13 @@
 .home {
 	font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
 	background: #F3F3F3;
-	background-image: url("header_bg.png");
+	background-image: url("bg.png");
 	.header {
 		background: #FFF;
 		color: #000;
 		text-align: center;
 		padding: 20px 5px 20px 5px;
-		border: 1px solid #484848;
+		border: 1px solid #DBDBDB;
 		border-width: 0 0 1px 0;
 		p {
 			font-size: 16px;
@@ -25,33 +24,52 @@
 	}
 	.masthead {
 		margin: 20px;
-		border: 1px solid #3B3B3B;
+		border: 1px solid #DBDBDB;
 		padding: 20px;
-		text-shadow: 0 -1px #33363C;
 		text-align: center;
 		background: #FFF;
-		-moz-box-shadow: 0 1px 5px #323232;
-	  -webkit-box-shadow: 0 1px 5px #323232;
-	  box-shadow: 0 1px 5px #323232;
 		h1 {
 			font-size: 51px;
 			margin-bottom: 5px;
 		}
 		p {
 			font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
-			font-size: 17px;
 			font-weight: 300;
-			letter-spacing: 1px;
-			margin-bottom: 30px;
 		}
 	}
 	footer {
-		background: #F3F3F3;
+		background: #FFF;
 		color: #515151;
 		height: 100px;
 		padding-top: 20px;
 		border: 1px solid #DBDBDB;
 		border-width: 1px 0 0 0;
+	}
+	.introduction {
+		padding: 30px;
+		h2 {
+			letter-spacing: 1px;
+			font-weight: 200;
+			margin-bottom: 20px;
+		}
+		.span5 {
+			text-align: right;
+		}
+		.span6 {
+			margin-top: 20px;
+			p {
+				margin: 10px;
+				font-size: 20px;
+				line-height: 25px;
+				font-weight: 300;
+			}
+			.description {
+				margin-bottom: 30px;
+			}
+		}
+		p {
+			font-size: 16px;
+		}
 	}
 }
 .home-container {
