@@ -1,31 +1,29 @@
 .home-body {
-  background: #F8F8F8;
-  background-image: url("bg.png");
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  background: #40444C;
+	color: #FFF;
+  font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 300;
   margin: 0;
   padding: 0;
 }
 .home {
-  .header {
-		margin-top: 40px;
-    text-align: center;
-    background: #FFF;
-    padding: 30px;
-    font-size: 15px;
-    border: 1px solid #C6C6C6;
-    border-width: 0 0 1px 0;
-    .masthead {
-			h1 {
-				font-size: 51px;
-				margin-bottom: 5px;
-			}
-			p {
-				font-size: 19px;
-				font-weight: 300;
-			}
-    }
-  }
+	font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
+	.masthead {
+		text-shadow: 0 -1px #33363C;
+		margin-top: 50px;
+		text-align: center;
+		h1 {
+			font-size: 51px;
+			margin-bottom: 5px;
+		}
+		p {
+			font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
+			font-size: 17px;
+			font-weight: 300;
+			letter-spacing: 1px;
+			margin-bottom: 30px;
+		}
+	}
 }
 .home-container {
   margin: auto;
@@ -39,7 +37,12 @@
   -webkit-box-shadow: 0 0 5px #8E8E8E;
   box-shadow: 0 0 5px #8E8E8E;
 }
-.preview .thumbnail {
+.home .thumbnail {
   border: 0;
   box-shadow: none;
+}
+.btn {
+	font-family: proxima-nova, 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 300;
+	font-size: 17px;
 }
