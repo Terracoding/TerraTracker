@@ -24,11 +24,8 @@
                 %li= link_to "Home", root_path
                 %li= link_to "Login", new_user_session_path
     .main-container
-      .container
-        #notification
-          = render :partial => "shared/flash_messages", :locals => {:flash => flash}
-        = yield
-
-        %hr.soften
-        %footer
-          %p &copy; #{Date.today.year} TerraCoding Ltd
+      #notification
+        = render :partial => "shared/flash_messages", :locals => {:flash => flash}
+      = yield
+    %footer
+      %p &copy; #{Date.today.year} TerraCoding Ltd

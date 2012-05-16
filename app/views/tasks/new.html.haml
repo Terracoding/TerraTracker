@@ -2,7 +2,7 @@
 .row
   .span2
     = render :partial => "shared/sidebar"
-  .span10
+  .span9
     %h1 Create Task
     = simple_form_for(@task, :url => @task, :html => {:class => 'form-horizontal' }) do |f|
       = f.input :project_id, :required => true, :collection => @available_projects, :selected => @available_projects[0], :include_blank => false, :label => 'Project'

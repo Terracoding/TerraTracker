@@ -2,7 +2,7 @@
 .row
   .span2
     = render :partial => "shared/sidebar"
-  .span10
+  .span9
     - if !@current_company
       %div.alert{ :class => twitterized_type(:error) }
         %a.close{ "data-dismiss" => "alert" } x

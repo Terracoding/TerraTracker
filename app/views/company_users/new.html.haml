@@ -2,7 +2,7 @@
 .row
   .span2
     = render :partial => "shared/sidebar"
-  .span10
+  .span9
     %h1 Create Company User
     = simple_form_for(@user, :url => company_users_path(@user), :html => {:class => 'form-horizontal' }) do |f|
       - if @user.errors[:base].any?

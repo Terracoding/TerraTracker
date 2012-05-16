@@ -2,7 +2,7 @@
 .row
   .span2
     = render :partial => "shared/sidebar"
-  .span10
+  .span9
     %h1 Create Project
     = simple_form_for(@project, :url => @project, :html => { :class => 'form-horizontal' }) do |f|
       - if @project.errors[:base].any?

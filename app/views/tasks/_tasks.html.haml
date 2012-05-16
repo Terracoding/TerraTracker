@@ -17,8 +17,6 @@
       - if !current_user.sub_account && p.project.archived == false
         %td
           = link_to edit_task_path(p), :class => "btn" do
-            %i.icon-pencil
             Edit
           = link_to task_path(p), :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
-            %i.icon-trash.icon-white
             Delete

@@ -2,7 +2,7 @@
 .row
   .span2
     = render :partial => "shared/sidebar"
-  .span10
+  .span9
     %h1 Reports
     %p Here you can create your time tracking reports.
     = simple_form_for @report, :url => generate_report_reports_path, :html => {:class => 'form-horizontal'} do |f|

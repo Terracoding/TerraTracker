@@ -2,7 +2,7 @@
 .row
   .span2
     = render :partial => "shared/sidebar"
-  .span10
+  .span9
     %h1 Create Timeslip
     = simple_form_for(@timeslip, :url => @timeslip, :html => {:class => 'form-horizontal' }) do |f|
       .control-group= f.input :date, :as => :string, :input_html => { :value => @timeslip.date.strftime("%d/%m/%Y") }

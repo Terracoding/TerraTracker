@@ -1,18 +1,45 @@
+body {
+	background: #E4E6E7;
+	background-image: url("bg.png");
+//	background-image: url("wood_bg.png");
+}
 .main-container {
-  padding: 20px;
-  background: #fff;
+	margin-top: 20px;
   width: 940px;
   margin-right: auto;
   margin-left: auto;
   *zoom: 1;
+	h1 {
+		margin-bottom: 20px;
+	}
+	.span9, .span2, .area {
+		background: #fff;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+//		-moz-box-shadow: 0 1px 5px #717171;
+//	  -webkit-box-shadow: 0 1px 5px #717171;
+//	  box-shadow: 0 1px 5px #717171;
+	-moz-box-shadow: 0 1px 5px #C3C3C3;
+  -webkit-box-shadow: 0 1px 5px #C3C3C3;
+  box-shadow: 0 1px 5px #C3C3C3;
+	}
+	.span2 {
+		padding: 5px;
+		margin-bottom: 20px;
+	}
+	.span9, .area {
+		padding: 20px;
+	}
 }
 .nav-list {
-  margin-bottom: 20px;
+//  margin-bottom: 20px;
 }
 footer {
 	margin-top: 20px;
 	margin-bottom: 20px;
   text-align: center;
+	color: #686868;
 }
 .main-container:before,
 .main-container:after, .home-container:before, .home-container:after {
@@ -63,7 +90,6 @@ hr.soften {
 }
 .container .brand {
   padding: 5px 20px 0px 10px;
-  margin: 0px;
 }
 .nav-collapse .nav li a {
 	padding-top: 12px;

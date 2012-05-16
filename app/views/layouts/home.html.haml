@@ -20,8 +20,6 @@
               - else
                 %li= link_to "Home", root_path
                 %li= link_to "Login", new_user_session_path
-    #notification
-      = render :partial => "shared/flash_messages", :locals => {:flash => flash}
     .home
       .container
         .head
