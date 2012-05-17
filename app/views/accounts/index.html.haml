@@ -1,15 +1,16 @@
 - content_for(:title, 'Account')
 .row
   .span2
-    = render :partial => "shared/account_sidebar"
+    .area= render :partial => "shared/account_sidebar"
   .span9
-    - if !@current_company
-      %div.alert{ :class => twitterized_type(:error) }
-        %a.close{ "data-dismiss" => "alert" } x
-        You have not set up your company.
-    %h1 Account
-    %h4 Name
-    %p= "#{current_user.firstname} #{current_user.lastname}"
-    %h4 Email
-    %p= current_user.email
-    = link_to "Edit Account", edit_user_registration_path, :class => 'btn'
+    .area
+      - if !@current_company
+        %div.alert{ :class => twitterized_type(:error) }
+          %a.close{ "data-dismiss" => "alert" } x
+          You have not set up your company.
+      %h1 Account
+      %h4 Name
+      %p= "#{current_user.firstname} #{current_user.lastname}"
+      %h4 Email
+      %p= current_user.email
+      = link_to "Edit Account", edit_user_registration_path, :class => 'btn'
