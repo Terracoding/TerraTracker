@@ -1,18 +1,19 @@
 - content_for(:title, 'New Bill')
 .row
   .span2
-    = render :partial => "shared/bills_sidebar"
+    .area= render :partial => "shared/bills_sidebar"
   .span9
-    %h1 Create Bill
-    = simple_form_for(@bill, :url => @bill, :html => {:class => 'form-horizontal' }) do |f|
-      = f.input :reference_id, :autofocus => true, :label => 'Reference'
-      = f.input :bill_date, :as => :string, :input_html => { :value => @bill.bill_date.strftime("%d/%m/%Y") }
-      = f.input :due_date, :as => :string, :input_html => { :value => @bill.due_date.strftime("%d/%m/%Y") }
-      = f.input :value, :placeholder => "0.00", :required => true
-      = f.input :comment, :label => "Comments"
-      = f.input :paid
-      = f.button :submit, "Create Bill", :class => 'btn btn-primary'
-      = link_to "Back", :back, :class => 'btn'
+    .area
+      %h1 Create Bill
+      = simple_form_for(@bill, :url => @bill, :html => {:class => 'form-horizontal' }) do |f|
+        = f.input :reference_id, :autofocus => true, :label => 'Reference'
+        = f.input :bill_date, :as => :string, :input_html => { :value => @bill.bill_date.strftime("%d/%m/%Y") }
+        = f.input :due_date, :as => :string, :input_html => { :value => @bill.due_date.strftime("%d/%m/%Y") }
+        = f.input :value, :placeholder => "0.00", :required => true
+        = f.input :comment, :label => "Comments"
+        = f.input :paid
+        = f.button :submit, "Create Bill", :class => 'btn btn-primary'
+        = link_to "Back", :back, :class => 'btn'
 
 :javascript
   $(function() {

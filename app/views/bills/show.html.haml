@@ -1,25 +1,26 @@
 - content_for(:title, "View Bill")
 .row
   .span2
-    = render :partial => "shared/bills_sidebar"
+    .area= render :partial => "shared/bills_sidebar"
   .span9
-    %h1
-      Bill
-      - if @bill.paid
-        %span.label.label-success Paid
-      - elsif @bill.due_date < DateTime.now
-        %span.label.label-important Overdue
-      - else
-        %span.label.label-warning Unpaid
-    .well
-      %p= "Reference: "+@bill.reference_id
-      %p= "Comment: "+@bill.comment
-      %p= "Due Date: "+@bill.due_date.strftime("%e %b %y")
-      %p= "Bill Date: "+@bill.bill_date.strftime("%e %b %y")
-      %p= "Bill Value: "+number_with_precision(@bill.value, :precision => 2)
-    = link_to edit_bill_path(@bill), :class => "btn btn-primary" do
-      %i.icon-pencil.icon-white
-      Edit
-    = link_to bills_path, :class => "btn" do
-      %i.icon-th-list
-      View All Bills
+    .area
+      %h1
+        Bill
+        - if @bill.paid
+          %span.label.label-success Paid
+        - elsif @bill.due_date < DateTime.now
+          %span.label.label-important Overdue
+        - else
+          %span.label.label-warning Unpaid
+      .well
+        %p= "Reference: "+@bill.reference_id
+        %p= "Comment: "+@bill.comment
+        %p= "Due Date: "+@bill.due_date.strftime("%e %b %y")
+        %p= "Bill Date: "+@bill.bill_date.strftime("%e %b %y")
+        %p= "Bill Value: "+number_with_precision(@bill.value, :precision => 2)
+      = link_to edit_bill_path(@bill), :class => "btn btn-primary" do
+        %i.icon-pencil.icon-white
+        Edit
+      = link_to bills_path, :class => "btn" do
+        %i.icon-th-list
+        View All Bills
