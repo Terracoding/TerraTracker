@@ -1,0 +1,19 @@
+.modal.hide.fade.in#project-edit
+  .modal-header
+    %button.close{ "data-dismiss" => "modal" } &times;
+    %h1 Edit Your Project
+  = simple_form_for(@project, :url => @project, :html => {:class => 'form-horizontal' }) do |f|
+    .modal-body
+      = f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Project Name'
+      = f.input :status, :collection => @project.available_statuses, :include_blank => false
+      - if @project.archived && (current_user.projects.count - current_user.projects.where(:archived => true).count) > current_user.company.plan.project_count
+        = f.input :archived, :disabled => true
+      - else
+        = f.input :archived
+    .modal-footer
+      = f.button :submit, "Update", :class => 'btn btn-primary'
+      %a{ :href => "#", :class => "btn", "data-dismiss" => "modal" } Close
+:javascript
+  if ($('#project-errors').length > 0) {
+    $("#project-edit").modal('toggle');
+  }
