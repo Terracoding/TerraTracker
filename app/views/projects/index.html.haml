@@ -1,40 +1,41 @@
 - content_for(:title, 'Projects')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area= render :partial => "shared/sidebar"
   .span9
-    %h1 Projects
-    %table.table.table-striped
-      %thead
-        %tr
-          %th ID
-          %th Project Name
-          %th Status
-          %th 
-      - @projects.each do |p|
-        %tr{ :id => p.id}
-          %td= p.id
-          %td= p.name
-          %td
-            - if p.status == "Active"
-              %span.label.label-info= p.status
-            - elsif p.status == "Completed"
-              %span.label.label-success= p.status
-            - else
-              %span.label.label-important= p.status
+    .area
+      %h1 Projects
+      %table.table.table-striped
+        %thead
+          %tr
+            %th ID
+            %th Project Name
+            %th Status
+            %th 
+        - @projects.each do |p|
+          %tr{ :id => p.id}
+            %td= p.id
+            %td= p.name
+            %td
+              - if p.status == "Active"
+                %span.label.label-info= p.status
+              - elsif p.status == "Completed"
+                %span.label.label-success= p.status
+              - else
+                %span.label.label-important= p.status
             
-          %td
-            = link_to project_path(p), :class => "btn" do
-              Show
-            = link_to edit_project_path(p), :class => "btn" do
-              Edit
-            = link_to p, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
-              Delete
-    %a.btn.btn-primary{ :href => new_project_path }
-      %i.icon-plus.icon-white
-      Add Project
-    - if @archived_projects_count > 0
-      %hr
-      %p
-        = "You have #{@archived_projects_count} archived project(s)."
-        = link_to "Click here to view archived projects.", archived_projects_path
+            %td
+              = link_to project_path(p), :class => "btn" do
+                Show
+              = link_to edit_project_path(p), :class => "btn" do
+                Edit
+              = link_to p, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
+                Delete
+      %a.btn.btn-primary{ :href => new_project_path }
+        %i.icon-plus.icon-white
+        Add Project
+      - if @archived_projects_count > 0
+        %hr
+        %p
+          = "You have #{@archived_projects_count} archived project(s)."
+          = link_to "Click here to view archived projects.", archived_projects_path

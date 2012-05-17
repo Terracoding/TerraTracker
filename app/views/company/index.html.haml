@@ -1,34 +1,34 @@
 - content_for(:title, 'Company')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area
+      = render :partial => "shared/sidebar"
   .span9
-    - if !@current_company
-      %div.alert{ :class => twitterized_type(:error) }
-        %a.close{ "data-dismiss" => "alert" } x
-        You have not set up your company.
-    %h1 Company Overview
-    - if !@current_company 
-      %p Click here to create your company.
-      = render 'form'
-    - else
-      %dl.dl-horizontal
-        %dt Company Name:
-        %dd= @current_company.name
-        %dt Registration Number:
-        - if @current_company.registration_number != ""
-          %dd= @current_company.registration_number
-        - else
-          %dd No registration number
-        - if current_user.company.image
-          %dt Logo:
-          %dd= image_tag current_user.company.image.url(:logo)
-      %p
-        %a.btn.btn-primary{ :href => edit_company_path(@current_company) }
-          %i.icon-pencil.icon-white
-          Edit Company
-      %hr
-      %h2 Company Users
-      = render :partial => "company/company_users"
-     
-        
+    .area
+      - if !@current_company
+        %div.alert{ :class => twitterized_type(:error) }
+          %a.close{ "data-dismiss" => "alert" } x
+          You have not set up your company.
+      %h1 Company Overview
+      - if !@current_company 
+        %p Click here to create your company.
+        = render 'form'
+      - else
+        %dl.dl-horizontal
+          %dt Company Name:
+          %dd= @current_company.name
+          %dt Registration Number:
+          - if @current_company.registration_number != ""
+            %dd= @current_company.registration_number
+          - else
+            %dd No registration number
+          - if current_user.company.image
+            %dt Logo:
+            %dd= image_tag current_user.company.image.url(:logo)
+        %p
+          %a.btn.btn-primary{ :href => edit_company_path(@current_company) }
+            %i.icon-pencil.icon-white
+            Edit Company
+        %hr
+        %h2 Company Users
+        = render :partial => "company/company_users"

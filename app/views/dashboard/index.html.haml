@@ -1,53 +1,54 @@
 - content_for(:title, 'Dashboard')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area= render :partial => "shared/sidebar"
   .span9
-    - if !@current_company
-      %div.alert{ :class => twitterized_type(:error) }
-        %a.close{ "data-dismiss" => "alert" } x
-        You have not set up your company.
-    %h1 Dashboard
-    %p= "#{current_user.firstname}, welcome to your Dashboard."
-    - if @current_company
-      %dl.dl-horizontal
-        %dt Projects:
-        %dd= "#{@projects ? @projects.count : 0}/#{@current_company.plan.project_count}"
-        %dt Users:
-        %dd= "#{@current_company ? @current_company.users.count : 1}/#{@current_company.plan.user_count}"
-        %dt Plan:
-        %dd= "#{@current_company.plan.title.capitalize} Account"
+    .area
+      - if !@current_company
+        %div.alert{ :class => twitterized_type(:error) }
+          %a.close{ "data-dismiss" => "alert" } x
+          You have not set up your company.
+      %h1 Dashboard
+      %p= "#{current_user.firstname}, welcome to your Dashboard."
+      - if @current_company
+        %dl.dl-horizontal
+          %dt Projects:
+          %dd= "#{@projects ? @projects.count : 0}/#{@current_company.plan.project_count}"
+          %dt Users:
+          %dd= "#{@current_company ? @current_company.users.count : 1}/#{@current_company.plan.user_count}"
+          %dt Plan:
+          %dd= "#{@current_company.plan.title.capitalize} Account"
     - if @projects
-      %hr
-      %h2 Projects
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Project Name
-            %th Users
-            %th Tasks
-            %th
-        - @projects.each do |project|
-          %tr
-            %td= project.name
-            %td= project.users.count
-            %td= project.tasks.count
-            %td
-              - if !current_user.sub_account
-                %a.btn{ :href => project_path(project) }
-                  %i.icon-search
-                  Show
+      .area
+        %h2 Projects
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Project Name
+              %th Users
+              %th Tasks
+              %th
+          - @projects.each do |project|
+            %tr
+              %td= project.name
+              %td= project.users.count
+              %td= project.tasks.count
+              %td
+                - if !current_user.sub_account
+                  %a.btn{ :href => project_path(project) }
+                    %i.icon-search
+                    Show
     - if @recent_timeslips
-      %hr
-      %h2 Recent Timeslips
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Date
-            %th Task
-            %th Time
-        - @recent_timeslips.each do |timeslip|
-          %tr
-            %td= timeslip.created_at.strftime("%e %b %y")
-            %td= link_to timeslip.task.name, edit_timeslip_path(timeslip)
-            %td= number_with_precision(timeslip.hours, :precision => 2)
+      .area
+        %h2 Recent Timeslips
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Date
+              %th Task
+              %th Time
+          - @recent_timeslips.each do |timeslip|
+            %tr
+              %td= timeslip.created_at.strftime("%e %b %y")
+              %td= link_to timeslip.task.name, edit_timeslip_path(timeslip)
+              %td= number_with_precision(timeslip.hours, :precision => 2)

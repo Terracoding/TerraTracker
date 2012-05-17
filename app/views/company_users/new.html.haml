@@ -1,20 +1,21 @@
 - content_for(:title, 'New Company User')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area= render :partial => "shared/sidebar"
   .span9
-    %h1 Create Company User
-    = simple_form_for(@user, :url => company_users_path(@user), :html => {:class => 'form-horizontal' }) do |f|
-      - if @user.errors[:base].any?
-        %div.alert{ :class => twitterized_type(:error) }
-          %a.close{:href => "#", :"data-dismiss" => "alert"} ×
-          - @user.errors.full_messages.each do |msg|
-            = msg
-      = f.input :firstname, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'First Name'
-      = f.input :lastname, :required => true, :class => 'input-xlarge', :label => 'Last Name'
-      = f.input :email, :required => true, :class => 'input-xlarge'
-      = f.input :password, :required => true, :class => 'input-xlarge'
-      - if current_user.company_admin
-        = f.input :owns_company, :label => 'Company Management'
-      = f.button :submit, "Create Company User", :class => 'btn btn-primary'
-      = link_to "Back", company_index_path, :class => 'btn'
+    .area
+      %h1 Create Company User
+      = simple_form_for(@user, :url => company_users_path(@user), :html => {:class => 'form-horizontal' }) do |f|
+        - if @user.errors[:base].any?
+          %div.alert{ :class => twitterized_type(:error) }
+            %a.close{:href => "#", :"data-dismiss" => "alert"} ×
+            - @user.errors.full_messages.each do |msg|
+              = msg
+        = f.input :firstname, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'First Name'
+        = f.input :lastname, :required => true, :class => 'input-xlarge', :label => 'Last Name'
+        = f.input :email, :required => true, :class => 'input-xlarge'
+        = f.input :password, :required => true, :class => 'input-xlarge'
+        - if current_user.company_admin
+          = f.input :owns_company, :label => 'Company Management'
+        = f.button :submit, "Create Company User", :class => 'btn btn-primary'
+        = link_to "Back", company_index_path, :class => 'btn'

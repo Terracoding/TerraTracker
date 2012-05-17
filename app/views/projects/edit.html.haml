@@ -1,20 +1,21 @@
 - content_for(:title, 'Edit Project')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area= render :partial => "shared/sidebar"
   .span9
-    %h1 Edit Your Project
-    = simple_form_for(@project, :url => @project, :html => {:class => 'form-horizontal' }) do |f|
-      - if @project.errors[:base].any?
-        %div.alert{ :class => twitterized_type(:error) }
-          %a.close{:href => "#", :"data-dismiss" => "alert"} ×
-          - @project.errors.full_messages.each do |msg|
-            = msg
-      = f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Project Name'
-      = f.input :status, :collection => @project.available_statuses, :include_blank => false
-      - if @project.archived && (current_user.projects.count - current_user.projects.where(:archived => true).count) > current_user.company.plan.project_count
-        = f.input :archived, :disabled => true
-      - else
-        = f.input :archived
-      = f.button :submit, "Update", :class => 'btn btn-primary'
-      = link_to "Back", :back, :class => 'btn'
+    .area
+      %h1 Edit Your Project
+      = simple_form_for(@project, :url => @project, :html => {:class => 'form-horizontal' }) do |f|
+        - if @project.errors[:base].any?
+          %div.alert{ :class => twitterized_type(:error) }
+            %a.close{:href => "#", :"data-dismiss" => "alert"} ×
+            - @project.errors.full_messages.each do |msg|
+              = msg
+        = f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Project Name'
+        = f.input :status, :collection => @project.available_statuses, :include_blank => false
+        - if @project.archived && (current_user.projects.count - current_user.projects.where(:archived => true).count) > current_user.company.plan.project_count
+          = f.input :archived, :disabled => true
+        - else
+          = f.input :archived
+        = f.button :submit, "Update", :class => 'btn btn-primary'
+        = link_to "Back", :back, :class => 'btn'

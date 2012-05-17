@@ -1,12 +1,13 @@
 - content_for(:title, 'Subscription')
 .row
   .span2
-    = render :partial => "shared/account_sidebar"
+    .area= render :partial => "shared/account_sidebar"
   .span9
-    - if !@current_company
-      %div.alert{ :class => twitterized_type(:error) }
-        %a.close{ "data-dismiss" => "alert" } x
-        You have not set up your company.
-    %h1 Subscription Confirmed
-    %p You should receive an email to confirm your payment.
-    %p Your account now has the following new limits:
+    .area
+      - if !@current_company
+        %div.alert{ :class => twitterized_type(:error) }
+          %a.close{ "data-dismiss" => "alert" } x
+          You have not set up your company.
+      %h1 Subscription Confirmed
+      %p You should receive an email to confirm your payment.
+      %p Your account now has the following new limits:

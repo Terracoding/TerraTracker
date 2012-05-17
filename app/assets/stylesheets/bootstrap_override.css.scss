@@ -12,7 +12,7 @@ body {
 	h1 {
 		margin-bottom: 20px;
 	}
-	.span9, .span2, .area {
+	.area {
 		background: #fff;
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
@@ -20,16 +20,21 @@ body {
 //		-moz-box-shadow: 0 1px 5px #717171;
 //	  -webkit-box-shadow: 0 1px 5px #717171;
 //	  box-shadow: 0 1px 5px #717171;
+		margin-bottom: 20px;
 	-moz-box-shadow: 0 1px 5px #C3C3C3;
   -webkit-box-shadow: 0 1px 5px #C3C3C3;
   box-shadow: 0 1px 5px #C3C3C3;
 	}
 	.span2 {
-		padding: 5px;
-		margin-bottom: 20px;
+		.area {
+			padding: 5px;
+			margin-bottom: 20px;
+		}
 	}
-	.span9, .area {
-		padding: 20px;
+	.span9 {
+		.area {
+			padding: 20px;
+		}
 	}
 }
 .nav-list {

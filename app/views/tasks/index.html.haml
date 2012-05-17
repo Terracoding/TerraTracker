@@ -1,12 +1,13 @@
 - content_for(:title, 'Tasks')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area= render :partial => "shared/sidebar"
   .span9
-    %h1 Tasks
-    = render :partial => "tasks/tasks"
-    %p
-      - if !current_user.sub_account
-        = link_to new_task_path, :class => "btn btn-primary" do
-          %i.icon-plus.icon-white
-          Add Task
+    .area
+      %h1 Tasks
+      = render :partial => "tasks/tasks"
+      %p
+        - if !current_user.sub_account
+          = link_to new_task_path, :class => "btn btn-primary" do
+            %i.icon-plus.icon-white
+            Add Task

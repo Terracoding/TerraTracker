@@ -1,16 +1,17 @@
 - content_for(:title, 'New Project')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area= render :partial => "shared/sidebar"
   .span9
-    %h1 Create Project
-    = simple_form_for(@project, :url => @project, :html => { :class => 'form-horizontal' }) do |f|
-      - if @project.errors[:base].any?
-        %div.alert{ :class => twitterized_type(:error) }
-          %a.close{:href => "#", :"data-dismiss" => "alert"} ×
-          - @project.errors.full_messages.each do |msg|
-            = msg
-      = f.input :name, :required => true, :autofocus => true, :label => 'Project Name'
-      = f.input :status, :collection => @project.available_statuses, :selected => @project.available_statuses[0], :include_blank => false
-      = f.button :submit, "Create Project", :class => 'btn btn-primary'
-      = link_to "Back", projects_path, :class => 'btn'
+    .area
+      %h1 Create Project
+      = simple_form_for(@project, :url => @project, :html => { :class => 'form-horizontal' }) do |f|
+        - if @project.errors[:base].any?
+          %div.alert{ :class => twitterized_type(:error) }
+            %a.close{:href => "#", :"data-dismiss" => "alert"} ×
+            - @project.errors.full_messages.each do |msg|
+              = msg
+        = f.input :name, :required => true, :autofocus => true, :label => 'Project Name'
+        = f.input :status, :collection => @project.available_statuses, :selected => @project.available_statuses[0], :include_blank => false
+        = f.button :submit, "Create Project", :class => 'btn btn-primary'
+        = link_to "Back", projects_path, :class => 'btn'

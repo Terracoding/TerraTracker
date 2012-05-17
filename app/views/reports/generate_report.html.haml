@@ -1,28 +1,29 @@
 - content_for(:title, 'Generated Report')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area= render :partial => "shared/sidebar"
   .span9
-    %h1= "Timesheet for #{@report.user}"
-    %table.table.table-striped
-      %thead
-        %tr
-          %th Date
-          %th Project
-          %th Task
-          %th Comment
-          %th Hours
-      - @timeslips.each do |t|
-        %tr
-          %td= t.date.strftime("%e %b %y")
-          %td= t.project
-          %td= t.task.name
-          %td= t.comment
-          %td= number_with_precision(t.hours, :precision => 2)
-    %h4= "Total Hours: #{@total_hours}"
-    = simple_form_for "report", :url => view_report_reports_path(@report), :html => { :class => 'form-horizontal', :target => "_blank" } do |f|
-      = f.hidden_field :timeframe, :value => @report.timeframe
-      = f.hidden_field :project_id, :value => @report.project_id
-      = f.hidden_field :task_id, :value => @report.task_id
-      = f.hidden_field :user_id, :value => @report.user_id
-      = f.button :submit, "Save PDF", :class => 'btn btn-primary'
+    .area
+      %h1= "Timesheet for #{@report.user}"
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Date
+            %th Project
+            %th Task
+            %th Comment
+            %th Hours
+        - @timeslips.each do |t|
+          %tr
+            %td= t.date.strftime("%e %b %y")
+            %td= t.project
+            %td= t.task.name
+            %td= t.comment
+            %td= number_with_precision(t.hours, :precision => 2)
+      %h4= "Total Hours: #{@total_hours}"
+      = simple_form_for "report", :url => view_report_reports_path(@report), :html => { :class => 'form-horizontal', :target => "_blank" } do |f|
+        = f.hidden_field :timeframe, :value => @report.timeframe
+        = f.hidden_field :project_id, :value => @report.project_id
+        = f.hidden_field :task_id, :value => @report.task_id
+        = f.hidden_field :user_id, :value => @report.user_id
+        = f.button :submit, "Save PDF", :class => 'btn btn-primary'

@@ -1,12 +1,13 @@
 - content_for(:title, 'Edit Company')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area= render :partial => "shared/sidebar"
   .span9
-    %h1 Edit Your Company
-    = simple_form_for(@company, :url => @company, :html => {:class => 'form-horizontal' }) do |f|
-      = f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Company Name'
-      = f.input :registration_number, :class => 'input-xlarge', :label => 'Registration Number'
-      = f.input :image, :label => 'Company Logo'
-      = f.button :submit, "Update", :class => 'btn btn-primary'
-      = link_to "Back", :back, :class => 'btn'
+    .area
+      %h1 Edit Your Company
+      = simple_form_for(@company, :url => @company, :html => {:class => 'form-horizontal' }) do |f|
+        = f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Company Name'
+        = f.input :registration_number, :class => 'input-xlarge', :label => 'Registration Number'
+        = f.input :image, :label => 'Company Logo'
+        = f.button :submit, "Update", :class => 'btn btn-primary'
+        = link_to "Back", :back, :class => 'btn'
