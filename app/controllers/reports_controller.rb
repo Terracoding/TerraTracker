@@ -40,7 +40,7 @@ class ReportsController < ApplicationController
   end
 
   def get_timeslips(report)
-    timeslips = Timeslip.where(:user_id => report.user, :archived => false)
+    timeslips = Timeslip.where(:user_id => report.user)
     timeslips = timeslips.where(:project_id => report.project_id) if report.project_id != ""
     timeslips = timeslips.where(:task_id => report.task_id) if report.task_id != ""
     if (report.timeframe == "Custom")
