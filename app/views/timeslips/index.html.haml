@@ -1,44 +1,45 @@
 - content_for(:title, 'Timeslips')
 .row
   .span2
-    = render :partial => "shared/sidebar"
+    .area= render :partial => "shared/sidebar"
   .span9
-    %h1 Timeslips
-    %table.table.table-striped
-      - @timeslips_by_date.each do |date, timeslips|
-      - @hours = 0
-        %thead
-          %th= date
-          %th Project
-          %th Task
-          %th Hours
-          %th Comment
-          %th
-        - timeslips.each do |t|
-          - @hours += t.hours if t.hours != nil
+    .area
+      %h1 Timeslips
+      %table.table.table-striped
+        - @timeslips_by_date.each do |date, timeslips|
+        - @hours = 0
+          %thead
+            %th= date
+            %th Project
+            %th Task
+            %th Hours
+            %th Comment
+            %th
+          - timeslips.each do |t|
+            - @hours += t.hours if t.hours != nil
+            %tr
+              %td= t.user
+              %td= t.project
+              %td= t.task.name
+              %td= number_with_precision(t.hours, :precision => 2)
+              %td= t.comment
+              %td
+                %a.btn{ :href => edit_timeslip_path(t) }
+                  %i.icon-pencil
+                  Edit
+                %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => timeslip_path(t) }
+                  %i.icon-trash.icon-white
+                  Delete
           %tr
-            %td= t.user
-            %td= t.project
-            %td= t.task.name
-            %td= number_with_precision(t.hours, :precision => 2)
-            %td= t.comment
             %td
-              %a.btn{ :href => edit_timeslip_path(t) }
-                %i.icon-pencil
-                Edit
-              %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => timeslip_path(t) }
-                %i.icon-trash.icon-white
-                Delete
-        %tr
-          %td
-          %td
-          %td
-            %b Total Hours:
-          %td
-            %b= @hours
-          %td
-          %td
-    %hr
-    %a.btn.btn-primary{ :href => new_timeslip_path }
-      %i.icon-plus.icon-white
-      Add Timeslip
+            %td
+            %td
+              %b Total Hours:
+            %td
+              %b= @hours
+            %td
+            %td
+      %hr
+      %a.btn.btn-primary{ :href => new_timeslip_path }
+        %i.icon-plus.icon-white
+        Add Timeslip
