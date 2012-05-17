@@ -107,3 +107,16 @@ hr.soften {
 	border: 0;
   box-shadow: none;
 }
+.modal {
+	h1 {
+		margin-bottom: 0;
+	}
+	form {
+		margin-bottom: 0;
+	}
+	.close {
+		border: 0;
+		padding: 0;
+		background: none;
+	}
+}

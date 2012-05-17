@@ -3,7 +3,7 @@
   .span2
     .area= render :partial => "shared/sidebar"
   .span9
-    .area
+    .area#main
       %h1 Projects
       %table.table.table-striped
         %thead
@@ -31,9 +31,7 @@
                 Edit
               = link_to p, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
                 Delete
-      %a.btn.btn-primary{ :href => new_project_path }
-        %i.icon-plus.icon-white
-        Add Project
+      = link_to "Add Project", new_project_path, :remote => :true, :class => "btn btn-primary"
       - if @archived_projects_count > 0
         %hr
         %p
