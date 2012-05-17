@@ -35,7 +35,7 @@ class WebhooksController < ApplicationController
         if subscription
           company = Company.find(subscription.company_id)
           company.update_attribute(:plan_id, 1)
-          projects = @current_company.projects.where(:archived => false)
+          projects = company.projects.where(:archived => false)
           counter = 0
           project_limit = Plan.find(1).project_count
           projects.each do |project|
