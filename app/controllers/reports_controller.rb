@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
   before_filter :authenticate_user!, :redirect_company, :redirect_projects
 
   def index
-    @projects = current_company.projects
+    @projects = current_company.projects.where(:archived => false)
     @tasks = current_company.tasks
     current_user.sub_account ? @users = [current_user] : @users = User.where("company_id = ?", current_user.company.id)
     @timeframes = ["This Week", "Last Week", "This Month", "Last Month", "Custom"]
@@ -40,7 +40,7 @@ class ReportsController < ApplicationController
   end
 
   def get_timeslips(report)
-    timeslips = Timeslip.where(:user_id => report.user)
+    timeslips = Timeslip.where(:user_id => report.user, :archived => false)
     timeslips = timeslips.where(:project_id => report.project_id) if report.project_id != ""
     timeslips = timeslips.where(:task_id => report.task_id) if report.task_id != ""
     if (report.timeframe == "Custom")
