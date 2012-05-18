@@ -8,6 +8,13 @@ class TimeslipsController < ApplicationController
     else
       @date = Date.today
     end
+    if params[:view] == "day"
+      @previous = @date - 1.day
+      @next = @date + 1.day
+    else
+      @previous = @date - 1.week
+      @next = @date + 1.week
+    end
     if current_user.sub_account
       @timeslips = find_current_week(current_user.timeslips, { :date => @date, :order => "date, id ASC", :view => params[:view] })
     else
