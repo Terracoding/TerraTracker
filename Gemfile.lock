@@ -76,6 +76,7 @@ GEM
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
     database_cleaner (0.7.2)
+    date_paginate (0.0.1)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -261,6 +262,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails
   database_cleaner
+  date_paginate
   devise
   factory_girl_rails
   gocardless!
