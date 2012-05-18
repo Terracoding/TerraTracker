@@ -6,8 +6,8 @@
     .area
       %h1 Timeslips
       .btn-group
-        = link_to "Week View", timeslips_path, :class => "btn"
-        = link_to "Day View", timeslips_path(:view => "day"), :class => "btn"
+        = link_to "Entire Week", timeslips_path, :class => "btn", :id => "week"
+        = link_to "Single Day", timeslips_path(:view => "day"), :class => "btn", :id => "day"
       %br
       %table.table.table-striped
         - @timeslips.each do |date, timeslips|
@@ -55,3 +55,13 @@
       %a.btn.btn-primary{ :href => new_timeslip_path }
         %i.icon-plus.icon-white
         Add Timeslip
+
+:javascript
+  var view = "#{params[:view]}"
+  if (view == "day") {
+    $("#day").addClass("disabled")
+    $("#day").removeAttr("href")
+  } else {
+    $("#week").addClass("disabled")
+    $("#week").removeAttr("href")
+  }
