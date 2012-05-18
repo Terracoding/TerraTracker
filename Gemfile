@@ -13,7 +13,6 @@ gem 'prawn'
 gem 'active_attr'
 gem 'paperclip'
 gem 'rspec-rails'
-gem 'will_paginate'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'
