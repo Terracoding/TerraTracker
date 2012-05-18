@@ -3,7 +3,7 @@
   .span2
     .area= render :partial => "shared/sidebar"
   .span9
-    .area
+    .area#projects
       %h1 Archived Projects
       %table.table.table-striped
         %thead
@@ -12,14 +12,14 @@
             %th Project Name
             %th 
         - @projects.each do |p|
-          %tr{ :id => p.id}
+          %tr{ :id => p.id }
             %td= p.id
             %td= p.name         
             %td
               = link_to project_path(p), :class => "btn" do
                 %i.icon-search
                 Show
-              = link_to edit_project_path(p), :class => "btn" do
+              = link_to edit_project_path(p), :remote => true, :class => "btn" do
                 %i.icon-pencil
                 Edit
               = link_to p, :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
