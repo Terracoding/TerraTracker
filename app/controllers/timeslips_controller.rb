@@ -3,11 +3,11 @@ class TimeslipsController < ApplicationController
   before_filter :authenticate_user!, :redirect_company, :redirect_projects
 
   def index
+    params[:view] == "day" ? weeks = Date.today : weeks = 0
     if current_user.sub_account
-      # @timeslips = current_user.timeslips.order('date, id ASC').group_by { |timeslip| timeslip.date.strftime("%A %e %b %Y") }
-      @timeslips = find_between_dates(current_user.timeslips, { :dates => get_dates(0), :order => "date, id ASC", :group_date_string => "%A %e %b %Y"})
+      @timeslips = find_between_dates(current_user.timeslips, { :weeks => weeks, :order => "date, id ASC", :group_date_string => "%A %e %b %Y"})
     else
-      @timeslips = find_between_dates(current_company.timeslips, { :dates => get_dates(0), :order => "date, id ASC", :group_date_string => "%A %e %b %Y"})
+      @timeslips = find_between_dates(current_company.timeslips, { :weeks => weeks, :order => "date, id ASC", :group_date_string => "%A %e %b %Y"})
     end
   end
 

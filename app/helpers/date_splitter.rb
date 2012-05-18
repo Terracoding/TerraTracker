@@ -11,9 +11,14 @@ module DateSplitter
   end
 
   def find_between_dates(resource, options)
-    if options[:dates]
-      dates = options[:dates]
-      resource = resource.where('date >= ? AND date <= ?', Date.parse(dates.first), Date.parse(dates.last))
+    if options[:weeks]
+      dates = options[:weeks]
+      if dates.class == Date
+        resource = resource.where('date = ?', dates)
+      else
+        dates_list = get_dates(dates)
+        resource = resource.where('date >= ? AND date <= ?', Date.parse(dates_list.first), Date.parse(dates_list.last))
+      end
     end
 
     if options[:order]
@@ -24,13 +29,22 @@ module DateSplitter
       resource = resource.group_by { |group| group.date.strftime(options[:group_date_string]) }
     end
 
-    if options[:dates]
+    if options[:weeks]
       output = Hash.new
-      options[:dates].each do |date|
-        if !resource[date]
-          output[date] = []
+      dates = options[:weeks]
+      if dates.class == Date
+        if !resource[dates.strftime("%A %e %b %Y")]
+          output[dates] = []
         else
-          output[date] = resource[date]
+          output[dates.strftime("%A %e %b %Y")] = resource[dates.strftime("%A %e %b %Y")]
+        end
+      else
+        get_dates(options[:weeks]).each do |date|
+          if !resource[date]
+            output[date] = []
+          else
+            output[date] = resource[date]
+          end
         end
       end
       return output
