@@ -6,20 +6,20 @@
       Dashboard
     - if current_user
       - if !current_user.sub_account
-        %a{ :href => company_index_path }
-          %i{ :class => "icon-user" }
+        = link_to company_index_path do
+          %i.icon-user
           Company
       - if current_user.company && !current_user.sub_account
-        %a{ :href => projects_path }
-          %i{ :class => "icon-th-list" }
+        = link_to projects_path do
+          %i.icon-th-list
           Projects
       - if current_user.company && ((current_user.company.projects.count > 0 && !current_user.sub_account) || current_user.company.tasks_count > 0)
-        %a{ :href => tasks_path }
-          %i{ :class => "icon-ok" }
+        = link_to tasks_path do
+          %i.icon-ok
           Tasks
-          %a{ :href => timeslips_path }
-            %i{ :class => "icon-time" }
-            Timeslips
-          %a{ :href => reports_path }
-            %i{ :class => "icon-folder-open" }
-            Reports
+        = link_to "/timeslips/#{Date.today.year}/#{Date.today.month}/#{Date.today.day}" do
+          %i.icon-time
+          Timeslips
+        = link_to reports_path do
+          %i.icon-folder-open
+          Reports
