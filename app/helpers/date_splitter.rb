@@ -2,11 +2,8 @@ module DateSplitter
 
   def get_dates(weeks_ago)
     dates = Array.new
-    number_of_weeks_ago = weeks_ago+1
-    ((number_of_weeks_ago*7)-7..(number_of_weeks_ago*7)-1).each do |d|
-      start_date = d.days.ago
-      dates << start_date.strftime("%A %e %b %Y")
-    end
+    weeks_ago += 1
+    ((weeks_ago*7)-7..(weeks_ago*7)-1).each { |d| dates << d.days.ago.strftime("%A %e %b %Y") }
     dates.reverse
   end
 
@@ -21,31 +18,17 @@ module DateSplitter
       end
     end
 
-    if options[:order]
-      resource = resource.order(options[:order])
-    end
-
-    if options[:group_date_string]
-      resource = resource.group_by { |group| group.date.strftime(options[:group_date_string]) }
-    end
+    resource = resource.order(options[:order]) if options[:order]
+    resource = resource.group_by { |group| group.date.strftime(options[:group_date_string]) } if options[:group_date_string]
 
     if options[:weeks]
       output = Hash.new
       dates = options[:weeks]
       if dates.class == Date
-        if !resource[dates.strftime("%A %e %b %Y")]
-          output[dates] = []
-        else
-          output[dates.strftime("%A %e %b %Y")] = resource[dates.strftime("%A %e %b %Y")]
-        end
+        dates_str = dates.strftime("%A %e %b %Y")
+        resource[dates_str] ? output[dates_str] = resource[dates_str] : output[dates] = []
       else
-        get_dates(options[:weeks]).each do |date|
-          if !resource[date]
-            output[date] = []
-          else
-            output[date] = resource[date]
-          end
-        end
+        get_dates(dates).each { |date| resource[date] ? output[date] = resource[date] : output[date] = [] }
       end
       return output
     else
