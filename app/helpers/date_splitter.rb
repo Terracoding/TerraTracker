@@ -1,39 +1,41 @@
 module DateSplitter
 
-  def get_dates(weeks_ago)
+  def get_dates(date)
     dates = Array.new
-    weeks_ago += 1
-    ((weeks_ago*7)-7..(weeks_ago*7)-1).each { |d| dates << d.days.ago.strftime("%A %e %b %Y") }
-    dates.reverse
+    start_date = get_start_date(date)
+    (0..6).each { |i| dates << (start_date + i).strftime("%A %e %b %Y") }
+    return dates
   end
 
-  def find_between_dates(resource, options)
-    if options[:weeks]
-      dates = options[:weeks]
-      if dates.class == Date
-        resource = resource.where('date = ?', dates)
-      else
-        dates_list = get_dates(dates)
-        resource = resource.where('date >= ? AND date <= ?', Date.parse(dates_list.first), Date.parse(dates_list.last))
-      end
-    end
+  def get_start_date(date)
+    return date - (date.cwday - 1)
+  end
 
-    resource = resource.order(options[:order]) if options[:order]
-    resource = resource.group_by { |group| group.date.strftime(options[:group_date_string]) } if options[:group_date_string]
+  def get_end_date(date)
+    return date + (7 - date.cwday)
+  end
 
-    if options[:weeks]
-      output = Hash.new
-      dates = options[:weeks]
-      if dates.class == Date
-        dates_str = dates.strftime("%A %e %b %Y")
-        resource[dates_str] ? output[dates_str] = resource[dates_str] : output[dates] = []
-      else
-        get_dates(dates).each { |date| resource[date] ? output[date] = resource[date] : output[date] = [] }
-      end
-      return output
+  def find_current_week(resource, options)
+    options[:include_empty] ? include_empty = options[:include_empty] : include_empty = true
+    options[:date] ? date = options[:date] : date = Date.today
+    options[:group_date_string] ? group_date_string = options[:group_date_string] : group_date_string = "%A %e %b %Y"
+    if (options[:view] == "day")
+      @resource = resource.where('date = ?', options[:date])
     else
-      return resource
+      @resource = resource.where('date >= ? AND date <= ?', get_start_date(options[:date]), get_end_date(options[:date]))
     end
+    @resource = @resource.order(options[:order]) if options[:order]
+    @resource = @resource.group_by { |group| group.date.strftime(group_date_string) }
+    @resource = include_empty_dates(date) if include_empty == true && options[:view] != "day"
+    return @resource
+  end
+
+  private
+
+  def include_empty_dates(date)
+    resource_with_empty = Hash.new
+    get_dates(date).each { |d| @resource[d] ? resource_with_empty[d] = @resource[d] : resource_with_empty[d] = [] }
+    return resource_with_empty
   end
 
 end

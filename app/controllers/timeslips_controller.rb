@@ -3,11 +3,15 @@ class TimeslipsController < ApplicationController
   before_filter :authenticate_user!, :redirect_company, :redirect_projects
 
   def index
-    params[:view] == "day" ? weeks = Date.today : weeks = 0
-    if current_user.sub_account
-      @timeslips = find_between_dates(current_user.timeslips, { :weeks => weeks, :order => "date, id ASC", :group_date_string => "%A %e %b %Y"})
+    if params[:year] && params[:month] && params[:day]
+      @date = Date.parse("#{params[:day]}/#{params[:month]}/#{params[:year]}")
     else
-      @timeslips = find_between_dates(current_company.timeslips, { :weeks => weeks, :order => "date, id ASC", :group_date_string => "%A %e %b %Y"})
+      @date = Date.today
+    end
+    if current_user.sub_account
+      @timeslips = find_current_week(current_user.timeslips, { :date => @date, :order => "date, id ASC", :view => params[:view] })
+    else
+      @timeslips = find_current_week(current_company.timeslips, { :date => @date, :order => "date, id ASC", :view => params[:view] })
     end
   end
 
