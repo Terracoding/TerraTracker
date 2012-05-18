@@ -1,4 +1,4 @@
-.modal.hide.fade.in#project-edit
+.modal.hide.fade.in{:id => "project_edit_#{@project.id}"}
   .modal-header
     %button.close{ "data-dismiss" => "modal" } &times;
     %h1 Edit Your Project
@@ -14,6 +14,7 @@
       = f.button :submit, "Update", :class => 'btn btn-primary'
       %a{ :href => "#", :class => "btn", "data-dismiss" => "modal" } Close
 :javascript
+  id: "#{@project.id}"
   if ($('#project-errors').length > 0) {
-    $("#project-edit").modal('toggle');
+    $("#project_edit_" + id).modal('toggle');
   }

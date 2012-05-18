@@ -1,0 +1,2 @@
+$("#main").before("<%= escape_javascript(render "edit", :formats => [:html]) %>");
+$("#project_edit_<%= params[:id] %>").modal();
