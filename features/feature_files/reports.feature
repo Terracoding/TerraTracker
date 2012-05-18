@@ -8,7 +8,7 @@ Feature: Reports
     And I own the company "TestCompany"
     And I have a project "Test Project"
     And I have the task "Test Task"
-    And I have a timeslip
+    And I have a timeslip for the date "16/04/2012"
 
   Scenario: I should be able to create a report for all projects and tasks
     Given I am on the reports page

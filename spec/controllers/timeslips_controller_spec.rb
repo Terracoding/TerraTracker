@@ -14,16 +14,18 @@ describe TimeslipsController do
 
     describe "company owner" do
       it "should show the current timeslips for the company by date" do
-        sign_in @user
+        sign_in @sub_user
         get :index
-        assigns[:timeslips_by_date].count.should == 1
-        sign_out @user
+        assigns[:timeslips].count.should == 7
+        sign_out @sub_user
       end
 
       it "should show the current timeslips for the company" do
         sign_in @user
         get :index
-        assigns[:timeslips_by_date].first.second.count.should == 2
+        timeslips_count = 0
+        assigns[:timeslips].each { |key, timeslips| timeslips_count += timeslips.count }
+        timeslips_count.should == 2
         sign_out @user
       end
     end
@@ -32,14 +34,16 @@ describe TimeslipsController do
       it "should show the current timeslips for the user by date" do
         sign_in @sub_user
         get :index
-        assigns[:timeslips_by_date].count.should == 1
+        assigns[:timeslips].count.should == 7
         sign_out @sub_user
       end
 
       it "should show the current timeslips for the user" do
         sign_in @sub_user
         get :index
-        assigns[:timeslips_by_date].first.second.count.should == 1
+        timeslips_count = 0
+        assigns[:timeslips].each { |key, timeslips| timeslips_count += timeslips.count }
+        timeslips_count.should == 1
         sign_out @sub_user
       end
     end

@@ -1,11 +1,13 @@
 class TimeslipsController < ApplicationController
+  include DateSplitter
   before_filter :authenticate_user!, :redirect_company, :redirect_projects
 
   def index
     if current_user.sub_account
-      @timeslips_by_date = current_user.timeslips.order('date ASC').group_by { |timeslip| timeslip.date.strftime("%A %e %b %Y") }
+      # @timeslips = current_user.timeslips.order('date, id ASC').group_by { |timeslip| timeslip.date.strftime("%A %e %b %Y") }
+      @timeslips = find_between_dates(current_user.timeslips, { :dates => get_dates(0), :order => "date, id ASC", :group_date_string => "%A %e %b %Y"})
     else
-      @timeslips_by_date = current_company.timeslips.order('date ASC').group_by { |timeslip| timeslip.date.strftime("%A %e %b %Y") }
+      @timeslips = find_between_dates(current_company.timeslips, { :dates => get_dates(0), :order => "date, id ASC", :group_date_string => "%A %e %b %Y"})
     end
   end
 

@@ -5,8 +5,12 @@
   .span9
     .area
       %h1 Timeslips
+      .btn-group
+        = link_to "Week View (Coming Soon)", "#", :class => "btn"
+        = link_to "Day View (Coming Soon)", "#", :class => "btn"
+      %br
       %table.table.table-striped
-        - @timeslips_by_date.each do |date, timeslips|
+        - @timeslips.each do |date, timeslips|
         - @hours = 0
           %thead
             %th= date

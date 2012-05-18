@@ -17,4 +17,5 @@ class Timeslip < ActiveRecord::Base
       super
     end
   end
+
 end
