@@ -60,16 +60,27 @@ describe Project do
 
   context :check_project_limit do
     before(:each) do
-      company = FactoryGirl.create(:company)
-      @project = FactoryGirl.create(:project, :company => company, :archived => true)
+      @company = FactoryGirl.create(:company)
+    end
+
+    def stub_project(project)
+      project.stub_chain(:company, :projects, :count).and_return(1)
+      project.stub_chain(:company, :plan, :project_count).and_return(1)
+      project.stub_chain(:company, :projects, :where, :count).and_return(1)
     end
 
     it "should not allow a user to unarchive a project when they are at their limit" do
-      @project.stub_chain(:company, :projects, :count).and_return(1)
-      @project.stub_chain(:company, :plan, :project_count).and_return(1)
-      @project.stub_chain(:company, :projects, :where, :count).and_return(1)
-      @project.archived = false
-      @project.should_not be_valid
+      project = FactoryGirl.create(:project, :company => @company, :archived => true)
+      stub_project(project)
+      project.archived = false
+      project.should_not be_valid
+    end
+
+    it "should allow a user to modify a project when they are at their limit" do
+      project = FactoryGirl.create(:project, :company => @company, :archived => false)
+      stub_project(project)
+      project.name = "New name"
+      project.should be_valid
     end
   end
 end

@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
   private
 
   def check_project_limit
-    if archived == false && company.plan.project_count <= company.projects.where(:archived => false).count
+    if archived_was == true && company.plan.project_count <= company.projects.where(:archived => false).count
       self.errors[:base] << "You have reached your project limit. If you wish to add more projects, please upgrade your account."
       return false
     end
