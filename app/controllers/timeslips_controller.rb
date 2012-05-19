@@ -10,10 +10,9 @@ class TimeslipsController < ApplicationController
     end
     params[:view] == "day" ?  @difference = 1.day : @difference = 1.week
     if current_user.sub_account
-      @timeslips = find_current_week(current_user.timeslips, { :date => @date, :order => "date, id ASC", :view => params[:view] })
+      @timeslips = date_paginate(current_user.timeslips, { :date => @date, :order => "date, id ASC", :view => params[:view] })
     else
-      @timeslips = find_current_week(current_company.timeslips, { :date => @date, :order => "date, id ASC", :view => params[:view] })
-      # @timeslips = current_company.timeslips.find_week({ :date => @date, :order => "date, id ASC", :view => params[:view] })
+      @timeslips = date_paginate(current_company.timeslips, { :date => @date, :order => "date, id ASC", :view => params[:view] })
     end
   end
 
