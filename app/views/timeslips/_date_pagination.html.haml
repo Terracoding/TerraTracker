@@ -1,0 +1,14 @@
+.timeslips-group
+  .btn-group
+    = link_to "/timeslips/#{(@date - @difference).year}/#{(@date - @difference).month}/#{(@date - @difference).day}?view=#{params[:view]}", :class => "btn" do
+      %i.icon-chevron-left
+    = link_to timeslips_path, :class => "btn" do
+      - if params[:view] == "day"
+        = "#{@date.strftime("%A %e %b %Y")}"
+      - else
+        = "#{@timeslips.keys.first} - #{@timeslips.keys.last}"
+    = link_to "/timeslips/#{(@date + @difference).year}/#{(@date + @difference).month}/#{(@date + @difference).day}?view=#{params[:view]}", :class => "btn" do
+      %i.icon-chevron-right
+  .btn-group
+    = link_to "Entire Week", "/timeslips/#{@date.year}/#{@date.month}/#{@date.day}", :class => "btn", :id => "week"
+    = link_to "Single Day", "/timeslips/#{@date.year}/#{@date.month}/#{@date.day}?view=day", :class => "btn", :id => "day"

@@ -1,5 +1,5 @@
 class TimeslipsController < ApplicationController
-  include DateSplitter
+  include DatePagination
   before_filter :authenticate_user!, :redirect_company, :redirect_projects
 
   def index
@@ -8,17 +8,12 @@ class TimeslipsController < ApplicationController
     else
       @date = Date.today
     end
-    if params[:view] == "day"
-      @previous = @date - 1.day
-      @next = @date + 1.day
-    else
-      @previous = @date - 1.week
-      @next = @date + 1.week
-    end
+    params[:view] == "day" ?  @difference = 1.day : @difference = 1.week
     if current_user.sub_account
       @timeslips = find_current_week(current_user.timeslips, { :date => @date, :order => "date, id ASC", :view => params[:view] })
     else
       @timeslips = find_current_week(current_company.timeslips, { :date => @date, :order => "date, id ASC", :view => params[:view] })
+      # @timeslips = current_company.timeslips.find_week({ :date => @date, :order => "date, id ASC", :view => params[:view] })
     end
   end
 
