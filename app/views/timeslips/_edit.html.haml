@@ -1,0 +1,24 @@
+.modal.hide.fade.in{:id => "timeslip_edit_#{@timeslip.id}"}
+  .modal-header
+    %button.close{ "data-dismiss" => "modal" } &times;
+    %h1 Edit Timeslip
+  = simple_form_for(@timeslip, :url => @timeslip, :html => {:class => 'form-horizontal' }) do |f|
+    .modal-body
+      .control-group= f.input :date, :as => :string, :input_html => { :value => @timeslip.date.strftime("%d/%m/%Y") }
+      .control-group= f.association :project, :required => true, :collection => @projects, :include_blank => false, :label => 'Project'
+      .control-group= f.association :task, :required => true, :collection => @tasks, :include_blank => false, :label => 'Task'
+      .control-group= f.association :user, :required => true, :collection => @users, :include_blank => false, :label => 'User'
+      .control-group= f.input :comment, :autofocus => true, :label => 'Comment'
+      .control-group= f.input :hours, :placeholder => '0:00'
+    .modal-footer
+      = f.submit "Update", :class => 'btn btn-primary'
+      %a{ :href => "#", :class => "btn", "data-dismiss" => "modal" } Close
+
+:javascript
+  $(function() {
+    $("#timeslip_date").datepicker({format: 'dd/mm/yyyy'});
+  });
+  id: "#{@timeslip.id}"
+  if ($('#timeslip-errors').length > 0) {
+    $("#timeslip_edit_" + id).modal('toggle');
+  }

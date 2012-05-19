@@ -25,7 +25,7 @@ module DatePagination
       @resource = resource.where('date >= ? AND date <= ?', get_start_date(options[:date]), get_end_date(options[:date]))
     end
     @resource = @resource.order(options[:order]) if options[:order]
-    @resource = @resource.group_by { |group| group.date.strftime(group_date_string) }
+    @resource = @resource.group_by { |group| group.date.strftime(group_date_string) } # Make sure it works for any date object
     @resource = include_empty_dates(date) if include_empty == true && options[:view] != "day"
     return @resource
   end

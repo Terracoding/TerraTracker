@@ -42,7 +42,7 @@ describe ReportsHelper do
     end
 
     it "should return timeslips between two dates" do
-      get_timeslips_with_dates(@timeslips, 1.week.ago.strftime("%d/%m/%y"), Date.today.strftime("%d/%m/%y")).count.should == 3
+      get_timeslips_with_dates(@timeslips, 1.week.ago.strftime("%d/%m/%y"), Date.today.strftime("%d/%m/%y")).count.should == 2
     end
 
     it "shouldn't return timeslips outside of the two dates" do

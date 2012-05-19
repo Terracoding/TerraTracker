@@ -3,7 +3,7 @@
   .span2
     .area= render :partial => "shared/sidebar"
   .span9
-    .area
+    .area#timeslips
       %h1 Timeslips
       = render :partial => "date_pagination"
       %br
@@ -33,7 +33,7 @@
                 %td= number_with_precision(t.hours, :precision => 2)
                 %td= t.comment
                 %td
-                  %a.btn{ :href => edit_timeslip_path(t) }
+                  = link_to edit_timeslip_path(t), :remote => true, :class => "btn" do
                     %i.icon-pencil
                     Edit
                   %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => timeslip_path(t) }
@@ -50,7 +50,7 @@
               %td
               %td
       %hr
-      %a.btn.btn-primary{ :href => new_timeslip_path }
+      = link_to new_timeslip_path, :remote => true, :class => "btn btn-primary" do
         %i.icon-plus.icon-white
         Add Timeslip
 
