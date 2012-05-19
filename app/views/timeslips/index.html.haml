@@ -24,21 +24,21 @@
               %th Hours
               %th Comment
               %th
-            - timeslips.each do |t|
-              - @hours += t.hours if t.hours != nil
-              %tr
-                %td= t.user
-                %td= t.project
-                %td= t.task.name
-                %td= number_with_precision(t.hours, :precision => 2)
-                %td= t.comment
-                %td
-                  = link_to edit_timeslip_path(t), :remote => true, :class => "btn" do
-                    %i.icon-pencil
-                    Edit
-                  %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => timeslip_path(t) }
-                    %i.icon-trash.icon-white
-                    Delete
+          - timeslips.each do |t|
+            - @hours += t.hours if t.hours != nil
+            %tr
+              %td= t.user
+              %td= t.project
+              %td= t.task.name
+              %td= number_with_precision(t.hours, :precision => 2)
+              %td= t.comment
+              %td
+                = link_to edit_timeslip_path(t), :remote => true, :class => "btn" do
+                  %i.icon-pencil
+                  Edit
+                %a.btn.btn-danger{ 'data-method' => :delete, 'data-confirm' => 'Are you sure?', :href => timeslip_path(t) }
+                  %i.icon-trash.icon-white
+                  Delete
           - if timeslips.count > 0
             %tr
               %td
