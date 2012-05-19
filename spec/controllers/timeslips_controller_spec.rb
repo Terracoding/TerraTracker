@@ -154,7 +154,7 @@ describe TimeslipsController do
       timeslip = FactoryGirl.create(:timeslip, :project => @project, :user => @user)
       Timeslip.stub(:new) { timeslip }
       post :create
-      response.should redirect_to(timeslips_path)
+      response.should redirect_to(timeslips_date_path(timeslip.date.year, timeslip.date.month, timeslip.date.day))
       sign_out @user
     end
 
@@ -177,7 +177,7 @@ describe TimeslipsController do
     it "should be able to be updated" do
       post :update, :id => @timeslip.id
       flash[:notice].should == "The timeslip was successfully updated."
-      response.should redirect_to(timeslips_path)
+      response.should redirect_to(timeslips_date_path(@timeslip.date.year, @timeslip.date.month, @timeslip.date.day))
       sign_out @user
     end
 

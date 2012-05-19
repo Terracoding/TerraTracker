@@ -24,7 +24,7 @@ Timetracker::Application.routes.draw do
     post :get_tasks, :on => :collection
     post :get_users, :on => :collection
   end
-  match "/timeslips/:year/:month/:day" => "timeslips#index"
+  match "/timeslips/:year/:month/:day" => "timeslips#index", :as => "timeslips_date"
 
   resources :reports do
     post :generate_report, :on => :collection

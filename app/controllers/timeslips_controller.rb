@@ -33,7 +33,7 @@ class TimeslipsController < ApplicationController
   def create
     @timeslip = Timeslip.new(params[:timeslip])
     if @timeslip.save
-      redirect_to(timeslips_path, :notice => "The timeslip was successfully created.")
+      redirect_to(timeslips_date_path(@timeslip.date.year, @timeslip.date.month, @timeslip.date.day), :notice => "The timeslip was successfully created.")
     else
       render :action => "new"
     end
@@ -42,7 +42,7 @@ class TimeslipsController < ApplicationController
   def update
     @timeslip = Timeslip.find(params[:id])
     if @timeslip.update_attributes(params[:timeslip])
-      redirect_to(timeslips_path, :notice => "The timeslip was successfully updated.")
+      redirect_to(timeslips_date_path(@timeslip.date.year, @timeslip.date.month, @timeslip.date.day), :notice => "The timeslip was successfully updated.")
     else
       render :action => "edit"
     end
