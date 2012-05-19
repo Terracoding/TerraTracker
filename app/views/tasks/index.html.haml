@@ -3,11 +3,11 @@
   .span2
     .area= render :partial => "shared/sidebar"
   .span9
-    .area
+    .area#tasks
       %h1 Tasks
       = render :partial => "tasks/tasks"
       %p
         - if !current_user.sub_account
-          = link_to new_task_path, :class => "btn btn-primary" do
+          = link_to new_task_path, :remote => true, :class => "btn btn-primary" do
             %i.icon-plus.icon-white
             Add Task

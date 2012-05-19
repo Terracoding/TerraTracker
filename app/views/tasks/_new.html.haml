@@ -1,0 +1,19 @@
+.modal.hide.fade.in#task-new
+  .modal-header
+    %button.close{ "data-dismiss" => "modal" } &times;
+    %h1 Create Task
+  = simple_form_for(@task, :url => @task, :html => {:class => 'form-horizontal' }) do |f|
+    .modal-body
+      = f.input :project_id, :required => true, :collection => @available_projects, :selected => @available_projects[0], :include_blank => false, :label => 'Project'
+      = f.input :name, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'Task Name'
+      = f.input :billable
+      = f.input :rate, :wrapper => :prepend do
+        = content_tag :span, "£", :class => "add-on"
+        = f.text_field :rate
+    .modal-footer
+      = f.button :submit, "Create Task", :class => 'btn btn-primary'
+      %a{ :href => "#", :class => "btn", "data-dismiss" => "modal" } Close
+:javascript
+  if ($('#project-errors').length > 0) {
+    $("#project-new").modal('toggle');
+  }

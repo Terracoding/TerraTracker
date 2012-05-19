@@ -16,7 +16,7 @@
       %td= number_with_precision(p.rate, :precision => 2)
       - if !current_user.sub_account && p.project.archived == false
         %td
-          = link_to edit_task_path(p), :class => "btn" do
+          = link_to edit_task_path(p), :remote => true, :class => "btn" do
             Edit
           = link_to task_path(p), :confirm => "Are you sure?", :method => :delete, :remote => true, :class => "btn btn-danger" do
             Delete
