@@ -12,3 +12,13 @@
   .btn-group
     = link_to "Entire Week", "/timeslips/#{@date.year}/#{@date.month}/#{@date.day}", :class => "btn", :id => "week"
     = link_to "Single Day", "/timeslips/#{@date.year}/#{@date.month}/#{@date.day}?view=day", :class => "btn", :id => "day"
+
+:javascript
+  var view = "#{params[:view]}"
+  if (view == "day") {
+    $("#day").addClass("disabled")
+    $("#day").removeAttr("href")
+  } else {
+    $("#week").addClass("disabled")
+    $("#week").removeAttr("href")
+  }

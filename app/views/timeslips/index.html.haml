@@ -53,13 +53,3 @@
       = link_to new_timeslip_path, :remote => true, :class => "btn btn-primary" do
         %i.icon-plus.icon-white
         Add Timeslip
-
-:javascript
-  var view = "#{params[:view]}"
-  if (view == "day") {
-    $("#day").addClass("disabled")
-    $("#day").removeAttr("href")
-  } else {
-    $("#week").addClass("disabled")
-    $("#week").removeAttr("href")
-  }
