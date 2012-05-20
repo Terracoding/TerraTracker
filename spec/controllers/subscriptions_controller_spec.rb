@@ -43,4 +43,8 @@ describe SubscriptionsController do
     end
   end
 
+  context :confirm_subscription do
+    pending "not yet tested"
+  end
+
 end
