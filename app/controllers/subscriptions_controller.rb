@@ -4,8 +4,16 @@ class SubscriptionsController < ApplicationController
   def index
     @subscription = Subscription.find_by_company_id(@current_company.id)
     if @subscription
-      @merchant_subscription = GoCardless::Subscription.find(@subscription.resource_id)
-      Subscription.destroy(current_user.subscription) if !@merchant_subscription
+      begin
+        @merchant_subscription = GoCardless::Subscription.find(@subscription.resource_id)
+      rescue GoCardless::ApiError => e
+        if e.code == 404
+          current_company.subscription.unsubscribe
+          flash.now[:error] = "There was a problem with your subscription. Please contact support for further information."
+        else
+          flash.now[:error] = e.to_s
+        end
+      end
     end
     @plans = Plan.find(:all)
     @project_disabled = current_company.plan.project_count >= current_company.projects.count
@@ -33,7 +41,7 @@ class SubscriptionsController < ApplicationController
         flash[:notice] = "You have successfully subscribed to the #{@current_company.plan.title.capitalize} plan."
       end
     rescue GoCardless::ApiError => e
-      flash[:error] = e
+      flash[:error] = e.to_s
     end
   end
 
