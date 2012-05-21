@@ -1,5 +1,5 @@
 .timeslips-group
-  .btn-group
+  .btn-group#date-select
     = link_to timeslips_date_path((@date - @difference).year,(@date - @difference).month,(@date - @difference).day, :view => params["view"]), :class => "btn" do
       %i.icon-chevron-left
     = link_to timeslips_path, :class => "btn", :id => "datepicker", "data-date" => @date, "data-date-format" => "yyyy-mm-dd" do
@@ -9,9 +9,9 @@
         = "#{@timeslips.keys.first} - #{@timeslips.keys.last}"
     = link_to timeslips_date_path((@date + @difference).year,(@date + @difference).month,(@date + @difference).day, :view => params[:view]), :class => "btn" do
       %i.icon-chevron-right
-  .btn-group
-    = link_to "Entire Week", timeslips_date_path(@date.year, @date.month, @date.day), :class => "btn", :id => "week"
-    = link_to "Single Day", timeslips_date_path(@date.year, @date.month, @date.day, :view => "day"), :class => "btn", :id => "day"
+  .btn-group#range-select
+    = link_to "Day", timeslips_date_path(@date.year, @date.month, @date.day, :view => "day"), :class => "btn", :id => "day"
+    = link_to "Week", timeslips_date_path(@date.year, @date.month, @date.day), :class => "btn", :id => "week"
 
 :javascript
   $("#datepicker").datepicker({ dateFormat: "yyyy/mm/dd" }).on('changeDate', function(ev) {

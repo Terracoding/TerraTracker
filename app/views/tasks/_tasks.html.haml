@@ -1,7 +1,6 @@
 %table.table.table-striped
   %thead
     %tr
-      %th ID
       %th Project Name
       %th Task Name
       %th Billable
@@ -9,7 +8,6 @@
       %th 
   - @tasks.each do |p|
     %tr{ :id => p.id}
-      %td= p.id
       %td= p.project.name
       %td= p.name
       %td= p.billable ? "Yes" : "No"

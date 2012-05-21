@@ -1,25 +1,27 @@
-%ul{ :class => "nav nav-list" }
-  %li.nav-header Navigation
-  %li
-    = link_to dashboard_index_path do
-      %i.icon-home
-      Dashboard
-    - if current_user
-      - if !current_user.sub_account
-        = link_to company_index_path do
-          %i.icon-user
-          Company
-      - if current_user.company && !current_user.sub_account
-        = link_to projects_path do
-          %i.icon-th-list
-          Projects
-      - if current_user.company && ((current_user.company.projects.count > 0 && !current_user.sub_account) || current_user.company.tasks_count > 0)
-        = link_to tasks_path do
-          %i.icon-ok
-          Tasks
-        = link_to "/timeslips/#{Date.today.year}/#{Date.today.month}/#{Date.today.day}" do
-          %i.icon-time
-          Timeslips
-        = link_to reports_path do
-          %i.icon-folder-open
-          Reports
+.title-area
+  %h1 Navigation
+.area
+  %ul{ :class => "nav nav-list" }
+    %li
+      = link_to dashboard_index_path do
+        %i.icon-home
+        Dashboard
+      - if current_user
+        - if !current_user.sub_account
+          = link_to company_index_path do
+            %i.icon-user
+            Company
+        - if current_user.company && !current_user.sub_account
+          = link_to projects_path do
+            %i.icon-th-list
+            Projects
+        - if current_user.company && ((current_user.company.projects.count > 0 && !current_user.sub_account) || current_user.company.tasks_count > 0)
+          = link_to tasks_path do
+            %i.icon-ok
+            Tasks
+          = link_to "/timeslips/#{Date.today.year}/#{Date.today.month}/#{Date.today.day}" do
+            %i.icon-time
+            Timeslips
+          = link_to reports_path do
+            %i.icon-folder-open
+            Reports

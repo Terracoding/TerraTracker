@@ -1,19 +1,20 @@
 - content_for(:title, 'Payments')
 .row
   .span2
-    .area= render :partial => "shared/account_sidebar"
+    = render :partial => "shared/account_sidebar"
   .span9
+    .title-area
+      %h1 Plans & Upgrades
     .area
       - if !@current_company
         %div.alert{ :class => twitterized_type(:error) }
           %a.close{ "data-dismiss" => "alert" } x
           You have not set up your company.
-      %h1 Plans & Upgrades
       %h4= "#{@current_company.plan.title.capitalize} Account"
       %p= "You are allowed #{@current_company.plan.project_count} projects and #{@current_company.plan.user_count} users."
-      %hr
+    .title-area
+      %h1 Available Plans
+    .area
       .subscriptions
-        %h3 Available Plans
-        %br
         - @plans.each do |plan|
           = render :partial => "subscriptions/plan", :locals => { :plan => plan }

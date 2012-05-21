@@ -1,10 +1,11 @@
 - content_for(:title, 'Tasks')
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area#tasks
+    .title-area
       %h1 Tasks
+    .area#tasks
       = render :partial => "tasks/tasks"
       %p
         - if !current_user.sub_account

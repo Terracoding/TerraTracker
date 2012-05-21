@@ -1,10 +1,11 @@
 - content_for(:title, 'Timeslips')
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area#timeslips
+    .title-area
       %h1 Timeslips
+    .area#timeslips
       = render :partial => "date_pagination"
       %br
       %table.table.table-striped

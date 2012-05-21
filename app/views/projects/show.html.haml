@@ -1,10 +1,11 @@
 - content_for(:title, @project.name)
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area
+    .title-area
       %h1= "#{@project.name} (#{@project.status})"
+    .area
       %p
         = link_to projects_path, :class => "btn" do
           %i.icon-th-list
@@ -20,8 +21,9 @@
       = render :partial => "tasks/tasks"
       - if !@project.archived
         = link_to "Add Task", new_task_path, :class => 'btn btn-primary'
-      %hr
-      %h3 Users
+    .title-area
+      %h1 Users
+    .area
       - if @project.project_users.count > 0
         = render :partial => "project_users/project_users"
       - else

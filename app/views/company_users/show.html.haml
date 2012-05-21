@@ -1,12 +1,13 @@
 - content_for(:title, 'Company User')
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area
+    .title-area
       %h1
         = "#{@user.firstname} #{@user.lastname}"
         = @user.company_admin ? "(Admin)" : nil
+    .area
       %h3 Role
       %p= @user.owns_company ? "Management" : "User"
       %h3 Email

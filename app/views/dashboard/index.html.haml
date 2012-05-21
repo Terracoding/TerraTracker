@@ -1,14 +1,15 @@
 - content_for(:title, 'Dashboard')
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
+    .title-area
+      %h1 Dashboard
     .area
       - if !@current_company
         %div.alert{ :class => twitterized_type(:error) }
           %a.close{ "data-dismiss" => "alert" } x
           You have not set up your company.
-      %h1 Dashboard
       %p= "#{current_user.firstname}, welcome to your Dashboard."
       - if @current_company
         %dl.dl-horizontal
@@ -19,8 +20,9 @@
           %dt Plan:
           %dd= "#{@current_company.plan.title.capitalize} Account"
     - if @projects
+      .title-area
+        %h1 Projects
       .area
-        %h2 Projects
         %table.table.table-striped
           %thead
             %tr
@@ -39,8 +41,9 @@
                     %i.icon-search
                     Show
     - if @recent_timeslips
+      .title-area
+        %h1 Recent Timeslips
       .area
-        %h2 Recent Timeslips
         %table.table.table-striped
           %thead
             %tr

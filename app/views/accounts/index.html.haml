@@ -1,14 +1,15 @@
 - content_for(:title, 'Account')
 .row
   .span2
-    .area= render :partial => "shared/account_sidebar"
+    = render :partial => "shared/account_sidebar"
   .span9
+    .title-area
+      %h1 Account
     .area
       - if !@current_company
         %div.alert{ :class => twitterized_type(:error) }
           %a.close{ "data-dismiss" => "alert" } x
           You have not set up your company.
-      %h1 Account
       %h4 Name
       %p= "#{current_user.firstname} #{current_user.lastname}"
       %h4 Email

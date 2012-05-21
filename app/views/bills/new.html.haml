@@ -1,10 +1,11 @@
 - content_for(:title, 'New Bill')
 .row
   .span2
-    .area= render :partial => "shared/bills_sidebar"
+    = render :partial => "shared/bills_sidebar"
   .span9
-    .area
+    .title-area
       %h1 Create Bill
+    .area
       = simple_form_for(@bill, :url => @bill, :html => {:class => 'form-horizontal' }) do |f|
         = f.input :reference_id, :autofocus => true, :label => 'Reference'
         = f.input :bill_date, :as => :string, :input_html => { :value => @bill.bill_date.strftime("%d/%m/%Y") }

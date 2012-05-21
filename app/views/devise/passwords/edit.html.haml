@@ -1,7 +1,8 @@
 - content_for(:title, 'Change Password')
 .session-form
+  .title-area
+    %h1 Change your password
   .area
-    %h2 Change your password
     = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
       = f.error_notification
       = f.input :reset_password_token, :as => :hidden

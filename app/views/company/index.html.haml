@@ -1,15 +1,15 @@
 - content_for(:title, 'Company')
 .row
   .span2
-    .area
-      = render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
+    .title-area
+      %h1 Company Overview
     .area
       - if !@current_company
         %div.alert{ :class => twitterized_type(:error) }
           %a.close{ "data-dismiss" => "alert" } x
           You have not set up your company.
-      %h1 Company Overview
       - if !@current_company 
         %p Click here to create your company.
         = render 'form'
@@ -29,6 +29,7 @@
           %a.btn.btn-primary{ :href => edit_company_path(@current_company) }
             %i.icon-pencil.icon-white
             Edit Company
-        %hr
-        %h2 Company Users
-        = render :partial => "company/company_users"
+    .title-area
+      %h1 Company Users
+    .area
+      = render :partial => "company/company_users"

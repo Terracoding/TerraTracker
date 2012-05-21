@@ -1,9 +1,9 @@
 - content_for(:title, "View Bill")
 .row
   .span2
-    .area= render :partial => "shared/bills_sidebar"
+    = render :partial => "shared/bills_sidebar"
   .span9
-    .area
+    .title-area
       %h1
         Bill
         - if @bill.paid
@@ -12,6 +12,7 @@
           %span.label.label-important Overdue
         - else
           %span.label.label-warning Unpaid
+    .area
       .well
         %p= "Reference: "+@bill.reference_id
         %p= "Comment: "+@bill.comment

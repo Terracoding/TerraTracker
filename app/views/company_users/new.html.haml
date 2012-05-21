@@ -1,10 +1,11 @@
 - content_for(:title, 'New Company User')
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area
+    .title-area
       %h1 Create Company User
+    .area
       = simple_form_for(@user, :url => company_users_path(@user), :html => {:class => 'form-horizontal' }) do |f|
         - if @user.errors[:base].any?
           %div.alert{ :class => twitterized_type(:error) }

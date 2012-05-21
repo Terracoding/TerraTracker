@@ -1,10 +1,11 @@
 - content_for(:title, 'Generated Report')
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area
+    .title-area
       %h1= "Timesheet for #{@report.user}"
+    .area
       %table.table.table-striped
         %thead
           %tr
@@ -21,6 +22,7 @@
             %td= t.comment
             %td= number_with_precision(t.hours, :precision => 2)
       %h4= "Total Hours: #{@total_hours}"
+      %hr
       = simple_form_for "report", :url => view_report_reports_path(@report), :html => { :class => 'form-horizontal', :target => "_blank" } do |f|
         = f.hidden_field :timeframe, :value => @report.timeframe
         = f.hidden_field :project_id, :value => @report.project_id

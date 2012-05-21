@@ -1,10 +1,11 @@
 - content_for(:title, 'Edit Timeslip')
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area
+    .title-area
       %h1 Edit Timeslip
+    .area
       = simple_form_for(@timeslip, :url => @timeslip, :html => {:class => 'form-horizontal' }) do |f|
         .control-group= f.input :date, :as => :string, :input_html => { :value => @timeslip.date.strftime("%d/%m/%Y") }
         .control-group= f.association :project, :required => true, :collection => @projects, :include_blank => false, :label => 'Project'

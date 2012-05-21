@@ -1,20 +1,19 @@
 - content_for(:title, 'Projects')
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area#projects
+    .title-area
       %h1 Projects
+    .area#projects
       %table.table.table-striped
         %thead
           %tr
-            %th ID
             %th Project Name
             %th Status
             %th 
         - @projects.each do |p|
           %tr{ :id => p.id }
-            %td= p.id
             %td= p.name
             %td
               - if p.status == "Active"

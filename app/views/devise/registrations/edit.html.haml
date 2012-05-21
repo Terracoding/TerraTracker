@@ -1,11 +1,11 @@
 - content_for(:title, 'Edit Account')
 .row
   .span2
-    .area= render :partial => "shared/account_sidebar"
+    = render :partial => "shared/account_sidebar"
   .span9
+    .title-area
+      %h1 Edit Profile
     .area
-      %h2
-        Edit Profile
       = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f|
         = f.error_notification
         .inputs
@@ -18,5 +18,7 @@
         .actions
           = f.button :submit, "Update", :class => 'btn btn-primary'
           = link_to "Back", :back, :class => 'btn'
-      %h3 Cancel my account
+    .title-area
+      %h1 Cancel my account
+    .area
       = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger'

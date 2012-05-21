@@ -1,10 +1,11 @@
 - content_for(:title, 'Reports')
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area
+    .title-area
       %h1 Reports
+    .area
       %p Here you can create your time tracking reports.
       = simple_form_for @report, :url => generate_report_reports_path, :html => {:class => 'form-horizontal'} do |f|
         .control-group

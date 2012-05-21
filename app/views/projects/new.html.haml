@@ -6,10 +6,11 @@
       = msg
 .row
   .span2
-    .area= render :partial => "shared/sidebar"
+    = render :partial => "shared/sidebar"
   .span9
-    .area
+    .title-area
       %h1 Create Project
+    .area
       = simple_form_for(@project, :url => @project, :html => { :class => 'form-horizontal' }) do |f|
         = f.input :name, :required => true, :autofocus => true, :label => 'Project Name'
         = f.input :status, :collection => @project.available_statuses, :selected => @project.available_statuses[0], :include_blank => false
