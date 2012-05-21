@@ -1,8 +1,8 @@
 %ul{ :class => "nav nav-list" }
   %li.nav-header Navigation
   %li
-    %a{ :href => dashboard_index_path }
-      %i{ :class => "icon-home" }
+    = link_to dashboard_index_path do
+      %i.icon-home
       Dashboard
     - if current_user
       - if !current_user.sub_account
