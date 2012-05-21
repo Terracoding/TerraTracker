@@ -64,6 +64,7 @@ describe ReportsController do
       @sub_user = FactoryGirl.create(:user, :company => @company, :sub_account => true, :email => "subaccount@example.com")
       @project = FactoryGirl.create(:project, :company => @company)
       @task = FactoryGirl.create(:task, :project_id => @project.id)
+      @timeslip = FactoryGirl.create(:timeslip, :project => @project, :task => @task, :user => @user)
       sign_in @user
     end
 
@@ -73,6 +74,13 @@ describe ReportsController do
     end
 
     it "should generate a pdf" do
+      post :view_report, :report => { :user_id => @user.id, :task_id => @task.id, :project_id => @project.id }
+      response.should be_successful
+    end
+
+    it "should generate a pdf with an image" do
+      @company.image = File.new(Rails.root + 'spec/fixtures/images/logo.png')
+      @company.save
       post :view_report, :report => { :user_id => @user.id, :task_id => @task.id, :project_id => @project.id }
       response.should be_successful
     end
