@@ -70,14 +70,14 @@ describe DatePagination do
 
       it "shouldn't contain the timeslip in another date hash" do
         dates = date_paginate(@timeslips)
-        date_string = Date.yesterday.strftime("%A %e %b %Y")
-        dates[date_string].count.should == 0
+        date_string = Date.tomorrow.strftime("%A %e %b %Y")
+        dates[date_string].should_not == [@timeslip]
       end
 
       it "should include the timeslip when it's in the current week" do
         dates = date_paginate(@timeslips, { :date => Date.yesterday })
         date_string = Date.today.strftime("%A %e %b %Y")
-        dates[date_string].count.should == 1
+        dates[date_string].should_not == [@timeslip]
       end
     end
 
