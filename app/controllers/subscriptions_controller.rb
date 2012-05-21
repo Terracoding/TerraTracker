@@ -48,21 +48,25 @@ class SubscriptionsController < ApplicationController
   def cancel
     @subscription = Subscription.find_by_company_id(@current_company.id)
     if @subscription
-      s = GoCardless::Subscription.find(@subscription.resource_id)
-      if s.cancel!
-        @subscription.delete
-        @current_company.update_attribute(:plan, Plan.find(1))
-        project_limit = Plan.find(1).project_count
-        projects = @current_company.projects.where(:archived => false)
-        counter = 0
-        projects.each do |project|
-          if !project.archived
-            counter += 1
-            project.archived = true if counter > project_limit
-            project.save
+      begin
+        s = GoCardless::Subscription.find(@subscription.resource_id)
+        if s.cancel!
+          @subscription.delete
+          @current_company.update_attribute(:plan, Plan.find(1))
+          project_limit = Plan.find(1).project_count
+          projects = @current_company.projects.where(:archived => false)
+          counter = 0
+          projects.each do |project|
+            if !project.archived
+              counter += 1
+              project.archived = true if counter > project_limit
+              project.save
+            end
           end
+          flash[:notice] = "You have cancelled your subscription!"
         end
-        flash[:notice] = "You have cancelled your subscription!"
+      rescue GoCardless::ApiError => e
+        flash[:error] = e.to_s
       end
     end
     redirect_to subscriptions_path
