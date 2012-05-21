@@ -2,7 +2,7 @@
   .btn-group
     = link_to timeslips_date_path((@date - @difference).year,(@date - @difference).month,(@date - @difference).day, :view => params["view"]), :class => "btn" do
       %i.icon-chevron-left
-    = link_to timeslips_path, :class => "btn" do
+    = link_to timeslips_path, :class => "btn", :id => "datepicker", "data-date" => @date, "data-date-format" => "yyyy-mm-dd" do
       - if params[:view] == "day"
         = "#{@date.strftime("%A %e %b %Y")}"
       - else
@@ -14,6 +14,14 @@
     = link_to "Single Day", timeslips_date_path(@date.year, @date.month, @date.day, :view => "day"), :class => "btn", :id => "day"
 
 :javascript
+  $("#datepicker").datepicker({ dateFormat: "yyyy/mm/dd" }).on('changeDate', function(ev) {
+    $("#datepicker").datepicker('hide');
+    var date = new Date(ev.date);
+    if ("#{params[:view]}" == "day") {
+      var ending = "?view=day";
+    }
+    window.location = "#{timeslips_path}" + "/" + date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + ending;
+  });
   var view = "#{params[:view]}"
   if (view == "day") {
     $("#day").addClass("disabled")
