@@ -2,7 +2,7 @@ class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!, :redirect_sub_account, :get_company
 
   def index
-    @subscription = Subscription.find_by_company_id(@current_company.id)
+    @subscription = Subscription.find_by_company_id(current_company.id)
     if @subscription
       begin
         @merchant_subscription = GoCardless::Subscription.find(@subscription.resource_id)
