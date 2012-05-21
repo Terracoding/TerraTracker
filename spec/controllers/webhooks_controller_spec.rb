@@ -68,6 +68,17 @@ describe WebhooksController do
         Subscription.all.count.should == 0
       end
 
+      it "should archive projects over the limit" do
+        company = FactoryGirl.create(:company)
+        subscription = FactoryGirl.create(:subscription, :company_id => company.id)
+        FactoryGirl.create(:project, :company => company)
+        FactoryGirl.create(:project, :company => company)
+        plan = FactoryGirl.create(:plan, :project_count => 1)
+        Plan.stub(:find).and_return(plan)
+        post :receive_payload, :format => :json, :payload => { :action => "cancelled", :subscriptions => [{ :id => 10, :status => "cancelled"}]}
+        Project.where(:company_id => company.id, :archived => true).count.should == 1
+      end
+
       it "should change the company plan to free" do
         plan = FactoryGirl.create(:plan, :title => "Expensive")
         company = FactoryGirl.create(:company, :plan_id => plan.id)
