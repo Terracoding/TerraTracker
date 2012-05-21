@@ -2,7 +2,7 @@
 .row
   .span2
     = render :partial => "shared/sidebar"
-  .span9
+  .span9#projects
     .title-area
       %h1= "#{@project.name} (#{@project.status})"
     .area
@@ -11,7 +11,7 @@
           %i.icon-th-list
           View All Projects
         - if !@project.archived
-          = link_to edit_project_path(@project), :class => "btn" do
+          = link_to edit_project_path(@project), :remote => true, :class => "btn" do
             %i.icon-pencil
             Edit Project
         = link_to @project, :confirm => "Are you sure?", :method => :delete, :class => "btn btn-danger" do
@@ -20,7 +20,7 @@
       %h3 Tasks
       = render :partial => "tasks/tasks"
       - if !@project.archived
-        = link_to "Add Task", new_task_path, :class => 'btn btn-primary'
+        = link_to "Add Task", new_task_path, :remote => true, :class => 'btn btn-primary'
     .title-area
       %h1 Users
     .area
