@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
   validate :check_user_limit
+  validates_presence_of :current_password, :email
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :owns_company, :company, :company_admin
-
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :owns_company, :company, :company_admin, :current_password
   belongs_to :company
   has_many :project_users, :dependent => :destroy
   has_many :projects, :through => :project_users

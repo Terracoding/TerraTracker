@@ -8,16 +8,14 @@
     .area
       = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f|
         = f.error_notification
-        .inputs
-          .control-group= f.input :firstname, :required => true, :autofocus => true, :label => 'First Name'
-          .control-group= f.input :lastname, :required => true, :label => 'Last Name'
-          .control-group= f.input :email, :required => true
-          .control-group= f.input :password, :hint => "leave it blank if you don't want to change it", :required => false
-          .control-group= f.input :password_confirmation, :required => false
-          .control-group= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
-        .actions
-          = f.button :submit, "Update", :class => 'btn btn-primary'
-          = link_to "Back", :back, :class => 'btn'
+        .control-group= f.input :firstname, :required => true, :autofocus => true, :label => 'First Name'
+        .control-group= f.input :lastname, :required => true, :label => 'Last Name'
+        .control-group= f.input :email
+        .control-group= f.input :password, :hint => "Leave it blank if you don't want to change it"
+        .control-group= f.input :password_confirmation
+        .control-group= f.input :current_password, :hint => "We need your current password to confirm your changes"
+        = f.button :submit, "Update", :class => 'btn btn-primary'
+        = link_to "Back", accounts_path, :class => 'btn'
     .title-area
       %h1 Cancel my account
     .area
