@@ -17,8 +17,9 @@
   $("#datepicker").datepicker({ dateFormat: "yyyy/mm/dd" }).on('changeDate', function(ev) {
     $("#datepicker").datepicker('hide');
     var date = new Date(ev.date);
+    var ending = "";
     if ("#{params[:view]}" == "day") {
-      var ending = "?view=day";
+      ending = "?view=day";
     }
     window.location = "#{timeslips_path}" + "/" + date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + ending;
   });
