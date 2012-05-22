@@ -1,14 +1,12 @@
 %table.table.table-striped
   %thead
     %tr
-      %th ID
       %th First Name
       %th Last Name
       %th Email
       %th 
   - @project.project_users.each do |p|
     %tr
-      %td= p.id
       %td= p.user.firstname
       %td= p.user.lastname
       %td= p.user.email
