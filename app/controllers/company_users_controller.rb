@@ -12,7 +12,7 @@ class CompanyUsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.company = @current_company
-    @user.sub_account = true
+    @user.sub_account = true if !@user.owns_company
     @user.company_admin = false
     if @user.save
       redirect_to company_index_path, :notice => "You have successfully added #{@user.firstname} #{@user.lastname} to your company."
