@@ -6,6 +6,7 @@ spec
 coverage
 log
 public/system
+public/assets
 vendor
 tmp
 features
