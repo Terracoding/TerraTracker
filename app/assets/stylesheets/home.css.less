@@ -1,0 +1,53 @@
+@import "bootstrap_and_overrides.css.less";
+.home-body {
+  @bodyBackground: #FFF;
+	background-image: url("bg.png");
+}
+.home {
+	.container {
+		background: #f6f6f6;
+		.box-shadow(0 1px 5px #DCDCDC);
+	  .border-radius(0 0 5px 5px);
+		border: 1px solid #D6D6D6;
+	}
+	.head {
+		background: #FFF;
+		text-align: center;
+		padding: 20px 20px 20px 20px;
+		border: 1px solid #e1e1e1;
+		border-width: 0 0 1px 0;
+		p {
+			font-weight: 300;
+			font-size: 17px;
+			margin-left: 10px;
+		}
+	}
+	.main {
+		background: #FFF;
+		padding: 30px;
+		margin: 30px;
+		border: 1px solid #e1e1e1;
+		.box-shadow(0 1px 5px #EBEBEB);
+		h1 {
+		  margin-bottom: 25px;
+		}
+		p {
+			font-size: 15px;
+			line-height: 22px;
+			padding: 2px 0px;
+		}
+		.description {
+			padding: 20px 0 10px 0;
+		}
+		hr.soften {
+			margin: 20px;
+		}
+		.bottom {
+			text-align: center;
+		}
+	}
+	footer {
+		font-weight: normal;
+		color: #717171;
+	}
+}
