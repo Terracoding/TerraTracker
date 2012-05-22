@@ -13,7 +13,7 @@
         .control-group= f.input :email
         .control-group= f.input :password, :hint => "Leave it blank if you don't want to change it"
         .control-group= f.input :password_confirmation
-        .control-group= f.input :current_password, :hint => "We need your current password to confirm your changes"
+        .control-group= f.input :current_password, :hint => "We need your current password to confirm your changes", :required => true
         = f.button :submit, "Update", :class => 'btn btn-primary'
         = link_to "Back", accounts_path, :class => 'btn'
     .title-area

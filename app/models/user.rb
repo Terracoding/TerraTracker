@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  validate :check_user_limit
+  validate :check_user_limit, :on => :create
   validates_presence_of :email
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
