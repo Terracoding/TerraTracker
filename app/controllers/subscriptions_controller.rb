@@ -15,7 +15,7 @@ class SubscriptionsController < ApplicationController
         end
       end
     end
-    @plans = Plan.find(:all)
+    @plans = Plan.where("value > 0")
     @project_disabled = current_company.plan.project_count >= current_company.projects.count
     @user_disabled = current_company.plan.user_count >= current_company.users.count
   end
