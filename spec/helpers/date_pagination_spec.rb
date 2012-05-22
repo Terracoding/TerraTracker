@@ -77,7 +77,7 @@ describe DatePagination do
       it "should include the timeslip when it's in the current week" do
         dates = date_paginate(@timeslips, { :date => Date.yesterday })
         date_string = Date.today.strftime("%A %e %b %Y")
-        dates[date_string].should_not == [@timeslip]
+        dates[date_string].should == [@timeslip]
       end
     end
 

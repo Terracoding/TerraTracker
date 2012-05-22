@@ -26,7 +26,7 @@ describe SubscriptionsController do
   context :index do
     before :each do
       @company = FactoryGirl.create(:company)
-      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true, :sub_account => false, :company_admin => true)
       sign_in @user
     end
 
@@ -59,7 +59,7 @@ describe SubscriptionsController do
   context :confirm_subscription do
     before :each do
       @company = FactoryGirl.create(:company)
-      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true, :sub_account => false, :company_admin => true)
       @plan = FactoryGirl.create(:plan, :title => "New Plan", :value => 100)
       @confirmation = MockConfirmation.new
       sign_in @user
@@ -95,7 +95,7 @@ describe SubscriptionsController do
   context :cancel do
     before :each do
       @company = FactoryGirl.create(:company)
-      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true, :sub_account => false, :company_admin => true)
       @subscription = FactoryGirl.create(:subscription, :company => @company)
       sign_in @user
     end

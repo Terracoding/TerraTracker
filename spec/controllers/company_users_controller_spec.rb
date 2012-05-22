@@ -22,7 +22,7 @@ describe CompanyUsersController do
     end
 
     it "should create the company user" do
-      company_user = FactoryGirl.create(:user, :email => "subaccount@example.com", :company => @company, :sub_account => true)
+      company_user = FactoryGirl.create(:user, :email => "subaccount@example.com", :company => @company, :owns_company => false, :sub_account => true, :company_admin => false)
       User.stub(:new) { company_user }
       post :create, :user => {}
       response.should redirect_to(company_index_path)
