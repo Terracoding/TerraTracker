@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
     redirect_to(dashboard_index_path) if current_user.sub_account
   end
 
+  def redirect_non_admin
+    redirect_to(dashboard_index_path) if !current_user.company_admin
+  end
+
   def redirect_projects
     if current_company.projects.count < 1
       flash[:error] = 'You need to set up a project before you can create a task.'
