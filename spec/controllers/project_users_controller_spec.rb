@@ -48,7 +48,7 @@ describe ProjectUsersController do
   context :destroy do
     before :each do
       @company = FactoryGirl.create(:company)
-      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true)
+      @user = FactoryGirl.create(:user, :company => @company, :owns_company => true, :company_admin => true)
       @sub_account = FactoryGirl.create(:user, :email => 'sub@example.com', :company => @company, :sub_account => true, :company_admin => false, :owns_company => false)
       @project = FactoryGirl.create(:project, :company => @company)
       sign_in @user

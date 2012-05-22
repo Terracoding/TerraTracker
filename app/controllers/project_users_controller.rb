@@ -21,7 +21,7 @@ class ProjectUsersController < ApplicationController
   def destroy
     @project = Project.find(params[:project_id])
     @project_user = ProjectUser.find(params[:id])
-    if @project_user.user.owns_company
+    if @project_user.user.company_admin
       flash[:error] = "You cannot remove a project manager from the project users."
       redirect_to project_path(@project)
     else
