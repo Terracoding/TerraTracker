@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_filter :authenticate_user!, :redirect_sub_account, :get_company, :redirect_non_admin
+  before_filter :authenticate_user!, :redirect_company, :redirect_sub_account, :get_company, :redirect_non_admin
 
   def index
     @subscription = Subscription.find_by_company_id(current_company.id)

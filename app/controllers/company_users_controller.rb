@@ -11,6 +11,7 @@ class CompanyUsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.beta_key = "2873-8299-1726" # Remove on release
     @user.company = @current_company
     @user.sub_account = true if !@user.owns_company
     @user.company_admin = false

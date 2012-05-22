@@ -6,10 +6,16 @@
         %h1 Signup
       .area
         = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal' }) do |f|
+          - if resource.errors[:base].any?
+            %div.alert{ :class => twitterized_type(:error) }
+              %a.close{:href => "#", :"data-dismiss" => "alert"} ×
+              - resource.errors.full_messages.each do |msg|
+                = msg
           = f.input :firstname, :required => true, :autofocus => true, :class => 'input-xlarge', :label => 'First Name'
           = f.input :lastname, :required => true, :class => 'input-xlarge', :label => 'Last Name'
           = f.input :email, :required => true, :class => 'input-xlarge'
           = f.input :password, :required => true, :class => 'input-xlarge'
           = f.input :password_confirmation, :required => true, :class => 'input-xlarge'
+          = f.input :beta_key, :required => true
           = f.button :submit, "Create account", :class => 'btn btn-primary'
         = render :partial => "devise/shared/links"
