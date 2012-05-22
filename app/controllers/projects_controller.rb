@@ -28,8 +28,8 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.company = current_company
-    ProjectUser.create(:project => @project, :user => current_user)
     if @project.save
+      @project_user = ProjectUser.create(:project_id => @project.id, :user_id => current_user.id)
       redirect_to(project_path(@project), :notice => "The project #{@project.name} was successfully created.")
     else
       render :action => "new"
