@@ -36,7 +36,7 @@ Timetracker::Application.routes.draw do
   end
 
   resources :bills
-  resource :support
+  resources :support
 
   root :to => "home#index"
   match 'home/plans' => 'home#plans'
