@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  before_create :check_beta_key
+  #before_create :check_beta_key
   validate :check_user_limit, :on => :create
   validates_presence_of :email
   # Include default devise modules. Others available are:
