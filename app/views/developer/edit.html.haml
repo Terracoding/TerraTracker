@@ -1,0 +1,15 @@
+- content_for(:title, 'New Application')
+.row
+  .span2
+    = render :partial => "shared/developer_sidebar"
+  .span9
+    .title-area
+      %h1 Create Application
+    .area#developers
+      = simple_form_for(@application, :url => developer_path(@application), :html => {:class => 'form-horizontal' }) do |f|
+        = f.input :name
+        = f.input :url, :label => "URL"
+        = f.input :description
+        = f.input :active
+        = f.submit "Update Application", :class => "btn btn-primary"
+        = link_to "Back", developer_index_path, :class => "btn"
