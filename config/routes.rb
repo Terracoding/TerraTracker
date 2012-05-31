@@ -2,7 +2,6 @@ Timetracker::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => :registrations }
 
   resources :dashboard
-
   resources :accounts
 
   resources :subscriptions do
@@ -11,13 +10,13 @@ Timetracker::Application.routes.draw do
   end
 
   resources :company
-
   resources :company_users, :except => [:index, :edit, :update]
 
   resources :projects do
     resources :users, :controller => :project_users
     get :archived, :on => :collection
   end
+
   resources :tasks
 
   resources :timeslips do
@@ -42,4 +41,12 @@ Timetracker::Application.routes.draw do
 
   root :to => "home#index"
   match 'home/plans' => 'home#plans'
+
+  # API
+  # namespace :api do
+  #   namespace :v1 do
+  #     post 'login' => 'users#login' # Login to the application
+  #   end
+  # end
+
 end
