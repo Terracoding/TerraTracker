@@ -37,6 +37,15 @@ describe DeveloperController do
       response.should redirect_to(developer_index_path)
       sign_out @user
     end
+
+    it "should render new if there was an error saving the application" do
+      
+    end
   end
 
+  context :edit do
+    it "should be able to edit applications" do
+      
+    end
+  end
 end
