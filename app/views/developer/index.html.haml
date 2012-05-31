@@ -12,3 +12,31 @@
         %li Create an application
         %li Modify and remove applications
         %li Access the API documentation
+    .title-area
+      %h1 Your Applications
+    .area#developers
+      - if @applications.count < 1
+        %p You currently have no applications.
+      - else
+        %table.table.table-striped#tasks
+          %thead
+            %tr
+              %th Application Name
+              %th Status
+              %th
+          - @applications.each do |application|
+            %tr{ :id => application.id}
+              %td= application.name
+              %td 
+                - if application.active
+                  %span.label.label-success= "Active"
+                - else
+                  %span.label.label-important= "Not active"
+              %td
+                = link_to developer_path(application), :class => "btn" do
+                  Show
+                = link_to edit_developer_path(application), :class => "btn" do
+                  Edit
+                = link_to developer_path(application), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-danger" do
+                  Delete
+      = link_to "Create new application", new_developer_path, :class => "btn btn-primary"

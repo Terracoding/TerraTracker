@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :project_users, :dependent => :destroy
   has_many :projects, :through => :project_users
   has_many :timeslips
+  has_many :developer_applications
   has_one  :subscription
 
   def check_beta_key

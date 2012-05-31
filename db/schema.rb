@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120429223740) do
+ActiveRecord::Schema.define(:version => 20120531124249) do
 
   create_table "bills", :force => true do |t|
     t.integer  "user_id"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(:version => 20120429223740) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "plan_id",             :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "developer_applications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "url"
+    t.text     "description"
+    t.string   "api_key"
+    t.string   "secret_key"
+    t.boolean  "active",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
