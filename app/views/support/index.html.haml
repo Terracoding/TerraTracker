@@ -6,7 +6,12 @@
     .title-area
       %h1 Support
     .area#support
-      %p The contact form will go here
+      %p Contact us if you have any further questions.
+      = simple_form_for(@message, :url => support_path, :html => {:class => 'form-horizontal' }) do |f|
+        = f.input :name
+        = f.input :email
+        = f.input :body
+        = f.submit "Send Message", :class => "btn btn-primary"
     .title-area
       %h1 FAQ
     .area#support

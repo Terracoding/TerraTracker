@@ -37,6 +37,7 @@ Timetracker::Application.routes.draw do
 
   resources :bills
   resources :support
+  match 'support' => 'support#create', :as => 'support', :via => :post
 
   root :to => "home#index"
   match 'home/plans' => 'home#plans'
