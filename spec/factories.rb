@@ -65,4 +65,12 @@ FactoryGirl.define do
     subscribed    1
     merchant_id   11
   end
+
+  factory :developer_application do
+    user
+    name          "test application"
+    url           "http://example.com"
+    description   "test description"
+    active        true
+  end
 end

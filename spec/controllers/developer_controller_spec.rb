@@ -21,4 +21,22 @@ describe DeveloperController do
     end
   end
 
+  context :show do
+    it "should successfully show a developer application" do
+      application = FactoryGirl.create(:developer_application, :user => @user)
+      get :show, :id => application.id
+      response.should be_success
+    end
+  end
+
+  context :create do
+    it "should redirect when saving a new application" do
+      application = FactoryGirl.create(:developer_application, :user => @user)
+      DeveloperApplication.stub(:new) { application }
+      post :create
+      response.should redirect_to(developer_index_path)
+      sign_out @user
+    end
+  end
+
 end
