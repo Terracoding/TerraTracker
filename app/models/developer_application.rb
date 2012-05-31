@@ -4,7 +4,7 @@ class DeveloperApplication < ActiveRecord::Base
   validates :name, :description, :presence => true
   
   def create_keys
-    self.api_key = ActiveSupport::SecureRandom.hex(16)
-    self.secret_key = ActiveSupport::SecureRandom.hex(16)
+    self.api_key = SecureRandom.hex(16)
+    self.secret_key = SecureRandom.hex(16)
   end
 end
