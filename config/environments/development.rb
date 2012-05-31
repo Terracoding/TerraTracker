@@ -28,6 +28,14 @@ Timetracker::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
-  # Devise
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => "25",
+    :authentication => :plain,
+    :user_name      => "app4414374@heroku.com",
+    :password       => "wtfkrwo7"
+  }
+  config.action_mailer.default_url_options = {
+    :host => "terracoding.com"
+  }
 end
