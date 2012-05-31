@@ -55,17 +55,13 @@ module Timetracker
     config.assets.version = '1.0'
     
     config.action_mailer.smtp_settings = {
-      :address => 'smtp.gmail.com',
-      :port => 587,
-      :domain => "terracoding.com",
-      :user_name => "support@terracoding.com",
-      :password => "windgather1!",
-      :authentication => :plain,
-      :enable_starttls_auto => true
+      :address    => 'smtp.sendgrid.net',
+      :user_name  => ENV['SENDGRID_USERNAME'],
+      :password   => ENV['SENDGRID_PASSWORD'],
+      :domain     => ENV['SENDGRID_DOMAIN']
     }
-    
     config.action_mailer.default_url_options = {
-      :host => "support@terracoding.com"
+      :host => ENV['SENDGRID_USERNAME']
     }
   end
 end
