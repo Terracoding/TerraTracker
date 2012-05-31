@@ -35,4 +35,18 @@ class ApplicationController < ActionController::Base
       redirect_to(new_project_path)
     end
   end
+
+  def validate_api_key(api_key, secret_key, user_id)
+    app = DeveloperApplication.find_by_api_key(api_key)
+    if app != nil
+      if User.exists?(user_id)
+        app.secret_key == secret_key && app.user == User.find(user_id) ? true : false
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
 end
