@@ -4,7 +4,12 @@
     = render :partial => "shared/developer_sidebar"
   .span9
     .title-area
-      %h1 Application
+      %h1
+        Application
+        - if @application.active
+          %span.label.label-success= "Active"
+        - else
+          %span.label.label-important= "Not active"
     .area#developers
       %h4 Application Name
       %p= @application.name
@@ -16,6 +21,4 @@
       %p= @application.api_key
       %h4 Secret Key
       %p= @application.secret_key
-      %h4 Active
-      %p= @application.active
       = link_to "Back", developer_index_path, :class => "btn"
