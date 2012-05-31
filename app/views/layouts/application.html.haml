@@ -23,6 +23,7 @@
                 - if current_user.owns_company
                   /%li= link_to "Bills", bills_path
                   %li= link_to "Account", accounts_path
+                  %li= link_to "Developers", developer_index_path
                 %li= link_to "Support", support_index_path
                 %li= link_to "Logout", destroy_user_session_path, :method => :delete
               - else
