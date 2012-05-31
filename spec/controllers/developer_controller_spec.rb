@@ -57,6 +57,18 @@ describe DeveloperController do
     end
   end
 
+  context :edit do
+    before(:each) do
+      @application = FactoryGirl.create(:developer_application, :user => @user)
+    end
+
+    it "should edit the application" do
+      post :edit, :id => @application.id
+      response.should be_success
+      sign_out @user
+    end
+  end
+
   context :update do
     before(:each) do
       @application = FactoryGirl.create(:developer_application, :user => @user)
@@ -73,6 +85,21 @@ describe DeveloperController do
       @application.stub(:update_attributes).and_return(false)
       put :update, :id => @application.id
       response.should render_template(:edit)
+    end
+  end
+
+  context :destroy do
+    before(:each) do
+      @application = FactoryGirl.create(:developer_application, :user => @user)
+      delete :destroy, :id => @application.id
+    end
+
+    it "should redirect to the tasks path" do
+      response.should redirect_to(developer_index_path)
+    end
+
+    it "should show a flash notice" do
+      flash[:notice].should == "The application was successfully removed."
     end
   end
 end
