@@ -35,7 +35,9 @@ Timetracker::Application.routes.draw do
   end
 
   resources :bills
-  resources :support
+  resources :support do
+    get :privacy, :on => :collection
+  end
   match 'support' => 'support#create', :as => 'support', :via => :post
   resources :developer
 
