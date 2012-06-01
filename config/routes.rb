@@ -43,10 +43,10 @@ Timetracker::Application.routes.draw do
   match 'home/plans' => 'home#plans'
 
   # API
-  # namespace :api do
-  #   namespace :v1 do
-  #     post 'login' => 'users#login' # Login to the application
-  #   end
-  # end
+  namespace :api do
+    namespace :v1 do
+      post 'login' => 'users#login'
+    end
+  end
 
 end
