@@ -13,9 +13,8 @@ describe Api::V1::UsersController do
     context :with_api_key do
       it "returns a 200 success" do
         DeveloperApplication.stub!(:exists?).and_return(true)
-        post :login,
-          :format => :json,
-          :authorization => "Token token=\"arbitrary_value\""
+        request.env['HTTP_AUTHORIZATION'] = "Token token=\"arbitrary_value\""
+        post :login, :format => :json
         response.status.should == 200
       end
     end
