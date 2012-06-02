@@ -36,21 +36,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def validate_api_key(api_key, secret_key, account_id)
-    status = false
-    app = DeveloperApplication.find_by_api_key(api_key)
-    if app != nil
-      if User.exists?(account_id)
-        status = true if app.secret_key == secret_key && app.user == User.find(account_id)
-      end
-    end
-    if status
-      return true
-    else
-      respond_to do |format|
-        format.json { render :json => "Unauthorised", :status => 401 }
-      end
-    end
-  end
-
 end
