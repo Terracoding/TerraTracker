@@ -1,5 +1,5 @@
 class DeveloperController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :redirect_sub_account
 
   def index
     @applications = DeveloperApplication.where(:user_id => current_user)
