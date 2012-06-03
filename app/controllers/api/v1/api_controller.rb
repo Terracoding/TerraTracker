@@ -1,5 +1,4 @@
 class Api::V1::ApiController < ApplicationController
-
   before_filter :validate_api_key
 
   private
@@ -9,5 +8,4 @@ class Api::V1::ApiController < ApplicationController
       DeveloperApplication.exists?(api_key: token)
     end
   end
-
 end
