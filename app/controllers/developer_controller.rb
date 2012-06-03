@@ -1,4 +1,5 @@
 class DeveloperController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     @applications = DeveloperApplication.where(:user_id => current_user)
