@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120531124249) do
+ActiveRecord::Schema.define(:version => 20120603202741) do
 
   create_table "bills", :force => true do |t|
     t.integer  "user_id"
@@ -112,6 +112,13 @@ ActiveRecord::Schema.define(:version => 20120531124249) do
     t.decimal  "hours",      :precision => 10, :scale => 2
     t.string   "comment"
     t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tokens", :force => true do |t|
+    t.string   "token"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

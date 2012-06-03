@@ -27,15 +27,24 @@ describe Api::V1::UsersController do
         @user = FactoryGirl.create(:user)
         app = FactoryGirl.create(:developer_application, :user => @user)
         request.env['HTTP_AUTHORIZATION'] = "Token token=\"#{app.api_key}\""
-        post :login, :email => @user.email, :password => 'please', :format => :json
       end
 
       it "should return a 200 success" do
+        post :login, :email => @user.email, :password => 'please', :format => :json
         response.status.should == 200
       end
 
-      it "should return the user account logged in" do
-        response.body.should == @user.to_json
+      it "should return the token for the account logged in" do
+        post :login, :email => @user.email, :password => 'please', :format => :json
+        token = Token.find_by_user_id(@user.id)
+        response.body.should == token.to_json
+      end
+
+      it "should update a current token" do
+        old_token = Token.create(:user_id => @user.id, :token => SecureRandom::hex(16))
+        post :login, :email => @user.email, :password => 'please', :format => :json
+        parsed_body = JSON.parse(response.body)
+        parsed_body["token"].should_not == old_token.token
       end
     end
 

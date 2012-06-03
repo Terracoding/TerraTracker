@@ -8,6 +8,7 @@ describe User do
     it { should have_many(:project_users).dependent(:destroy) }
     it { should have_many(:projects).through(:project_users) }
     it { should have_many(:developer_applications) }
+    it { should have_one(:token) }
   end
   
   context :to_s do

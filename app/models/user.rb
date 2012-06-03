@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :timeslips
   has_many :developer_applications
   has_one  :subscription
+  has_one  :token
 
   def check_beta_key
     if beta_key != "2873-8299-1726"
