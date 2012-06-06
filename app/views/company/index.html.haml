@@ -17,12 +17,12 @@
         %dl.dl-horizontal
           %dt Company Name:
           %dd= @current_company.name
-          %dt Registration Number:
+          %dt Registration ID:
           - if @current_company.registration_number != ""
             %dd= @current_company.registration_number
           - else
             %dd No registration number
-          - if current_user.company.image
+          - if current_user.company.image?
             %dt Logo:
             %dd= image_tag current_user.company.image.url(:logo)
         %p
