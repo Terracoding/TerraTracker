@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  #before_create :check_beta_key
   validate :check_user_limit, :on => :create
   validates_presence_of :email
   # Include default devise modules. Others available are:
@@ -9,8 +8,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :owns_company, :company, :company_admin, :current_password
-  attr_accessor :beta_key
-  attr_accessible :beta_key
   belongs_to :company
   has_many :project_users, :dependent => :destroy
   has_many :projects, :through => :project_users
@@ -18,13 +15,6 @@ class User < ActiveRecord::Base
   has_many :developer_applications
   has_one  :subscription
   has_one  :token
-
-  def check_beta_key
-    if beta_key != "2873-8299-1726"
-      self.errors[:base] << "The BETA key you have entered is incorrect."
-      return false
-    end
-  end
 
   def to_s
     "#{firstname} #{lastname}"
