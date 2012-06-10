@@ -10,35 +10,31 @@
       = simple_form_for(@message, :url => support_path, :html => {:class => 'form-horizontal' }) do |f|
         = f.input :name
         = f.input :email
-        = f.input :body
+        = f.input :body, :label => "Message"
         = f.submit "Send Message", :class => "btn btn-primary"
     .title-area
       %h1 FAQ
     .area#support
       %h3 How do I create a company
-      %p Answer
+      %p Start off by visiting the 'Company' link in the sidebar. This will provide you with the steps required to set up your company details.
       %h3 How do I add users to my company
-      %p Answer
-      %h3 How do I organise who gets to access which projects?
-      %p Answer
+      %p Visit the 'Company' link in the sidebar and then click 'Add User'. You may add users who are in management (have access to updating projects, tasks and users), or users who will only have access to the projects and tasks they have been assigned.
       %h3 How do I create a project
-      %p Answer
+      %p Visit the 'Projects' page and click 'Add Project'. This allows you to create a project with a name and the current status of the project.
+      %h3 How do I organise who gets to access which projects?
+      %p One you have created a project you can add a 'Project User'. This gives the user access to the projects and tasks so they can start adding in their time.
       %h3 How do I create tasks
-      %p Answer
+      %p In the project screen, just click 'Add Task'. When you add a task you can select the project, the task name, if it is billable and the rate at which the task is worth.
       %h3 How do I create a timeslip
-      %p Answer
-      %h3 How do I view timeslips
-      %p Answer
+      %p Once you have a project and a task set up with your company, just visit the 'Timeslips' page and click 'Add Timeslip'. You will be given a form where you can select the date of the timeslip, the project, task, user, comment and the amount of time taken to complete the timeslip.
       %h3 How do I search for timeslips
       %p Coming soon...
-      %h3 How do I export time sheets?
-      %p Coming soon...
+      %h3 How do I export timesheets?
+      %p When you have timeslips ready to be exported, you can click on 'Reports' from the sidebar and then select the user/task/timeframe/project and then click 'Generate Report'. This gives you a PDF that you can use for sending along with invoices or saving for your own personal use.
       %h3 A user is already on TimeTracker but I can't add them, how do I do this?
       %p Coming soon...
       %h3 What happens if I want to invite a user to my company?
       %p This is not yet implemented. We will be adding an invitation system where they user may sign up and add their own password upon selecting the invitation.
-      %h3 The subscriptions and plans don't fit to my company size, what can I do?
-      %p Answer
       %h3 Is their a mobile application being released for TimeTracker? (iOS, Android, etc.)
       %p Coming soon...
       %h3 Do you have a privacy policy?
