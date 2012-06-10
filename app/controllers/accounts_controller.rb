@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_filter :authenticate_user!, :redirect_sub_account, :get_company
+  before_filter :authenticate_user!, :get_company
 
   def index
 

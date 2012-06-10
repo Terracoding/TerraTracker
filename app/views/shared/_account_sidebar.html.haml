@@ -6,7 +6,8 @@
       %a{ :href => accounts_path }
         %i{ :class => "icon-home" }
         My Account
-    %li
-      %a{ :href => subscriptions_path }
-        %i{ :class => "icon-asterisk" }
-        Payments
+    - if current_user.owns_company
+      %li
+        %a{ :href => subscriptions_path }
+          %i{ :class => "icon-asterisk" }
+          Payments
