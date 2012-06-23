@@ -20,7 +20,7 @@
       %h3 Tasks
       = render :partial => "tasks/tasks"
       - if !@project.archived
-        = link_to "Add Task", new_task_path, :remote => true, :class => 'btn btn-primary'
+        = link_to "Add Task", new_project_task_path(@project), :remote => true, :class => 'btn btn-primary'
     .title-area
       %h1 Users
     .area
