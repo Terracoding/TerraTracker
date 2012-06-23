@@ -24,6 +24,8 @@
       %h4= "Total Hours: #{@total_hours}"
       %hr
       = simple_form_for "report", :url => view_report_reports_path(@report), :html => { :class => 'form-horizontal', :target => "_blank" } do |f|
+        = f.hidden_field :start_date, :value => @report.start_date
+        = f.hidden_field :end_date, :value => @report.end_date
         = f.hidden_field :timeframe, :value => @report.timeframe
         = f.hidden_field :project_id, :value => @report.project_id
         = f.hidden_field :task_id, :value => @report.task_id

@@ -16,7 +16,7 @@ class ReportGenerator < Prawn::Document
 
   def display_header
     fill_color "000000"
-    if @current_user.company.image.path(:thumb)
+    if @current_user.company.image?
       image @current_user.company.image.path(:thumb)
     else
       text @report.company.name, size: 24, style: :bold, :align => :left
