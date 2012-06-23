@@ -6,6 +6,7 @@ Timetracker::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => :registrations }
 
   resources :dashboard
+  resources :features, :only => :index
   resources :accounts
 
   resources :subscriptions do

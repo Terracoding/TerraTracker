@@ -14,10 +14,12 @@
           %td
             .thumbnail= image_tag("screen3.png")
             %p Analyse time and create reports
+      = link_to "See Features", features_path, :class => "btn btn-success btn-large"
 .main
   .area
     %p TerraTimer makes this simple by giving the ability to record expenses and have them turned into PDFs along with the company name, personal details and other information.
-    %p= link_to "See Plans & Pricing", home_plans_path, :class => "btn btn-success"
+    %hr.soften
+    %p= link_to "See Plans & Pricing", home_plans_path, :class => "btn btn-success btn-large"
   %hr.soften
   .bottom
     - if current_user
