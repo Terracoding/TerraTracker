@@ -3,6 +3,8 @@ class Plan < ActiveRecord::Base
 
   has_many :companies
 
+  default_scope { where(:hidden => false) }
+
   def generate_new_url
     GoCardless.new_subscription_url(
       :amount => self.value,
