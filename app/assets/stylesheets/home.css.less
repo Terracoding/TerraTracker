@@ -1,21 +1,17 @@
 @import "bootstrap_and_overrides.css.less";
 .home-body {
-  @bodyBackground: #FFF;
-	background-image: url("bg.png");
+	background-image: none;
+	background: #242424;
+	color: #FCFCFC;
+	text-shadow: 0px 1px #000;
 }
 .home {
 	.container {
-		background: #f6f6f6;
-		.box-shadow(0 1px 5px #DCDCDC);
-	  .border-radius(0 0 5px 5px);
-		border: 1px solid #D6D6D6;
+		background: #323232;
 	}
 	.head {
-		background: #FFF;
 		text-align: center;
 		padding: 20px 20px 20px 20px;
-		border: 1px solid #e1e1e1;
-		border-width: 0 0 1px 0;
 		p {
 			font-weight: 300;
 			font-size: 17px;
@@ -23,11 +19,13 @@
 		}
 	}
 	.main {
-		background: #FFF;
+	  max-width: 1000px;
+    margin: 30px auto 30px auto;
+    background: #373737;
 		padding: 30px;
-		margin: 30px;
-		border: 1px solid #e1e1e1;
-		.box-shadow(0 1px 5px #EBEBEB);
+		border: 1px solid #3E3E3E;
+		.border-radius(5px);
+		.box-shadow(0 1px 5px #1B1B1B);
 		h1 {
 		  margin-bottom: 25px;
 		}
@@ -45,9 +43,46 @@
 		.bottom {
 			text-align: center;
 		}
+		.home-intro {
+		  text-align: center;
+		}
+		.table {
+		  border: none;
+		  text-align: center;
+		  tr {
+		    border: none;
+		  }
+		  tr td {
+		    border: none;
+  		  .thumbnail {
+  		    img {
+            margin: auto;
+    		  }
+    		  width: 249px;
+    		  padding: none;
+    		  margin: 10px auto 10px auto;
+          border: 1px solid #202020;
+    		  .border-radius(4px);
+  		    .box-shadow(0px 0px 5px #202020);
+  		  }
+  		  text-align: center;
+		  }
+		  tbody tr:hover td,
+      tbody tr:hover th {
+          background-color: inherit;
+      }
+		}
+		.area {
+		  text-align: center;
+		}
+		.area .subscriptions .subscription .details p {
+		  text-shadow: none;
+		}
 	}
+
 	footer {
 		font-weight: normal;
-		color: #717171;
+		color: #FAFAFA;
+		text-shadow: 0px -1px #000;
 	}
 }

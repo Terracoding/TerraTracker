@@ -25,12 +25,10 @@
                 %li= link_to "Home", root_path
                 %li= link_to "Login", new_user_session_path
     .home
-      .container
-        .head
-          .thumbnail
-            = image_tag("logo_large.png")
-          %p Time management made easy
-        .main
-          = yield
+      .head
+        .thumbnail
+          = image_tag("logo_large.png")
+        %p Time management made easy
+      = yield
       %footer
         %p &copy; #{Date.today.year} TerraCoding Ltd

@@ -1,6 +1,8 @@
 - content_for(:title, 'TimeTracker - Plans & Pricing')
-.subscriptions
-  %h2 Available Plans
-  %br
-  - @plans.each do |plan|
-    = render :partial => "home/plan", :locals => { :plan => plan }
+.main
+  .area
+    .subscriptions
+      %h2 Available Plans
+      %br
+      - @plans.each do |plan|
+        = render :partial => "home/plan", :locals => { :plan => plan }

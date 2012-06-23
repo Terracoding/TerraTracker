@@ -1,14 +1,28 @@
 - content_for(:title, 'TerraTimer')
-%h1 Time sheets and time tracking
-.area
-  %p Sending invoices to a client is an important part of a freelance developers work.
-  %p TerraTimer makes this simple by giving the ability to record expenses and have them turned into PDFs along with the company name, personal details and other information.
-  %p Try out TerraTimer today for free!
-  %p= link_to "See Plans & Pricing", home_plans_path
-%hr.soften
-.bottom
-  - if current_user
-    %p= link_to "Dashboard", dashboard_index_path, :class => "btn btn-primary btn-large"
-  - else
-    %p= link_to "Login", new_user_session_path, :class => "btn btn-primary btn-large"
-    %p= link_to "Try For Free", new_user_registration_path, :class => "btn btn-primary btn-large"
+.main
+  .home-intro
+    %h1 Simple time tracking and report generation
+    .area
+      %table.table
+        %tr
+          %td
+            .thumbnail= image_tag("screen1.png")
+            %p Create your own projects and tasks
+          %td
+            .thumbnail= image_tag("screen2.png")
+            %p Give users easy access to start timing their tasks
+          %td
+            .thumbnail= image_tag("screen3.png")
+            %p Analyse time and create reports
+.main
+  .area
+    %p TerraTimer makes this simple by giving the ability to record expenses and have them turned into PDFs along with the company name, personal details and other information.
+    %p= link_to "See Plans & Pricing", home_plans_path, :class => "btn btn-success"
+  %hr.soften
+  .bottom
+    - if current_user
+      %p= link_to "Dashboard", dashboard_index_path, :class => "btn btn-primary btn-large"
+    - else
+      %p
+        = link_to "Login", new_user_session_path, :class => "btn btn-primary btn-large"
+        = link_to "Try For Free", new_user_registration_path, :class => "btn btn-primary btn-large"
