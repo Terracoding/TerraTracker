@@ -3,7 +3,7 @@
   %head
     %meta{ :charset => "utf-8" }
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
-    %title= 'TimeTracker - ' + yield(:title)
+    %title= 'TerraTimer - ' + yield(:title)
     = stylesheet_link_tag     "application"
     = javascript_include_tag  "application"
     = csrf_meta_tags
@@ -15,7 +15,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to("TimeTracker", root_path, :class => "brand")
+          = link_to("TerraTimer", root_path, :class => "brand")
           %div.nav-collapse
             %ul.nav
               - if current_user
