@@ -1,6 +1,12 @@
 TerraTracker
 ===============
 
+Simple open source time tracking and report generation for companies and freelancers.
+
+Every so often I update a demo Heroku app of the site:
+
+[VISIT DEMO](http://terratracker.herokuapp.com/)
+
 ## Installation
 
 Depenencies:
