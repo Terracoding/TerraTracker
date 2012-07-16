@@ -1,0 +1,5 @@
+GoCardless.account_details = {
+  :app_id     => 'YOUR_APP_ID',
+  :app_secret => 'YOUR_APP_SECRET',
+  :token      => 'YOUR_APP_TOKEN',
+}
