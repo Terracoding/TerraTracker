@@ -28,7 +28,7 @@ And then you can access the app by visiting [http://localhost:3000/](http://loca
 
 ## License
 
-[http://opensource.org/licenses/gpl-3.0.html](GNU General Public License, version 3.0)
+[GNU General Public License, version 3.0](http://opensource.org/licenses/gpl-3.0.html)
 
 ## Contribute
 
