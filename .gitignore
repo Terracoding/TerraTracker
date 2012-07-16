@@ -7,3 +7,5 @@ coverage
 public/system/company_logos
 public/assets
 doc/app/
+config/initializers/*.sample
+
