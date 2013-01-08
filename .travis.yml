@@ -1,0 +1,2 @@
+before_script:
+  - psql -c 'create database terratracker_test;' -U postgres
