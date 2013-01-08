@@ -17,6 +17,7 @@ gem 'rspec-rails'
 gem 'sass-rails', '3.1.5'
 gem 'activeadmin'
 gem "meta_search", '>= 1.1.0.pre'
+gem 'airbrake'
 
 group :assets do
   gem 'coffee-rails', '~> 3.1.1'
