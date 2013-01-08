@@ -14,6 +14,7 @@ Depenencies:
 - Ruby 1.9.3
 - SQLite3
 - Bundler
+- PostGres
 
 To install:
 
