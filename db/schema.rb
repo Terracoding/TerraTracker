@@ -86,13 +86,13 @@ ActiveRecord::Schema.define(:version => 20120623145203) do
   create_table "plans", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.decimal  "value",         :precision => 10, :scale => 0
+    t.decimal  "value"
     t.string   "duration"
     t.integer  "project_count"
     t.integer  "user_count"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "hidden",                                       :default => false
+    t.boolean  "hidden",        :default => false
   end
 
   create_table "project_users", :force => true do |t|
