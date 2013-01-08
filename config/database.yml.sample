@@ -1,30 +1,15 @@
-development: &defaults
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+development:
+  adapter: postgresql
+  encoding: unicode
   database: terratracker_development
   pool: 5
-  username: root
+  username: postgres
   password:
-  host: localhost
-  socket: /tmp/mysql.sock
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test: &test
-  <<: *defaults
+test:
+  adapter: postgresql
+  encoding: unicode
   database: terratracker_test
-
-production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: true
-  database: terratracker
   pool: 5
-  username: terratracker_db
-  password: 
-  socket: /tmp/mysql.sock
-
-cucumber:
-  <<: *test
+  username: postgres
+  password:

@@ -26,7 +26,6 @@ end
 
 group :development do
   gem 'guard-spork'
-  gem 'mysql2'
 end
 
 group :test do

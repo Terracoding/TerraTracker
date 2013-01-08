@@ -170,7 +170,6 @@ GEM
     mime-types (1.18)
     multi_json (1.2.0)
     multipart-post (1.1.5)
-    mysql2 (0.3.11)
     nokogiri (1.5.2)
     oauth2 (0.5.2)
       faraday (~> 0.7)
@@ -322,7 +321,6 @@ DEPENDENCIES
   jquery-rails
   launchy
   meta_search (>= 1.1.0.pre)
-  mysql2
   paperclip
   pg
   prawn
